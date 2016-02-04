@@ -7,8 +7,7 @@ package dota
 import proto "github.com/golang/protobuf/proto"
 import fmt "fmt"
 import math "math"
-
-// discarding unused import steammessages "github.com/13k/go-steam-resources/protobuf/gc"
+import _ "github.com/13k/go-steam-resources/protobuf/gc"
 import econ_gcmessages "github.com/13k/go-steam-resources/protobuf/gc"
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -54,6 +53,7 @@ func (x *EPoorNetworkConditionsType) UnmarshalJSON(data []byte) error {
 	*x = EPoorNetworkConditionsType(value)
 	return nil
 }
+func (EPoorNetworkConditionsType) EnumDescriptor() ([]byte, []int) { return fileDescriptor4, []int{0} }
 
 type EAbilityAbuseType int32
 
@@ -102,6 +102,7 @@ func (x *EAbilityAbuseType) UnmarshalJSON(data []byte) error {
 	*x = EAbilityAbuseType(value)
 	return nil
 }
+func (EAbilityAbuseType) EnumDescriptor() ([]byte, []int) { return fileDescriptor4, []int{1} }
 
 type EIntentionalFeedingType int32
 
@@ -159,6 +160,7 @@ func (x *EIntentionalFeedingType) UnmarshalJSON(data []byte) error {
 	*x = EIntentionalFeedingType(value)
 	return nil
 }
+func (EIntentionalFeedingType) EnumDescriptor() ([]byte, []int) { return fileDescriptor4, []int{2} }
 
 type ESuspiciousActivity int32
 
@@ -195,6 +197,7 @@ func (x *ESuspiciousActivity) UnmarshalJSON(data []byte) error {
 	*x = ESuspiciousActivity(value)
 	return nil
 }
+func (ESuspiciousActivity) EnumDescriptor() ([]byte, []int) { return fileDescriptor4, []int{3} }
 
 type ESuspiciousBuildType int32
 
@@ -252,6 +255,7 @@ func (x *ESuspiciousBuildType) UnmarshalJSON(data []byte) error {
 	*x = ESuspiciousBuildType(value)
 	return nil
 }
+func (ESuspiciousBuildType) EnumDescriptor() ([]byte, []int) { return fileDescriptor4, []int{4} }
 
 type CMsgConnectedPlayers_SendReason int32
 
@@ -264,11 +268,10 @@ const (
 	CMsgConnectedPlayers_PLAYER_HERO                        CMsgConnectedPlayers_SendReason = 5
 	CMsgConnectedPlayers_PLAYER_DISCONNECTED_CONSEQUENCES   CMsgConnectedPlayers_SendReason = 6
 	CMsgConnectedPlayers_PLAYER_DISCONNECTED_NOCONSEQUENCES CMsgConnectedPlayers_SendReason = 7
-	CMsgConnectedPlayers_TOWER_STATE                        CMsgConnectedPlayers_SendReason = 9
 	CMsgConnectedPlayers_GAMESTATE_TIMEOUT                  CMsgConnectedPlayers_SendReason = 10
 	CMsgConnectedPlayers_MASS_DISCONNECT                    CMsgConnectedPlayers_SendReason = 11
-	CMsgConnectedPlayers_BARRACKS_STATE                     CMsgConnectedPlayers_SendReason = 12
 	CMsgConnectedPlayers_KILLS                              CMsgConnectedPlayers_SendReason = 13
+	CMsgConnectedPlayers_BUILDING_STATE                     CMsgConnectedPlayers_SendReason = 14
 )
 
 var CMsgConnectedPlayers_SendReason_name = map[int32]string{
@@ -280,11 +283,10 @@ var CMsgConnectedPlayers_SendReason_name = map[int32]string{
 	5:  "PLAYER_HERO",
 	6:  "PLAYER_DISCONNECTED_CONSEQUENCES",
 	7:  "PLAYER_DISCONNECTED_NOCONSEQUENCES",
-	9:  "TOWER_STATE",
 	10: "GAMESTATE_TIMEOUT",
 	11: "MASS_DISCONNECT",
-	12: "BARRACKS_STATE",
 	13: "KILLS",
+	14: "BUILDING_STATE",
 }
 var CMsgConnectedPlayers_SendReason_value = map[string]int32{
 	"INVALID":                            0,
@@ -295,11 +297,10 @@ var CMsgConnectedPlayers_SendReason_value = map[string]int32{
 	"PLAYER_HERO":                        5,
 	"PLAYER_DISCONNECTED_CONSEQUENCES":   6,
 	"PLAYER_DISCONNECTED_NOCONSEQUENCES": 7,
-	"TOWER_STATE":                        9,
 	"GAMESTATE_TIMEOUT":                  10,
 	"MASS_DISCONNECT":                    11,
-	"BARRACKS_STATE":                     12,
 	"KILLS":                              13,
+	"BUILDING_STATE":                     14,
 }
 
 func (x CMsgConnectedPlayers_SendReason) Enum() *CMsgConnectedPlayers_SendReason {
@@ -317,6 +318,9 @@ func (x *CMsgConnectedPlayers_SendReason) UnmarshalJSON(data []byte) error {
 	}
 	*x = CMsgConnectedPlayers_SendReason(value)
 	return nil
+}
+func (CMsgConnectedPlayers_SendReason) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{5, 0}
 }
 
 type CMsgGameServerInfo_ServerType int32
@@ -353,6 +357,9 @@ func (x *CMsgGameServerInfo_ServerType) UnmarshalJSON(data []byte) error {
 	}
 	*x = CMsgGameServerInfo_ServerType(value)
 	return nil
+}
+func (CMsgGameServerInfo_ServerType) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{6, 0}
 }
 
 type CMsgDOTALiveScoreboardUpdate_Team_Player_DOTAUltimateState int32
@@ -393,6 +400,9 @@ func (x *CMsgDOTALiveScoreboardUpdate_Team_Player_DOTAUltimateState) UnmarshalJS
 	*x = CMsgDOTALiveScoreboardUpdate_Team_Player_DOTAUltimateState(value)
 	return nil
 }
+func (CMsgDOTALiveScoreboardUpdate_Team_Player_DOTAUltimateState) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{22, 0, 0, 0}
+}
 
 type CMsgGameServerSaveGameResult_Result int32
 
@@ -432,6 +442,9 @@ func (x *CMsgGameServerSaveGameResult_Result) UnmarshalJSON(data []byte) error {
 	*x = CMsgGameServerSaveGameResult_Result(value)
 	return nil
 }
+func (CMsgGameServerSaveGameResult_Result) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{38, 0}
+}
 
 type CMsgGCToServerPredictionResult_Prediction_EResult int32
 
@@ -465,15 +478,19 @@ func (x *CMsgGCToServerPredictionResult_Prediction_EResult) UnmarshalJSON(data [
 	*x = CMsgGCToServerPredictionResult_Prediction_EResult(value)
 	return nil
 }
+func (CMsgGCToServerPredictionResult_Prediction_EResult) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{71, 0, 0}
+}
 
 type CMsgSpawnLootGreevil struct {
 	Rare             *bool  `protobuf:"varint,1,opt,name=rare" json:"rare,omitempty"`
 	XXX_unrecognized []byte `json:"-"`
 }
 
-func (m *CMsgSpawnLootGreevil) Reset()         { *m = CMsgSpawnLootGreevil{} }
-func (m *CMsgSpawnLootGreevil) String() string { return proto.CompactTextString(m) }
-func (*CMsgSpawnLootGreevil) ProtoMessage()    {}
+func (m *CMsgSpawnLootGreevil) Reset()                    { *m = CMsgSpawnLootGreevil{} }
+func (m *CMsgSpawnLootGreevil) String() string            { return proto.CompactTextString(m) }
+func (*CMsgSpawnLootGreevil) ProtoMessage()               {}
+func (*CMsgSpawnLootGreevil) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{0} }
 
 func (m *CMsgSpawnLootGreevil) GetRare() bool {
 	if m != nil && m.Rare != nil {
@@ -488,9 +505,10 @@ type CMsgDismissLootGreevil struct {
 	XXX_unrecognized []byte `json:"-"`
 }
 
-func (m *CMsgDismissLootGreevil) Reset()         { *m = CMsgDismissLootGreevil{} }
-func (m *CMsgDismissLootGreevil) String() string { return proto.CompactTextString(m) }
-func (*CMsgDismissLootGreevil) ProtoMessage()    {}
+func (m *CMsgDismissLootGreevil) Reset()                    { *m = CMsgDismissLootGreevil{} }
+func (m *CMsgDismissLootGreevil) String() string            { return proto.CompactTextString(m) }
+func (*CMsgDismissLootGreevil) ProtoMessage()               {}
+func (*CMsgDismissLootGreevil) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{1} }
 
 func (m *CMsgDismissLootGreevil) GetKilled() bool {
 	if m != nil && m.Killed != nil {
@@ -510,9 +528,10 @@ type CMsgDismissLootGreevilResponse struct {
 	XXX_unrecognized []byte `json:"-"`
 }
 
-func (m *CMsgDismissLootGreevilResponse) Reset()         { *m = CMsgDismissLootGreevilResponse{} }
-func (m *CMsgDismissLootGreevilResponse) String() string { return proto.CompactTextString(m) }
-func (*CMsgDismissLootGreevilResponse) ProtoMessage()    {}
+func (m *CMsgDismissLootGreevilResponse) Reset()                    { *m = CMsgDismissLootGreevilResponse{} }
+func (m *CMsgDismissLootGreevilResponse) String() string            { return proto.CompactTextString(m) }
+func (*CMsgDismissLootGreevilResponse) ProtoMessage()               {}
+func (*CMsgDismissLootGreevilResponse) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{2} }
 
 type CMsgPoorNetworkConditions struct {
 	DetectionType    *EPoorNetworkConditionsType         `protobuf:"varint,1,opt,name=detection_type,enum=EPoorNetworkConditionsType,def=0" json:"detection_type,omitempty"`
@@ -520,9 +539,10 @@ type CMsgPoorNetworkConditions struct {
 	XXX_unrecognized []byte                              `json:"-"`
 }
 
-func (m *CMsgPoorNetworkConditions) Reset()         { *m = CMsgPoorNetworkConditions{} }
-func (m *CMsgPoorNetworkConditions) String() string { return proto.CompactTextString(m) }
-func (*CMsgPoorNetworkConditions) ProtoMessage()    {}
+func (m *CMsgPoorNetworkConditions) Reset()                    { *m = CMsgPoorNetworkConditions{} }
+func (m *CMsgPoorNetworkConditions) String() string            { return proto.CompactTextString(m) }
+func (*CMsgPoorNetworkConditions) ProtoMessage()               {}
+func (*CMsgPoorNetworkConditions) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{3} }
 
 const Default_CMsgPoorNetworkConditions_DetectionType EPoorNetworkConditionsType = EPoorNetworkConditionsType_k_EPoorNetworkConditions_None
 
@@ -551,6 +571,9 @@ type CMsgPoorNetworkConditions_Player struct {
 func (m *CMsgPoorNetworkConditions_Player) Reset()         { *m = CMsgPoorNetworkConditions_Player{} }
 func (m *CMsgPoorNetworkConditions_Player) String() string { return proto.CompactTextString(m) }
 func (*CMsgPoorNetworkConditions_Player) ProtoMessage()    {}
+func (*CMsgPoorNetworkConditions_Player) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{3, 0}
+}
 
 const Default_CMsgPoorNetworkConditions_Player_DisconnectReason ENetworkDisconnectionReason = ENetworkDisconnectionReason_NETWORK_DISCONNECT_INVALID
 
@@ -587,17 +610,20 @@ type CMsgGameserverCrash struct {
 	LobbyId            *uint64         `protobuf:"fixed64,2,opt,name=lobby_id" json:"lobby_id,omitempty"`
 	GameState          *DOTA_GameState `protobuf:"varint,3,opt,name=game_state,enum=DOTA_GameState,def=0" json:"game_state,omitempty"`
 	SentinelSaveTime   *uint32         `protobuf:"fixed32,4,opt,name=sentinel_save_time" json:"sentinel_save_time,omitempty"`
+	CustomGameId       *uint64         `protobuf:"fixed64,11,opt,name=custom_game_id" json:"custom_game_id,omitempty"`
 	ServerSteamId      *uint64         `protobuf:"fixed64,5,opt,name=server_steam_id" json:"server_steam_id,omitempty"`
 	ServerPublicIpAddr *uint32         `protobuf:"fixed32,6,opt,name=server_public_ip_addr" json:"server_public_ip_addr,omitempty"`
 	ServerPort         *uint32         `protobuf:"varint,7,opt,name=server_port" json:"server_port,omitempty"`
 	ServerCluster      *uint32         `protobuf:"varint,8,opt,name=server_cluster" json:"server_cluster,omitempty"`
 	Pid                *uint32         `protobuf:"varint,9,opt,name=pid" json:"pid,omitempty"`
+	Engine             *uint32         `protobuf:"varint,10,opt,name=engine" json:"engine,omitempty"`
 	XXX_unrecognized   []byte          `json:"-"`
 }
 
-func (m *CMsgGameserverCrash) Reset()         { *m = CMsgGameserverCrash{} }
-func (m *CMsgGameserverCrash) String() string { return proto.CompactTextString(m) }
-func (*CMsgGameserverCrash) ProtoMessage()    {}
+func (m *CMsgGameserverCrash) Reset()                    { *m = CMsgGameserverCrash{} }
+func (m *CMsgGameserverCrash) String() string            { return proto.CompactTextString(m) }
+func (*CMsgGameserverCrash) ProtoMessage()               {}
+func (*CMsgGameserverCrash) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{4} }
 
 const Default_CMsgGameserverCrash_GameState DOTA_GameState = DOTA_GameState_DOTA_GAMERULES_STATE_INIT
 
@@ -625,6 +651,13 @@ func (m *CMsgGameserverCrash) GetGameState() DOTA_GameState {
 func (m *CMsgGameserverCrash) GetSentinelSaveTime() uint32 {
 	if m != nil && m.SentinelSaveTime != nil {
 		return *m.SentinelSaveTime
+	}
+	return 0
+}
+
+func (m *CMsgGameserverCrash) GetCustomGameId() uint64 {
+	if m != nil && m.CustomGameId != nil {
+		return *m.CustomGameId
 	}
 	return 0
 }
@@ -664,24 +697,32 @@ func (m *CMsgGameserverCrash) GetPid() uint32 {
 	return 0
 }
 
+func (m *CMsgGameserverCrash) GetEngine() uint32 {
+	if m != nil && m.Engine != nil {
+		return *m.Engine
+	}
+	return 0
+}
+
 type CMsgConnectedPlayers struct {
 	ConnectedPlayers      []*CMsgConnectedPlayers_Player   `protobuf:"bytes,1,rep,name=connected_players" json:"connected_players,omitempty"`
 	DisconnectedPlayers   []*CMsgConnectedPlayers_Player   `protobuf:"bytes,7,rep,name=disconnected_players" json:"disconnected_players,omitempty"`
 	GameState             *DOTA_GameState                  `protobuf:"varint,2,opt,name=game_state,enum=DOTA_GameState,def=0" json:"game_state,omitempty"`
-	TowerState            *uint32                          `protobuf:"varint,4,opt,name=tower_state" json:"tower_state,omitempty"`
 	FirstBloodHappened    *bool                            `protobuf:"varint,6,opt,name=first_blood_happened" json:"first_blood_happened,omitempty"`
 	LegacyMassDisconnect  *bool                            `protobuf:"varint,9,opt,name=legacy_mass_disconnect" json:"legacy_mass_disconnect,omitempty"`
 	PoorNetworkConditions *CMsgPoorNetworkConditions       `protobuf:"bytes,10,opt,name=poor_network_conditions" json:"poor_network_conditions,omitempty"`
 	SendReason            *CMsgConnectedPlayers_SendReason `protobuf:"varint,8,opt,name=send_reason,enum=CMsgConnectedPlayers_SendReason,def=0" json:"send_reason,omitempty"`
 	RadiantKills          *uint32                          `protobuf:"varint,11,opt,name=radiant_kills" json:"radiant_kills,omitempty"`
 	DireKills             *uint32                          `protobuf:"varint,12,opt,name=dire_kills" json:"dire_kills,omitempty"`
-	BarracksState         *uint32                          `protobuf:"varint,13,opt,name=barracks_state" json:"barracks_state,omitempty"`
+	RadiantLead           *int32                           `protobuf:"varint,14,opt,name=radiant_lead" json:"radiant_lead,omitempty"`
+	BuildingState         *uint32                          `protobuf:"varint,15,opt,name=building_state" json:"building_state,omitempty"`
 	XXX_unrecognized      []byte                           `json:"-"`
 }
 
-func (m *CMsgConnectedPlayers) Reset()         { *m = CMsgConnectedPlayers{} }
-func (m *CMsgConnectedPlayers) String() string { return proto.CompactTextString(m) }
-func (*CMsgConnectedPlayers) ProtoMessage()    {}
+func (m *CMsgConnectedPlayers) Reset()                    { *m = CMsgConnectedPlayers{} }
+func (m *CMsgConnectedPlayers) String() string            { return proto.CompactTextString(m) }
+func (*CMsgConnectedPlayers) ProtoMessage()               {}
+func (*CMsgConnectedPlayers) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{5} }
 
 const Default_CMsgConnectedPlayers_GameState DOTA_GameState = DOTA_GameState_DOTA_GAMERULES_STATE_INIT
 const Default_CMsgConnectedPlayers_SendReason CMsgConnectedPlayers_SendReason = CMsgConnectedPlayers_INVALID
@@ -705,13 +746,6 @@ func (m *CMsgConnectedPlayers) GetGameState() DOTA_GameState {
 		return *m.GameState
 	}
 	return Default_CMsgConnectedPlayers_GameState
-}
-
-func (m *CMsgConnectedPlayers) GetTowerState() uint32 {
-	if m != nil && m.TowerState != nil {
-		return *m.TowerState
-	}
-	return 0
 }
 
 func (m *CMsgConnectedPlayers) GetFirstBloodHappened() bool {
@@ -756,9 +790,16 @@ func (m *CMsgConnectedPlayers) GetDireKills() uint32 {
 	return 0
 }
 
-func (m *CMsgConnectedPlayers) GetBarracksState() uint32 {
-	if m != nil && m.BarracksState != nil {
-		return *m.BarracksState
+func (m *CMsgConnectedPlayers) GetRadiantLead() int32 {
+	if m != nil && m.RadiantLead != nil {
+		return *m.RadiantLead
+	}
+	return 0
+}
+
+func (m *CMsgConnectedPlayers) GetBuildingState() uint32 {
+	if m != nil && m.BuildingState != nil {
+		return *m.BuildingState
 	}
 	return 0
 }
@@ -771,9 +812,10 @@ type CMsgConnectedPlayers_Player struct {
 	XXX_unrecognized []byte                       `json:"-"`
 }
 
-func (m *CMsgConnectedPlayers_Player) Reset()         { *m = CMsgConnectedPlayers_Player{} }
-func (m *CMsgConnectedPlayers_Player) String() string { return proto.CompactTextString(m) }
-func (*CMsgConnectedPlayers_Player) ProtoMessage()    {}
+func (m *CMsgConnectedPlayers_Player) Reset()                    { *m = CMsgConnectedPlayers_Player{} }
+func (m *CMsgConnectedPlayers_Player) String() string            { return proto.CompactTextString(m) }
+func (*CMsgConnectedPlayers_Player) ProtoMessage()               {}
+func (*CMsgConnectedPlayers_Player) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{5, 0} }
 
 const Default_CMsgConnectedPlayers_Player_DisconnectReason ENetworkDisconnectionReason = ENetworkDisconnectionReason_NETWORK_DISCONNECT_INVALID
 
@@ -831,9 +873,10 @@ type CMsgGameServerInfo struct {
 	XXX_unrecognized            []byte                         `json:"-"`
 }
 
-func (m *CMsgGameServerInfo) Reset()         { *m = CMsgGameServerInfo{} }
-func (m *CMsgGameServerInfo) String() string { return proto.CompactTextString(m) }
-func (*CMsgGameServerInfo) ProtoMessage()    {}
+func (m *CMsgGameServerInfo) Reset()                    { *m = CMsgGameServerInfo{} }
+func (m *CMsgGameServerInfo) String() string            { return proto.CompactTextString(m) }
+func (*CMsgGameServerInfo) ProtoMessage()               {}
+func (*CMsgGameServerInfo) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{6} }
 
 const Default_CMsgGameServerInfo_ServerType CMsgGameServerInfo_ServerType = CMsgGameServerInfo_UNSPECIFIED
 
@@ -1001,9 +1044,10 @@ type CMsgLeaverDetected struct {
 	XXX_unrecognized      []byte                       `json:"-"`
 }
 
-func (m *CMsgLeaverDetected) Reset()         { *m = CMsgLeaverDetected{} }
-func (m *CMsgLeaverDetected) String() string { return proto.CompactTextString(m) }
-func (*CMsgLeaverDetected) ProtoMessage()    {}
+func (m *CMsgLeaverDetected) Reset()                    { *m = CMsgLeaverDetected{} }
+func (m *CMsgLeaverDetected) String() string            { return proto.CompactTextString(m) }
+func (*CMsgLeaverDetected) ProtoMessage()               {}
+func (*CMsgLeaverDetected) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{7} }
 
 const Default_CMsgLeaverDetected_LeaverStatus DOTALeaverStatusT = DOTALeaverStatusT_DOTA_LEAVER_NONE
 const Default_CMsgLeaverDetected_DisconnectReason ENetworkDisconnectionReason = ENetworkDisconnectionReason_NETWORK_DISCONNECT_INVALID
@@ -1055,9 +1099,10 @@ type CMsgLeaverDetectedResponse struct {
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *CMsgLeaverDetectedResponse) Reset()         { *m = CMsgLeaverDetectedResponse{} }
-func (m *CMsgLeaverDetectedResponse) String() string { return proto.CompactTextString(m) }
-func (*CMsgLeaverDetectedResponse) ProtoMessage()    {}
+func (m *CMsgLeaverDetectedResponse) Reset()                    { *m = CMsgLeaverDetectedResponse{} }
+func (m *CMsgLeaverDetectedResponse) String() string            { return proto.CompactTextString(m) }
+func (*CMsgLeaverDetectedResponse) ProtoMessage()               {}
+func (*CMsgLeaverDetectedResponse) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{8} }
 
 func (m *CMsgLeaverDetectedResponse) GetResult() uint32 {
 	if m != nil && m.Result != nil {
@@ -1088,9 +1133,10 @@ type CMsgDOTAFantasyPlayerStats struct {
 	XXX_unrecognized []byte   `json:"-"`
 }
 
-func (m *CMsgDOTAFantasyPlayerStats) Reset()         { *m = CMsgDOTAFantasyPlayerStats{} }
-func (m *CMsgDOTAFantasyPlayerStats) String() string { return proto.CompactTextString(m) }
-func (*CMsgDOTAFantasyPlayerStats) ProtoMessage()    {}
+func (m *CMsgDOTAFantasyPlayerStats) Reset()                    { *m = CMsgDOTAFantasyPlayerStats{} }
+func (m *CMsgDOTAFantasyPlayerStats) String() string            { return proto.CompactTextString(m) }
+func (*CMsgDOTAFantasyPlayerStats) ProtoMessage()               {}
+func (*CMsgDOTAFantasyPlayerStats) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{9} }
 
 func (m *CMsgDOTAFantasyPlayerStats) GetPlayerAccountId() uint32 {
 	if m != nil && m.PlayerAccountId != nil {
@@ -1229,9 +1275,10 @@ type CMsgDOTAFantasyMatch struct {
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *CMsgDOTAFantasyMatch) Reset()         { *m = CMsgDOTAFantasyMatch{} }
-func (m *CMsgDOTAFantasyMatch) String() string { return proto.CompactTextString(m) }
-func (*CMsgDOTAFantasyMatch) ProtoMessage()    {}
+func (m *CMsgDOTAFantasyMatch) Reset()                    { *m = CMsgDOTAFantasyMatch{} }
+func (m *CMsgDOTAFantasyMatch) String() string            { return proto.CompactTextString(m) }
+func (*CMsgDOTAFantasyMatch) ProtoMessage()               {}
+func (*CMsgDOTAFantasyMatch) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{10} }
 
 func (m *CMsgDOTAFantasyMatch) GetMatchId() uint64 {
 	if m != nil && m.MatchId != nil {
@@ -1288,9 +1335,10 @@ type CMsgServerToGCRealtimeStats struct {
 	XXX_unrecognized []byte                          `json:"-"`
 }
 
-func (m *CMsgServerToGCRealtimeStats) Reset()         { *m = CMsgServerToGCRealtimeStats{} }
-func (m *CMsgServerToGCRealtimeStats) String() string { return proto.CompactTextString(m) }
-func (*CMsgServerToGCRealtimeStats) ProtoMessage()    {}
+func (m *CMsgServerToGCRealtimeStats) Reset()                    { *m = CMsgServerToGCRealtimeStats{} }
+func (m *CMsgServerToGCRealtimeStats) String() string            { return proto.CompactTextString(m) }
+func (*CMsgServerToGCRealtimeStats) ProtoMessage()               {}
+func (*CMsgServerToGCRealtimeStats) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{11} }
 
 func (m *CMsgServerToGCRealtimeStats) GetDelayed() *CMsgDOTARealtimeGameStatsTerse {
 	if m != nil {
@@ -1315,6 +1363,9 @@ type CMsgGCToServerRealtimeStatsStartStop struct {
 func (m *CMsgGCToServerRealtimeStatsStartStop) Reset()         { *m = CMsgGCToServerRealtimeStatsStartStop{} }
 func (m *CMsgGCToServerRealtimeStatsStartStop) String() string { return proto.CompactTextString(m) }
 func (*CMsgGCToServerRealtimeStatsStartStop) ProtoMessage()    {}
+func (*CMsgGCToServerRealtimeStatsStartStop) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{12}
+}
 
 func (m *CMsgGCToServerRealtimeStatsStartStop) GetDelayed() bool {
 	if m != nil && m.Delayed != nil {
@@ -1370,9 +1421,10 @@ type CMsgGameMatchSignOut struct {
 	XXX_unrecognized              []byte                                                  `json:"-"`
 }
 
-func (m *CMsgGameMatchSignOut) Reset()         { *m = CMsgGameMatchSignOut{} }
-func (m *CMsgGameMatchSignOut) String() string { return proto.CompactTextString(m) }
-func (*CMsgGameMatchSignOut) ProtoMessage()    {}
+func (m *CMsgGameMatchSignOut) Reset()                    { *m = CMsgGameMatchSignOut{} }
+func (m *CMsgGameMatchSignOut) String() string            { return proto.CompactTextString(m) }
+func (*CMsgGameMatchSignOut) ProtoMessage()               {}
+func (*CMsgGameMatchSignOut) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{13} }
 
 func (m *CMsgGameMatchSignOut) GetMatchId() uint64 {
 	if m != nil && m.MatchId != nil {
@@ -1631,9 +1683,10 @@ type CMsgGameMatchSignOut_CTeam struct {
 	XXX_unrecognized []byte                                `json:"-"`
 }
 
-func (m *CMsgGameMatchSignOut_CTeam) Reset()         { *m = CMsgGameMatchSignOut_CTeam{} }
-func (m *CMsgGameMatchSignOut_CTeam) String() string { return proto.CompactTextString(m) }
-func (*CMsgGameMatchSignOut_CTeam) ProtoMessage()    {}
+func (m *CMsgGameMatchSignOut_CTeam) Reset()                    { *m = CMsgGameMatchSignOut_CTeam{} }
+func (m *CMsgGameMatchSignOut_CTeam) String() string            { return proto.CompactTextString(m) }
+func (*CMsgGameMatchSignOut_CTeam) ProtoMessage()               {}
+func (*CMsgGameMatchSignOut_CTeam) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{13, 0} }
 
 func (m *CMsgGameMatchSignOut_CTeam) GetPlayers() []*CMsgGameMatchSignOut_CTeam_CPlayer {
 	if m != nil {
@@ -1681,6 +1734,9 @@ type CMsgGameMatchSignOut_CTeam_CPlayer struct {
 func (m *CMsgGameMatchSignOut_CTeam_CPlayer) Reset()         { *m = CMsgGameMatchSignOut_CTeam_CPlayer{} }
 func (m *CMsgGameMatchSignOut_CTeam_CPlayer) String() string { return proto.CompactTextString(m) }
 func (*CMsgGameMatchSignOut_CTeam_CPlayer) ProtoMessage()    {}
+func (*CMsgGameMatchSignOut_CTeam_CPlayer) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{13, 0, 0}
+}
 
 func (m *CMsgGameMatchSignOut_CTeam_CPlayer) GetSteamId() uint64 {
 	if m != nil && m.SteamId != nil {
@@ -1919,6 +1975,9 @@ func (m *CMsgGameMatchSignOut_CTeam_CPlayer_CCustomGameData) String() string {
 	return proto.CompactTextString(m)
 }
 func (*CMsgGameMatchSignOut_CTeam_CPlayer_CCustomGameData) ProtoMessage() {}
+func (*CMsgGameMatchSignOut_CTeam_CPlayer_CCustomGameData) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{13, 0, 0, 0}
+}
 
 func (m *CMsgGameMatchSignOut_CTeam_CPlayer_CCustomGameData) GetDotaTeam() uint32 {
 	if m != nil && m.DotaTeam != nil {
@@ -1947,6 +2006,9 @@ func (m *CMsgGameMatchSignOut_CAdditionalSignoutMsg) String() string {
 	return proto.CompactTextString(m)
 }
 func (*CMsgGameMatchSignOut_CAdditionalSignoutMsg) ProtoMessage() {}
+func (*CMsgGameMatchSignOut_CAdditionalSignoutMsg) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{13, 1}
+}
 
 func (m *CMsgGameMatchSignOut_CAdditionalSignoutMsg) GetId() uint32 {
 	if m != nil && m.Id != nil {
@@ -1978,6 +2040,9 @@ func (m *CMsgGameMatchSignOut_CSocialFeedMatchEvent) String() string {
 	return proto.CompactTextString(m)
 }
 func (*CMsgGameMatchSignOut_CSocialFeedMatchEvent) ProtoMessage() {}
+func (*CMsgGameMatchSignOut_CSocialFeedMatchEvent) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{13, 2}
+}
 
 func (m *CMsgGameMatchSignOut_CSocialFeedMatchEvent) GetAccountId() uint32 {
 	if m != nil && m.AccountId != nil {
@@ -2022,6 +2087,9 @@ type CMsgGameMatchSignOut_CCustomGameData struct {
 func (m *CMsgGameMatchSignOut_CCustomGameData) Reset()         { *m = CMsgGameMatchSignOut_CCustomGameData{} }
 func (m *CMsgGameMatchSignOut_CCustomGameData) String() string { return proto.CompactTextString(m) }
 func (*CMsgGameMatchSignOut_CCustomGameData) ProtoMessage()    {}
+func (*CMsgGameMatchSignOut_CCustomGameData) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{13, 3}
+}
 
 func (m *CMsgGameMatchSignOut_CCustomGameData) GetPublishTimestamp() uint32 {
 	if m != nil && m.PublishTimestamp != nil {
@@ -2037,9 +2105,10 @@ type CMsgSignOutDraftInfo struct {
 	XXX_unrecognized        []byte                   `json:"-"`
 }
 
-func (m *CMsgSignOutDraftInfo) Reset()         { *m = CMsgSignOutDraftInfo{} }
-func (m *CMsgSignOutDraftInfo) String() string { return proto.CompactTextString(m) }
-func (*CMsgSignOutDraftInfo) ProtoMessage()    {}
+func (m *CMsgSignOutDraftInfo) Reset()                    { *m = CMsgSignOutDraftInfo{} }
+func (m *CMsgSignOutDraftInfo) String() string            { return proto.CompactTextString(m) }
+func (*CMsgSignOutDraftInfo) ProtoMessage()               {}
+func (*CMsgSignOutDraftInfo) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{14} }
 
 func (m *CMsgSignOutDraftInfo) GetRadiantCaptainAccountId() uint32 {
 	if m != nil && m.RadiantCaptainAccountId != nil {
@@ -2070,9 +2139,10 @@ type CMsgSignOutBotInfo struct {
 	XXX_unrecognized    []byte                                      `json:"-"`
 }
 
-func (m *CMsgSignOutBotInfo) Reset()         { *m = CMsgSignOutBotInfo{} }
-func (m *CMsgSignOutBotInfo) String() string { return proto.CompactTextString(m) }
-func (*CMsgSignOutBotInfo) ProtoMessage()    {}
+func (m *CMsgSignOutBotInfo) Reset()                    { *m = CMsgSignOutBotInfo{} }
+func (m *CMsgSignOutBotInfo) String() string            { return proto.CompactTextString(m) }
+func (*CMsgSignOutBotInfo) ProtoMessage()               {}
+func (*CMsgSignOutBotInfo) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{15} }
 
 const Default_CMsgSignOutBotInfo_BotDifficulty DOTABotDifficulty = DOTABotDifficulty_BOT_DIFFICULTY_PASSIVE
 
@@ -2115,6 +2185,9 @@ func (m *CMsgSignOutBotInfo_CMsgBotSlotDifficulty) Reset() {
 }
 func (m *CMsgSignOutBotInfo_CMsgBotSlotDifficulty) String() string { return proto.CompactTextString(m) }
 func (*CMsgSignOutBotInfo_CMsgBotSlotDifficulty) ProtoMessage()    {}
+func (*CMsgSignOutBotInfo_CMsgBotSlotDifficulty) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{15, 0}
+}
 
 const Default_CMsgSignOutBotInfo_CMsgBotSlotDifficulty_BotDifficulty DOTABotDifficulty = DOTABotDifficulty_BOT_DIFFICULTY_PASSIVE
 
@@ -2159,9 +2232,10 @@ type CMsgSignOutPlayerStats struct {
 	XXX_unrecognized  []byte   `json:"-"`
 }
 
-func (m *CMsgSignOutPlayerStats) Reset()         { *m = CMsgSignOutPlayerStats{} }
-func (m *CMsgSignOutPlayerStats) String() string { return proto.CompactTextString(m) }
-func (*CMsgSignOutPlayerStats) ProtoMessage()    {}
+func (m *CMsgSignOutPlayerStats) Reset()                    { *m = CMsgSignOutPlayerStats{} }
+func (m *CMsgSignOutPlayerStats) String() string            { return proto.CompactTextString(m) }
+func (*CMsgSignOutPlayerStats) ProtoMessage()               {}
+func (*CMsgSignOutPlayerStats) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{16} }
 
 func (m *CMsgSignOutPlayerStats) GetAccountId() int32 {
 	if m != nil && m.AccountId != nil {
@@ -2332,6 +2406,9 @@ type CMsgSignOutCommunicationSummary struct {
 func (m *CMsgSignOutCommunicationSummary) Reset()         { *m = CMsgSignOutCommunicationSummary{} }
 func (m *CMsgSignOutCommunicationSummary) String() string { return proto.CompactTextString(m) }
 func (*CMsgSignOutCommunicationSummary) ProtoMessage()    {}
+func (*CMsgSignOutCommunicationSummary) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{17}
+}
 
 func (m *CMsgSignOutCommunicationSummary) GetPlayers() []*CMsgSignOutCommunicationSummary_PlayerCommunication {
 	if m != nil {
@@ -2365,6 +2442,9 @@ func (m *CMsgSignOutCommunicationSummary_PlayerCommunication) String() string {
 	return proto.CompactTextString(m)
 }
 func (*CMsgSignOutCommunicationSummary_PlayerCommunication) ProtoMessage() {}
+func (*CMsgSignOutCommunicationSummary_PlayerCommunication) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{17, 0}
+}
 
 func (m *CMsgSignOutCommunicationSummary_PlayerCommunication) GetAccountId() uint32 {
 	if m != nil && m.AccountId != nil {
@@ -2474,9 +2554,10 @@ type CMsgGameMatchSignoutResponse struct {
 	XXX_unrecognized   []byte                                                `json:"-"`
 }
 
-func (m *CMsgGameMatchSignoutResponse) Reset()         { *m = CMsgGameMatchSignoutResponse{} }
-func (m *CMsgGameMatchSignoutResponse) String() string { return proto.CompactTextString(m) }
-func (*CMsgGameMatchSignoutResponse) ProtoMessage()    {}
+func (m *CMsgGameMatchSignoutResponse) Reset()                    { *m = CMsgGameMatchSignoutResponse{} }
+func (m *CMsgGameMatchSignoutResponse) String() string            { return proto.CompactTextString(m) }
+func (*CMsgGameMatchSignoutResponse) ProtoMessage()               {}
+func (*CMsgGameMatchSignoutResponse) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{18} }
 
 func (m *CMsgGameMatchSignoutResponse) GetMatchId() uint64 {
 	if m != nil && m.MatchId != nil {
@@ -2533,6 +2614,9 @@ func (m *CMsgGameMatchSignoutResponse_CAdditionalSignoutMsg) String() string {
 	return proto.CompactTextString(m)
 }
 func (*CMsgGameMatchSignoutResponse_CAdditionalSignoutMsg) ProtoMessage() {}
+func (*CMsgGameMatchSignoutResponse_CAdditionalSignoutMsg) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{18, 0}
+}
 
 func (m *CMsgGameMatchSignoutResponse_CAdditionalSignoutMsg) GetId() uint32 {
 	if m != nil && m.Id != nil {
@@ -2559,6 +2643,9 @@ type CMsgGameMatchSignOutPermissionRequest struct {
 func (m *CMsgGameMatchSignOutPermissionRequest) Reset()         { *m = CMsgGameMatchSignOutPermissionRequest{} }
 func (m *CMsgGameMatchSignOutPermissionRequest) String() string { return proto.CompactTextString(m) }
 func (*CMsgGameMatchSignOutPermissionRequest) ProtoMessage()    {}
+func (*CMsgGameMatchSignOutPermissionRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{19}
+}
 
 func (m *CMsgGameMatchSignOutPermissionRequest) GetServerVersion() uint32 {
 	if m != nil && m.ServerVersion != nil {
@@ -2600,6 +2687,9 @@ func (m *CMsgGameMatchSignOutPermissionResponse) Reset() {
 }
 func (m *CMsgGameMatchSignOutPermissionResponse) String() string { return proto.CompactTextString(m) }
 func (*CMsgGameMatchSignOutPermissionResponse) ProtoMessage()    {}
+func (*CMsgGameMatchSignOutPermissionResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{20}
+}
 
 const Default_CMsgGameMatchSignOutPermissionResponse_PermissionGranted bool = false
 const Default_CMsgGameMatchSignOutPermissionResponse_AbandonSignout bool = false
@@ -2632,9 +2722,10 @@ type CMsgGameChatLog struct {
 	XXX_unrecognized []byte                       `json:"-"`
 }
 
-func (m *CMsgGameChatLog) Reset()         { *m = CMsgGameChatLog{} }
-func (m *CMsgGameChatLog) String() string { return proto.CompactTextString(m) }
-func (*CMsgGameChatLog) ProtoMessage()    {}
+func (m *CMsgGameChatLog) Reset()                    { *m = CMsgGameChatLog{} }
+func (m *CMsgGameChatLog) String() string            { return proto.CompactTextString(m) }
+func (*CMsgGameChatLog) ProtoMessage()               {}
+func (*CMsgGameChatLog) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{21} }
 
 func (m *CMsgGameChatLog) GetMatchId() uint64 {
 	if m != nil && m.MatchId != nil {
@@ -2658,9 +2749,10 @@ type CMsgGameChatLog_CChatLine struct {
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *CMsgGameChatLog_CChatLine) Reset()         { *m = CMsgGameChatLog_CChatLine{} }
-func (m *CMsgGameChatLog_CChatLine) String() string { return proto.CompactTextString(m) }
-func (*CMsgGameChatLog_CChatLine) ProtoMessage()    {}
+func (m *CMsgGameChatLog_CChatLine) Reset()                    { *m = CMsgGameChatLog_CChatLine{} }
+func (m *CMsgGameChatLog_CChatLine) String() string            { return proto.CompactTextString(m) }
+func (*CMsgGameChatLog_CChatLine) ProtoMessage()               {}
+func (*CMsgGameChatLog_CChatLine) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{21, 0} }
 
 func (m *CMsgGameChatLog_CChatLine) GetAccountId() uint32 {
 	if m != nil && m.AccountId != nil {
@@ -2703,9 +2795,10 @@ type CMsgDOTALiveScoreboardUpdate struct {
 	XXX_unrecognized   []byte                             `json:"-"`
 }
 
-func (m *CMsgDOTALiveScoreboardUpdate) Reset()         { *m = CMsgDOTALiveScoreboardUpdate{} }
-func (m *CMsgDOTALiveScoreboardUpdate) String() string { return proto.CompactTextString(m) }
-func (*CMsgDOTALiveScoreboardUpdate) ProtoMessage()    {}
+func (m *CMsgDOTALiveScoreboardUpdate) Reset()                    { *m = CMsgDOTALiveScoreboardUpdate{} }
+func (m *CMsgDOTALiveScoreboardUpdate) String() string            { return proto.CompactTextString(m) }
+func (*CMsgDOTALiveScoreboardUpdate) ProtoMessage()               {}
+func (*CMsgDOTALiveScoreboardUpdate) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{22} }
 
 func (m *CMsgDOTALiveScoreboardUpdate) GetTournamentId() uint32 {
 	if m != nil && m.TournamentId != nil {
@@ -2783,6 +2876,9 @@ type CMsgDOTALiveScoreboardUpdate_Team struct {
 func (m *CMsgDOTALiveScoreboardUpdate_Team) Reset()         { *m = CMsgDOTALiveScoreboardUpdate_Team{} }
 func (m *CMsgDOTALiveScoreboardUpdate_Team) String() string { return proto.CompactTextString(m) }
 func (*CMsgDOTALiveScoreboardUpdate_Team) ProtoMessage()    {}
+func (*CMsgDOTALiveScoreboardUpdate_Team) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{22, 0}
+}
 
 func (m *CMsgDOTALiveScoreboardUpdate_Team) GetPlayers() []*CMsgDOTALiveScoreboardUpdate_Team_Player {
 	if m != nil {
@@ -2862,6 +2958,9 @@ func (m *CMsgDOTALiveScoreboardUpdate_Team_Player) Reset() {
 }
 func (m *CMsgDOTALiveScoreboardUpdate_Team_Player) String() string { return proto.CompactTextString(m) }
 func (*CMsgDOTALiveScoreboardUpdate_Team_Player) ProtoMessage()    {}
+func (*CMsgDOTALiveScoreboardUpdate_Team_Player) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{22, 0, 0}
+}
 
 const Default_CMsgDOTALiveScoreboardUpdate_Team_Player_UltimateState CMsgDOTALiveScoreboardUpdate_Team_Player_DOTAUltimateState = CMsgDOTALiveScoreboardUpdate_Team_Player_k_EDOTAUltimateStateNotLearned
 
@@ -3067,6 +3166,9 @@ func (m *CMsgDOTALiveScoreboardUpdate_Team_Player_HeroAbility) String() string {
 	return proto.CompactTextString(m)
 }
 func (*CMsgDOTALiveScoreboardUpdate_Team_Player_HeroAbility) ProtoMessage() {}
+func (*CMsgDOTALiveScoreboardUpdate_Team_Player_HeroAbility) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{22, 0, 0, 0}
+}
 
 func (m *CMsgDOTALiveScoreboardUpdate_Team_Player_HeroAbility) GetAbilityId() uint32 {
 	if m != nil && m.AbilityId != nil {
@@ -3088,9 +3190,10 @@ type CMsgDOTARequestPlayerResources struct {
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *CMsgDOTARequestPlayerResources) Reset()         { *m = CMsgDOTARequestPlayerResources{} }
-func (m *CMsgDOTARequestPlayerResources) String() string { return proto.CompactTextString(m) }
-func (*CMsgDOTARequestPlayerResources) ProtoMessage()    {}
+func (m *CMsgDOTARequestPlayerResources) Reset()                    { *m = CMsgDOTARequestPlayerResources{} }
+func (m *CMsgDOTARequestPlayerResources) String() string            { return proto.CompactTextString(m) }
+func (*CMsgDOTARequestPlayerResources) ProtoMessage()               {}
+func (*CMsgDOTARequestPlayerResources) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{23} }
 
 func (m *CMsgDOTARequestPlayerResources) GetSteamId() uint64 {
 	if m != nil && m.SteamId != nil {
@@ -3121,6 +3224,9 @@ func (m *CMsgDOTARequestPlayerResourcesResponse) Reset() {
 }
 func (m *CMsgDOTARequestPlayerResourcesResponse) String() string { return proto.CompactTextString(m) }
 func (*CMsgDOTARequestPlayerResourcesResponse) ProtoMessage()    {}
+func (*CMsgDOTARequestPlayerResourcesResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{24}
+}
 
 func (m *CMsgDOTARequestPlayerResourcesResponse) GetSteamId() uint64 {
 	if m != nil && m.SteamId != nil {
@@ -3173,6 +3279,9 @@ type CMsgDOTARequestBatchPlayerResources struct {
 func (m *CMsgDOTARequestBatchPlayerResources) Reset()         { *m = CMsgDOTARequestBatchPlayerResources{} }
 func (m *CMsgDOTARequestBatchPlayerResources) String() string { return proto.CompactTextString(m) }
 func (*CMsgDOTARequestBatchPlayerResources) ProtoMessage()    {}
+func (*CMsgDOTARequestBatchPlayerResources) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{25}
+}
 
 func (m *CMsgDOTARequestBatchPlayerResources) GetAccountIds() []uint32 {
 	if m != nil {
@@ -3200,6 +3309,9 @@ func (m *CMsgDOTARequestBatchPlayerResourcesResponse) String() string {
 	return proto.CompactTextString(m)
 }
 func (*CMsgDOTARequestBatchPlayerResourcesResponse) ProtoMessage() {}
+func (*CMsgDOTARequestBatchPlayerResourcesResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{26}
+}
 
 func (m *CMsgDOTARequestBatchPlayerResourcesResponse) GetResults() []*CMsgDOTARequestBatchPlayerResourcesResponse_Result {
 	if m != nil {
@@ -3225,6 +3337,9 @@ func (m *CMsgDOTARequestBatchPlayerResourcesResponse_Result) String() string {
 	return proto.CompactTextString(m)
 }
 func (*CMsgDOTARequestBatchPlayerResourcesResponse_Result) ProtoMessage() {}
+func (*CMsgDOTARequestBatchPlayerResourcesResponse_Result) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{26, 0}
+}
 
 func (m *CMsgDOTARequestBatchPlayerResourcesResponse_Result) GetAccountId() uint32 {
 	if m != nil && m.AccountId != nil {
@@ -3274,9 +3389,10 @@ type CMsgDOTAPlayerFailedToConnect struct {
 	XXX_unrecognized []byte   `json:"-"`
 }
 
-func (m *CMsgDOTAPlayerFailedToConnect) Reset()         { *m = CMsgDOTAPlayerFailedToConnect{} }
-func (m *CMsgDOTAPlayerFailedToConnect) String() string { return proto.CompactTextString(m) }
-func (*CMsgDOTAPlayerFailedToConnect) ProtoMessage()    {}
+func (m *CMsgDOTAPlayerFailedToConnect) Reset()                    { *m = CMsgDOTAPlayerFailedToConnect{} }
+func (m *CMsgDOTAPlayerFailedToConnect) String() string            { return proto.CompactTextString(m) }
+func (*CMsgDOTAPlayerFailedToConnect) ProtoMessage()               {}
+func (*CMsgDOTAPlayerFailedToConnect) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{27} }
 
 func (m *CMsgDOTAPlayerFailedToConnect) GetFailedLoaders() []uint64 {
 	if m != nil {
@@ -3303,9 +3419,10 @@ type CMsgGCToRelayConnect struct {
 	XXX_unrecognized    []byte  `json:"-"`
 }
 
-func (m *CMsgGCToRelayConnect) Reset()         { *m = CMsgGCToRelayConnect{} }
-func (m *CMsgGCToRelayConnect) String() string { return proto.CompactTextString(m) }
-func (*CMsgGCToRelayConnect) ProtoMessage()    {}
+func (m *CMsgGCToRelayConnect) Reset()                    { *m = CMsgGCToRelayConnect{} }
+func (m *CMsgGCToRelayConnect) String() string            { return proto.CompactTextString(m) }
+func (*CMsgGCToRelayConnect) ProtoMessage()               {}
+func (*CMsgGCToRelayConnect) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{28} }
 
 func (m *CMsgGCToRelayConnect) GetSourceTvPublicAddr() uint32 {
 	if m != nil && m.SourceTvPublicAddr != nil {
@@ -3364,6 +3481,9 @@ type CMsgGCGCToLANServerRelayConnect struct {
 func (m *CMsgGCGCToLANServerRelayConnect) Reset()         { *m = CMsgGCGCToLANServerRelayConnect{} }
 func (m *CMsgGCGCToLANServerRelayConnect) String() string { return proto.CompactTextString(m) }
 func (*CMsgGCGCToLANServerRelayConnect) ProtoMessage()    {}
+func (*CMsgGCGCToLANServerRelayConnect) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{29}
+}
 
 func (m *CMsgGCGCToLANServerRelayConnect) GetRelaySteamid() uint64 {
 	if m != nil && m.RelaySteamid != nil {
@@ -3376,18 +3496,20 @@ type CMsgGCToRelayConnectResponse struct {
 	XXX_unrecognized []byte `json:"-"`
 }
 
-func (m *CMsgGCToRelayConnectResponse) Reset()         { *m = CMsgGCToRelayConnectResponse{} }
-func (m *CMsgGCToRelayConnectResponse) String() string { return proto.CompactTextString(m) }
-func (*CMsgGCToRelayConnectResponse) ProtoMessage()    {}
+func (m *CMsgGCToRelayConnectResponse) Reset()                    { *m = CMsgGCToRelayConnectResponse{} }
+func (m *CMsgGCToRelayConnectResponse) String() string            { return proto.CompactTextString(m) }
+func (*CMsgGCToRelayConnectResponse) ProtoMessage()               {}
+func (*CMsgGCToRelayConnectResponse) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{30} }
 
 type CMsgGCBanStatusRequest struct {
 	AccountId        *uint32 `protobuf:"varint,1,opt,name=account_id" json:"account_id,omitempty"`
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *CMsgGCBanStatusRequest) Reset()         { *m = CMsgGCBanStatusRequest{} }
-func (m *CMsgGCBanStatusRequest) String() string { return proto.CompactTextString(m) }
-func (*CMsgGCBanStatusRequest) ProtoMessage()    {}
+func (m *CMsgGCBanStatusRequest) Reset()                    { *m = CMsgGCBanStatusRequest{} }
+func (m *CMsgGCBanStatusRequest) String() string            { return proto.CompactTextString(m) }
+func (*CMsgGCBanStatusRequest) ProtoMessage()               {}
+func (*CMsgGCBanStatusRequest) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{31} }
 
 func (m *CMsgGCBanStatusRequest) GetAccountId() uint32 {
 	if m != nil && m.AccountId != nil {
@@ -3404,9 +3526,10 @@ type CMsgGCBanStatusResponse struct {
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *CMsgGCBanStatusResponse) Reset()         { *m = CMsgGCBanStatusResponse{} }
-func (m *CMsgGCBanStatusResponse) String() string { return proto.CompactTextString(m) }
-func (*CMsgGCBanStatusResponse) ProtoMessage()    {}
+func (m *CMsgGCBanStatusResponse) Reset()                    { *m = CMsgGCBanStatusResponse{} }
+func (m *CMsgGCBanStatusResponse) String() string            { return proto.CompactTextString(m) }
+func (*CMsgGCBanStatusResponse) ProtoMessage()               {}
+func (*CMsgGCBanStatusResponse) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{32} }
 
 func (m *CMsgGCBanStatusResponse) GetResult() uint32 {
 	if m != nil && m.Result != nil {
@@ -3452,9 +3575,10 @@ type CMsgTournamentItemEvent struct {
 	XXX_unrecognized []byte                  `json:"-"`
 }
 
-func (m *CMsgTournamentItemEvent) Reset()         { *m = CMsgTournamentItemEvent{} }
-func (m *CMsgTournamentItemEvent) String() string { return proto.CompactTextString(m) }
-func (*CMsgTournamentItemEvent) ProtoMessage()    {}
+func (m *CMsgTournamentItemEvent) Reset()                    { *m = CMsgTournamentItemEvent{} }
+func (m *CMsgTournamentItemEvent) String() string            { return proto.CompactTextString(m) }
+func (*CMsgTournamentItemEvent) ProtoMessage()               {}
+func (*CMsgTournamentItemEvent) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{33} }
 
 const Default_CMsgTournamentItemEvent_EventType DOTA_TournamentEvents = DOTA_TournamentEvents_TE_FIRST_BLOOD
 
@@ -3551,6 +3675,9 @@ type CMsgTournamentItemEventResponse struct {
 func (m *CMsgTournamentItemEventResponse) Reset()         { *m = CMsgTournamentItemEventResponse{} }
 func (m *CMsgTournamentItemEventResponse) String() string { return proto.CompactTextString(m) }
 func (*CMsgTournamentItemEventResponse) ProtoMessage()    {}
+func (*CMsgTournamentItemEventResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{34}
+}
 
 const Default_CMsgTournamentItemEventResponse_EventType DOTA_TournamentEvents = DOTA_TournamentEvents_TE_FIRST_BLOOD
 
@@ -3573,9 +3700,10 @@ type CMsgTeamFanfare struct {
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *CMsgTeamFanfare) Reset()         { *m = CMsgTeamFanfare{} }
-func (m *CMsgTeamFanfare) String() string { return proto.CompactTextString(m) }
-func (*CMsgTeamFanfare) ProtoMessage()    {}
+func (m *CMsgTeamFanfare) Reset()                    { *m = CMsgTeamFanfare{} }
+func (m *CMsgTeamFanfare) String() string            { return proto.CompactTextString(m) }
+func (*CMsgTeamFanfare) ProtoMessage()               {}
+func (*CMsgTeamFanfare) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{35} }
 
 func (m *CMsgTeamFanfare) GetMatchId() uint64 {
 	if m != nil && m.MatchId != nil {
@@ -3590,9 +3718,10 @@ type CMsgResponseTeamFanfare struct {
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *CMsgResponseTeamFanfare) Reset()         { *m = CMsgResponseTeamFanfare{} }
-func (m *CMsgResponseTeamFanfare) String() string { return proto.CompactTextString(m) }
-func (*CMsgResponseTeamFanfare) ProtoMessage()    {}
+func (m *CMsgResponseTeamFanfare) Reset()                    { *m = CMsgResponseTeamFanfare{} }
+func (m *CMsgResponseTeamFanfare) String() string            { return proto.CompactTextString(m) }
+func (*CMsgResponseTeamFanfare) ProtoMessage()               {}
+func (*CMsgResponseTeamFanfare) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{36} }
 
 func (m *CMsgResponseTeamFanfare) GetFanfareGoodguys() uint32 {
 	if m != nil && m.FanfareGoodguys != nil {
@@ -3616,9 +3745,10 @@ type CMsgGameServerUploadSaveGame struct {
 	XXX_unrecognized []byte   `json:"-"`
 }
 
-func (m *CMsgGameServerUploadSaveGame) Reset()         { *m = CMsgGameServerUploadSaveGame{} }
-func (m *CMsgGameServerUploadSaveGame) String() string { return proto.CompactTextString(m) }
-func (*CMsgGameServerUploadSaveGame) ProtoMessage()    {}
+func (m *CMsgGameServerUploadSaveGame) Reset()                    { *m = CMsgGameServerUploadSaveGame{} }
+func (m *CMsgGameServerUploadSaveGame) String() string            { return proto.CompactTextString(m) }
+func (*CMsgGameServerUploadSaveGame) ProtoMessage()               {}
+func (*CMsgGameServerUploadSaveGame) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{37} }
 
 func (m *CMsgGameServerUploadSaveGame) GetGameTime() uint32 {
 	if m != nil && m.GameTime != nil {
@@ -3653,9 +3783,10 @@ type CMsgGameServerSaveGameResult struct {
 	XXX_unrecognized []byte                               `json:"-"`
 }
 
-func (m *CMsgGameServerSaveGameResult) Reset()         { *m = CMsgGameServerSaveGameResult{} }
-func (m *CMsgGameServerSaveGameResult) String() string { return proto.CompactTextString(m) }
-func (*CMsgGameServerSaveGameResult) ProtoMessage()    {}
+func (m *CMsgGameServerSaveGameResult) Reset()                    { *m = CMsgGameServerSaveGameResult{} }
+func (m *CMsgGameServerSaveGameResult) String() string            { return proto.CompactTextString(m) }
+func (*CMsgGameServerSaveGameResult) ProtoMessage()               {}
+func (*CMsgGameServerSaveGameResult) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{38} }
 
 const Default_CMsgGameServerSaveGameResult_Result CMsgGameServerSaveGameResult_Result = CMsgGameServerSaveGameResult_SaveSuccessful
 
@@ -3671,9 +3802,10 @@ type CMsgGameServerGetLoadGame struct {
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *CMsgGameServerGetLoadGame) Reset()         { *m = CMsgGameServerGetLoadGame{} }
-func (m *CMsgGameServerGetLoadGame) String() string { return proto.CompactTextString(m) }
-func (*CMsgGameServerGetLoadGame) ProtoMessage()    {}
+func (m *CMsgGameServerGetLoadGame) Reset()                    { *m = CMsgGameServerGetLoadGame{} }
+func (m *CMsgGameServerGetLoadGame) String() string            { return proto.CompactTextString(m) }
+func (*CMsgGameServerGetLoadGame) ProtoMessage()               {}
+func (*CMsgGameServerGetLoadGame) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{39} }
 
 func (m *CMsgGameServerGetLoadGame) GetSaveId() uint32 {
 	if m != nil && m.SaveId != nil {
@@ -3690,6 +3822,9 @@ type CMsgGameServerGetLoadGameResult struct {
 func (m *CMsgGameServerGetLoadGameResult) Reset()         { *m = CMsgGameServerGetLoadGameResult{} }
 func (m *CMsgGameServerGetLoadGameResult) String() string { return proto.CompactTextString(m) }
 func (*CMsgGameServerGetLoadGameResult) ProtoMessage()    {}
+func (*CMsgGameServerGetLoadGameResult) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{40}
+}
 
 func (m *CMsgGameServerGetLoadGameResult) GetSaveGameData() []byte {
 	if m != nil {
@@ -3707,6 +3842,9 @@ type CMsgDOTAGenerateDiretidePrizeList struct {
 func (m *CMsgDOTAGenerateDiretidePrizeList) Reset()         { *m = CMsgDOTAGenerateDiretidePrizeList{} }
 func (m *CMsgDOTAGenerateDiretidePrizeList) String() string { return proto.CompactTextString(m) }
 func (*CMsgDOTAGenerateDiretidePrizeList) ProtoMessage()    {}
+func (*CMsgDOTAGenerateDiretidePrizeList) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{41}
+}
 
 func (m *CMsgDOTAGenerateDiretidePrizeList) GetPrizeList() uint32 {
 	if m != nil && m.PrizeList != nil {
@@ -3734,6 +3872,9 @@ func (m *CMsgDOTAGenerateDiretidePrizeListResponse) Reset() {
 }
 func (m *CMsgDOTAGenerateDiretidePrizeListResponse) String() string { return proto.CompactTextString(m) }
 func (*CMsgDOTAGenerateDiretidePrizeListResponse) ProtoMessage()    {}
+func (*CMsgDOTAGenerateDiretidePrizeListResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{42}
+}
 
 func (m *CMsgDOTAGenerateDiretidePrizeListResponse) GetItemDefs() []uint32 {
 	if m != nil {
@@ -3762,9 +3903,10 @@ type CMsgDOTARewardDiretidePrizes struct {
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *CMsgDOTARewardDiretidePrizes) Reset()         { *m = CMsgDOTARewardDiretidePrizes{} }
-func (m *CMsgDOTARewardDiretidePrizes) String() string { return proto.CompactTextString(m) }
-func (*CMsgDOTARewardDiretidePrizes) ProtoMessage()    {}
+func (m *CMsgDOTARewardDiretidePrizes) Reset()                    { *m = CMsgDOTARewardDiretidePrizes{} }
+func (m *CMsgDOTARewardDiretidePrizes) String() string            { return proto.CompactTextString(m) }
+func (*CMsgDOTARewardDiretidePrizes) ProtoMessage()               {}
+func (*CMsgDOTARewardDiretidePrizes) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{43} }
 
 func (m *CMsgDOTARewardDiretidePrizes) GetTeam() uint32 {
 	if m != nil && m.Team != nil {
@@ -3790,6 +3932,9 @@ func (m *CMsgDOTADiretidePrizesRewardedResponse) Reset() {
 }
 func (m *CMsgDOTADiretidePrizesRewardedResponse) String() string { return proto.CompactTextString(m) }
 func (*CMsgDOTADiretidePrizesRewardedResponse) ProtoMessage()    {}
+func (*CMsgDOTADiretidePrizesRewardedResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{44}
+}
 
 func (m *CMsgDOTADiretidePrizesRewardedResponse) GetPrizeList() uint32 {
 	if m != nil && m.PrizeList != nil {
@@ -3805,9 +3950,10 @@ type CMsgDOTAAwardEventPoints struct {
 	XXX_unrecognized []byte                                  `json:"-"`
 }
 
-func (m *CMsgDOTAAwardEventPoints) Reset()         { *m = CMsgDOTAAwardEventPoints{} }
-func (m *CMsgDOTAAwardEventPoints) String() string { return proto.CompactTextString(m) }
-func (*CMsgDOTAAwardEventPoints) ProtoMessage()    {}
+func (m *CMsgDOTAAwardEventPoints) Reset()                    { *m = CMsgDOTAAwardEventPoints{} }
+func (m *CMsgDOTAAwardEventPoints) String() string            { return proto.CompactTextString(m) }
+func (*CMsgDOTAAwardEventPoints) ProtoMessage()               {}
+func (*CMsgDOTAAwardEventPoints) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{45} }
 
 func (m *CMsgDOTAAwardEventPoints) GetAwardPoints() []*CMsgDOTAAwardEventPoints_AwardPoints {
 	if m != nil {
@@ -3841,6 +3987,9 @@ type CMsgDOTAAwardEventPoints_AwardPoints struct {
 func (m *CMsgDOTAAwardEventPoints_AwardPoints) Reset()         { *m = CMsgDOTAAwardEventPoints_AwardPoints{} }
 func (m *CMsgDOTAAwardEventPoints_AwardPoints) String() string { return proto.CompactTextString(m) }
 func (*CMsgDOTAAwardEventPoints_AwardPoints) ProtoMessage()    {}
+func (*CMsgDOTAAwardEventPoints_AwardPoints) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{45, 0}
+}
 
 func (m *CMsgDOTAAwardEventPoints_AwardPoints) GetAccountId() uint32 {
 	if m != nil && m.AccountId != nil {
@@ -3881,6 +4030,9 @@ func (m *CMsgServerToGCSignoutAwardAdditionalDrops) Reset() {
 }
 func (m *CMsgServerToGCSignoutAwardAdditionalDrops) String() string { return proto.CompactTextString(m) }
 func (*CMsgServerToGCSignoutAwardAdditionalDrops) ProtoMessage()    {}
+func (*CMsgServerToGCSignoutAwardAdditionalDrops) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{46}
+}
 
 func (m *CMsgServerToGCSignoutAwardAdditionalDrops) GetDrops() []*CMsgServerToGCSignoutAwardAdditionalDrops_AdditionalDrops {
 	if m != nil {
@@ -3911,6 +4063,9 @@ func (m *CMsgServerToGCSignoutAwardAdditionalDrops_AdditionalDrops) String() str
 	return proto.CompactTextString(m)
 }
 func (*CMsgServerToGCSignoutAwardAdditionalDrops_AdditionalDrops) ProtoMessage() {}
+func (*CMsgServerToGCSignoutAwardAdditionalDrops_AdditionalDrops) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{46, 0}
+}
 
 func (m *CMsgServerToGCSignoutAwardAdditionalDrops_AdditionalDrops) GetLootList() string {
 	if m != nil && m.LootList != nil {
@@ -3947,9 +4102,10 @@ type CMsgDOTAUpdateTI4HeroQuest struct {
 	XXX_unrecognized []byte                               `json:"-"`
 }
 
-func (m *CMsgDOTAUpdateTI4HeroQuest) Reset()         { *m = CMsgDOTAUpdateTI4HeroQuest{} }
-func (m *CMsgDOTAUpdateTI4HeroQuest) String() string { return proto.CompactTextString(m) }
-func (*CMsgDOTAUpdateTI4HeroQuest) ProtoMessage()    {}
+func (m *CMsgDOTAUpdateTI4HeroQuest) Reset()                    { *m = CMsgDOTAUpdateTI4HeroQuest{} }
+func (m *CMsgDOTAUpdateTI4HeroQuest) String() string            { return proto.CompactTextString(m) }
+func (*CMsgDOTAUpdateTI4HeroQuest) ProtoMessage()               {}
+func (*CMsgDOTAUpdateTI4HeroQuest) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{47} }
 
 func (m *CMsgDOTAUpdateTI4HeroQuest) GetPlayers() []*CMsgDOTAUpdateTI4HeroQuest_Player {
 	if m != nil {
@@ -3981,6 +4137,9 @@ type CMsgDOTAUpdateTI4HeroQuest_Player struct {
 func (m *CMsgDOTAUpdateTI4HeroQuest_Player) Reset()         { *m = CMsgDOTAUpdateTI4HeroQuest_Player{} }
 func (m *CMsgDOTAUpdateTI4HeroQuest_Player) String() string { return proto.CompactTextString(m) }
 func (*CMsgDOTAUpdateTI4HeroQuest_Player) ProtoMessage()    {}
+func (*CMsgDOTAUpdateTI4HeroQuest_Player) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{47, 0}
+}
 
 func (m *CMsgDOTAUpdateTI4HeroQuest_Player) GetAccountId() uint32 {
 	if m != nil && m.AccountId != nil {
@@ -4003,9 +4162,10 @@ type CMsgDOTAFrostivusTimeElapsed struct {
 	XXX_unrecognized []byte                               `json:"-"`
 }
 
-func (m *CMsgDOTAFrostivusTimeElapsed) Reset()         { *m = CMsgDOTAFrostivusTimeElapsed{} }
-func (m *CMsgDOTAFrostivusTimeElapsed) String() string { return proto.CompactTextString(m) }
-func (*CMsgDOTAFrostivusTimeElapsed) ProtoMessage()    {}
+func (m *CMsgDOTAFrostivusTimeElapsed) Reset()                    { *m = CMsgDOTAFrostivusTimeElapsed{} }
+func (m *CMsgDOTAFrostivusTimeElapsed) String() string            { return proto.CompactTextString(m) }
+func (*CMsgDOTAFrostivusTimeElapsed) ProtoMessage()               {}
+func (*CMsgDOTAFrostivusTimeElapsed) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{48} }
 
 func (m *CMsgDOTAFrostivusTimeElapsed) GetSeconds() uint32 {
 	if m != nil && m.Seconds != nil {
@@ -4037,6 +4197,9 @@ type CMsgDOTAFrostivusTimeElapsed_User struct {
 func (m *CMsgDOTAFrostivusTimeElapsed_User) Reset()         { *m = CMsgDOTAFrostivusTimeElapsed_User{} }
 func (m *CMsgDOTAFrostivusTimeElapsed_User) String() string { return proto.CompactTextString(m) }
 func (*CMsgDOTAFrostivusTimeElapsed_User) ProtoMessage()    {}
+func (*CMsgDOTAFrostivusTimeElapsed_User) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{48, 0}
+}
 
 func (m *CMsgDOTAFrostivusTimeElapsed_User) GetAccountId() uint32 {
 	if m != nil && m.AccountId != nil {
@@ -4058,9 +4221,10 @@ type CMsgGCToServerPingRequest struct {
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *CMsgGCToServerPingRequest) Reset()         { *m = CMsgGCToServerPingRequest{} }
-func (m *CMsgGCToServerPingRequest) String() string { return proto.CompactTextString(m) }
-func (*CMsgGCToServerPingRequest) ProtoMessage()    {}
+func (m *CMsgGCToServerPingRequest) Reset()                    { *m = CMsgGCToServerPingRequest{} }
+func (m *CMsgGCToServerPingRequest) String() string            { return proto.CompactTextString(m) }
+func (*CMsgGCToServerPingRequest) ProtoMessage()               {}
+func (*CMsgGCToServerPingRequest) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{49} }
 
 func (m *CMsgGCToServerPingRequest) GetRequestId() uint64 {
 	if m != nil && m.RequestId != nil {
@@ -4083,9 +4247,10 @@ type CMsgGCToServerPingResponse struct {
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *CMsgGCToServerPingResponse) Reset()         { *m = CMsgGCToServerPingResponse{} }
-func (m *CMsgGCToServerPingResponse) String() string { return proto.CompactTextString(m) }
-func (*CMsgGCToServerPingResponse) ProtoMessage()    {}
+func (m *CMsgGCToServerPingResponse) Reset()                    { *m = CMsgGCToServerPingResponse{} }
+func (m *CMsgGCToServerPingResponse) String() string            { return proto.CompactTextString(m) }
+func (*CMsgGCToServerPingResponse) ProtoMessage()               {}
+func (*CMsgGCToServerPingResponse) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{50} }
 
 func (m *CMsgGCToServerPingResponse) GetRequestId() uint64 {
 	if m != nil && m.RequestId != nil {
@@ -4113,9 +4278,10 @@ type CMsgGCToServerConsoleCommand struct {
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *CMsgGCToServerConsoleCommand) Reset()         { *m = CMsgGCToServerConsoleCommand{} }
-func (m *CMsgGCToServerConsoleCommand) String() string { return proto.CompactTextString(m) }
-func (*CMsgGCToServerConsoleCommand) ProtoMessage()    {}
+func (m *CMsgGCToServerConsoleCommand) Reset()                    { *m = CMsgGCToServerConsoleCommand{} }
+func (m *CMsgGCToServerConsoleCommand) String() string            { return proto.CompactTextString(m) }
+func (*CMsgGCToServerConsoleCommand) ProtoMessage()               {}
+func (*CMsgGCToServerConsoleCommand) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{51} }
 
 func (m *CMsgGCToServerConsoleCommand) GetConsoleCommand() string {
 	if m != nil && m.ConsoleCommand != nil {
@@ -4130,9 +4296,10 @@ type CMsgServerGetEventPoints struct {
 	XXX_unrecognized []byte   `json:"-"`
 }
 
-func (m *CMsgServerGetEventPoints) Reset()         { *m = CMsgServerGetEventPoints{} }
-func (m *CMsgServerGetEventPoints) String() string { return proto.CompactTextString(m) }
-func (*CMsgServerGetEventPoints) ProtoMessage()    {}
+func (m *CMsgServerGetEventPoints) Reset()                    { *m = CMsgServerGetEventPoints{} }
+func (m *CMsgServerGetEventPoints) String() string            { return proto.CompactTextString(m) }
+func (*CMsgServerGetEventPoints) ProtoMessage()               {}
+func (*CMsgServerGetEventPoints) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{52} }
 
 func (m *CMsgServerGetEventPoints) GetEventId() uint32 {
 	if m != nil && m.EventId != nil {
@@ -4157,6 +4324,9 @@ type CMsgServerGetEventPointsResponse struct {
 func (m *CMsgServerGetEventPointsResponse) Reset()         { *m = CMsgServerGetEventPointsResponse{} }
 func (m *CMsgServerGetEventPointsResponse) String() string { return proto.CompactTextString(m) }
 func (*CMsgServerGetEventPointsResponse) ProtoMessage()    {}
+func (*CMsgServerGetEventPointsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{53}
+}
 
 func (m *CMsgServerGetEventPointsResponse) GetEventId() uint32 {
 	if m != nil && m.EventId != nil {
@@ -4184,6 +4354,9 @@ func (m *CMsgServerGetEventPointsResponse_Points) Reset() {
 }
 func (m *CMsgServerGetEventPointsResponse_Points) String() string { return proto.CompactTextString(m) }
 func (*CMsgServerGetEventPointsResponse_Points) ProtoMessage()    {}
+func (*CMsgServerGetEventPointsResponse_Points) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{53, 0}
+}
 
 func (m *CMsgServerGetEventPointsResponse_Points) GetAccountId() uint32 {
 	if m != nil && m.AccountId != nil {
@@ -4214,6 +4387,9 @@ type CMsgServerGrantSurveyPermission struct {
 func (m *CMsgServerGrantSurveyPermission) Reset()         { *m = CMsgServerGrantSurveyPermission{} }
 func (m *CMsgServerGrantSurveyPermission) String() string { return proto.CompactTextString(m) }
 func (*CMsgServerGrantSurveyPermission) ProtoMessage()    {}
+func (*CMsgServerGrantSurveyPermission) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{54}
+}
 
 func (m *CMsgServerGrantSurveyPermission) GetSurveys() []*CMsgServerGrantSurveyPermission_Survey {
 	if m != nil {
@@ -4237,6 +4413,9 @@ func (m *CMsgServerGrantSurveyPermission_Survey) Reset() {
 }
 func (m *CMsgServerGrantSurveyPermission_Survey) String() string { return proto.CompactTextString(m) }
 func (*CMsgServerGrantSurveyPermission_Survey) ProtoMessage()    {}
+func (*CMsgServerGrantSurveyPermission_Survey) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{54, 0}
+}
 
 func (m *CMsgServerGrantSurveyPermission_Survey) GetAccountId() uint32 {
 	if m != nil && m.AccountId != nil {
@@ -4290,6 +4469,9 @@ func (m *CMsgServerGrantSurveyPermissionResponse) Reset() {
 }
 func (m *CMsgServerGrantSurveyPermissionResponse) String() string { return proto.CompactTextString(m) }
 func (*CMsgServerGrantSurveyPermissionResponse) ProtoMessage()    {}
+func (*CMsgServerGrantSurveyPermissionResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{55}
+}
 
 func (m *CMsgServerGrantSurveyPermissionResponse) GetResult() uint32 {
 	if m != nil && m.Result != nil {
@@ -4310,6 +4492,9 @@ type CMsgServerToGCMatchConnectionStats struct {
 func (m *CMsgServerToGCMatchConnectionStats) Reset()         { *m = CMsgServerToGCMatchConnectionStats{} }
 func (m *CMsgServerToGCMatchConnectionStats) String() string { return proto.CompactTextString(m) }
 func (*CMsgServerToGCMatchConnectionStats) ProtoMessage()    {}
+func (*CMsgServerToGCMatchConnectionStats) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{56}
+}
 
 func (m *CMsgServerToGCMatchConnectionStats) GetMatchId() uint64 {
 	if m != nil && m.MatchId != nil {
@@ -4361,6 +4546,9 @@ func (m *CMsgServerToGCMatchConnectionStats_Player) Reset() {
 }
 func (m *CMsgServerToGCMatchConnectionStats_Player) String() string { return proto.CompactTextString(m) }
 func (*CMsgServerToGCMatchConnectionStats_Player) ProtoMessage()    {}
+func (*CMsgServerToGCMatchConnectionStats_Player) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{56, 0}
+}
 
 func (m *CMsgServerToGCMatchConnectionStats_Player) GetAccountId() uint32 {
 	if m != nil && m.AccountId != nil {
@@ -4412,6 +4600,9 @@ type CMsgServerGCUpdateSpectatorCount struct {
 func (m *CMsgServerGCUpdateSpectatorCount) Reset()         { *m = CMsgServerGCUpdateSpectatorCount{} }
 func (m *CMsgServerGCUpdateSpectatorCount) String() string { return proto.CompactTextString(m) }
 func (*CMsgServerGCUpdateSpectatorCount) ProtoMessage()    {}
+func (*CMsgServerGCUpdateSpectatorCount) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{57}
+}
 
 func (m *CMsgServerGCUpdateSpectatorCount) GetSpectatorCount() uint32 {
 	if m != nil && m.SpectatorCount != nil {
@@ -4427,9 +4618,10 @@ type CSerializedCombatLog struct {
 	XXX_unrecognized []byte                           `json:"-"`
 }
 
-func (m *CSerializedCombatLog) Reset()         { *m = CSerializedCombatLog{} }
-func (m *CSerializedCombatLog) String() string { return proto.CompactTextString(m) }
-func (*CSerializedCombatLog) ProtoMessage()    {}
+func (m *CSerializedCombatLog) Reset()                    { *m = CSerializedCombatLog{} }
+func (m *CSerializedCombatLog) String() string            { return proto.CompactTextString(m) }
+func (*CSerializedCombatLog) ProtoMessage()               {}
+func (*CSerializedCombatLog) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{58} }
 
 func (m *CSerializedCombatLog) GetVersion() uint32 {
 	if m != nil && m.Version != nil {
@@ -4460,6 +4652,9 @@ type CSerializedCombatLog_Dictionary struct {
 func (m *CSerializedCombatLog_Dictionary) Reset()         { *m = CSerializedCombatLog_Dictionary{} }
 func (m *CSerializedCombatLog_Dictionary) String() string { return proto.CompactTextString(m) }
 func (*CSerializedCombatLog_Dictionary) ProtoMessage()    {}
+func (*CSerializedCombatLog_Dictionary) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{58, 0}
+}
 
 func (m *CSerializedCombatLog_Dictionary) GetStrings() []*CSerializedCombatLog_Dictionary_DictString {
 	if m != nil {
@@ -4481,6 +4676,9 @@ func (m *CSerializedCombatLog_Dictionary_DictString) String() string {
 	return proto.CompactTextString(m)
 }
 func (*CSerializedCombatLog_Dictionary_DictString) ProtoMessage() {}
+func (*CSerializedCombatLog_Dictionary_DictString) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{58, 0, 0}
+}
 
 func (m *CSerializedCombatLog_Dictionary_DictString) GetId() uint32 {
 	if m != nil && m.Id != nil {
@@ -4504,6 +4702,9 @@ type CMsgServerToGCGetAdditionalEquips struct {
 func (m *CMsgServerToGCGetAdditionalEquips) Reset()         { *m = CMsgServerToGCGetAdditionalEquips{} }
 func (m *CMsgServerToGCGetAdditionalEquips) String() string { return proto.CompactTextString(m) }
 func (*CMsgServerToGCGetAdditionalEquips) ProtoMessage()    {}
+func (*CMsgServerToGCGetAdditionalEquips) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{59}
+}
 
 func (m *CMsgServerToGCGetAdditionalEquips) GetAccountIds() []uint32 {
 	if m != nil {
@@ -4522,6 +4723,9 @@ func (m *CMsgServerToGCGetAdditionalEquipsResponse) Reset() {
 }
 func (m *CMsgServerToGCGetAdditionalEquipsResponse) String() string { return proto.CompactTextString(m) }
 func (*CMsgServerToGCGetAdditionalEquipsResponse) ProtoMessage()    {}
+func (*CMsgServerToGCGetAdditionalEquipsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{60}
+}
 
 func (m *CMsgServerToGCGetAdditionalEquipsResponse) GetEquips() []*CMsgServerToGCGetAdditionalEquipsResponse_CUserEquips {
 	if m != nil {
@@ -4543,6 +4747,9 @@ func (m *CMsgServerToGCGetAdditionalEquipsResponse_CUserEquips) String() string 
 	return proto.CompactTextString(m)
 }
 func (*CMsgServerToGCGetAdditionalEquipsResponse_CUserEquips) ProtoMessage() {}
+func (*CMsgServerToGCGetAdditionalEquipsResponse_CUserEquips) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{60, 0}
+}
 
 func (m *CMsgServerToGCGetAdditionalEquipsResponse_CUserEquips) GetAccountId() uint32 {
 	if m != nil && m.AccountId != nil {
@@ -4563,9 +4770,10 @@ type CMsgServerToGCGetProfileCard struct {
 	XXX_unrecognized []byte   `json:"-"`
 }
 
-func (m *CMsgServerToGCGetProfileCard) Reset()         { *m = CMsgServerToGCGetProfileCard{} }
-func (m *CMsgServerToGCGetProfileCard) String() string { return proto.CompactTextString(m) }
-func (*CMsgServerToGCGetProfileCard) ProtoMessage()    {}
+func (m *CMsgServerToGCGetProfileCard) Reset()                    { *m = CMsgServerToGCGetProfileCard{} }
+func (m *CMsgServerToGCGetProfileCard) String() string            { return proto.CompactTextString(m) }
+func (*CMsgServerToGCGetProfileCard) ProtoMessage()               {}
+func (*CMsgServerToGCGetProfileCard) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{61} }
 
 func (m *CMsgServerToGCGetProfileCard) GetAccountIds() []uint32 {
 	if m != nil {
@@ -4582,6 +4790,9 @@ type CMsgServerToGCGetProfileCardResponse struct {
 func (m *CMsgServerToGCGetProfileCardResponse) Reset()         { *m = CMsgServerToGCGetProfileCardResponse{} }
 func (m *CMsgServerToGCGetProfileCardResponse) String() string { return proto.CompactTextString(m) }
 func (*CMsgServerToGCGetProfileCardResponse) ProtoMessage()    {}
+func (*CMsgServerToGCGetProfileCardResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{62}
+}
 
 func (m *CMsgServerToGCGetProfileCardResponse) GetCards() []*CMsgDOTAProfileCard {
 	if m != nil {
@@ -4598,6 +4809,9 @@ type CMsgServerToGCVictoryPredictions struct {
 func (m *CMsgServerToGCVictoryPredictions) Reset()         { *m = CMsgServerToGCVictoryPredictions{} }
 func (m *CMsgServerToGCVictoryPredictions) String() string { return proto.CompactTextString(m) }
 func (*CMsgServerToGCVictoryPredictions) ProtoMessage()    {}
+func (*CMsgServerToGCVictoryPredictions) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{63}
+}
 
 func (m *CMsgServerToGCVictoryPredictions) GetRecords() []*CMsgServerToGCVictoryPredictions_Record {
 	if m != nil {
@@ -4618,6 +4832,9 @@ func (m *CMsgServerToGCVictoryPredictions_Record) Reset() {
 }
 func (m *CMsgServerToGCVictoryPredictions_Record) String() string { return proto.CompactTextString(m) }
 func (*CMsgServerToGCVictoryPredictions_Record) ProtoMessage()    {}
+func (*CMsgServerToGCVictoryPredictions_Record) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{63, 0}
+}
 
 func (m *CMsgServerToGCVictoryPredictions_Record) GetAccountId() uint32 {
 	if m != nil && m.AccountId != nil {
@@ -4649,9 +4866,10 @@ type CMsgSuspiciousActivity struct {
 	XXX_unrecognized []byte               `json:"-"`
 }
 
-func (m *CMsgSuspiciousActivity) Reset()         { *m = CMsgSuspiciousActivity{} }
-func (m *CMsgSuspiciousActivity) String() string { return proto.CompactTextString(m) }
-func (*CMsgSuspiciousActivity) ProtoMessage()    {}
+func (m *CMsgSuspiciousActivity) Reset()                    { *m = CMsgSuspiciousActivity{} }
+func (m *CMsgSuspiciousActivity) String() string            { return proto.CompactTextString(m) }
+func (*CMsgSuspiciousActivity) ProtoMessage()               {}
+func (*CMsgSuspiciousActivity) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{64} }
 
 const Default_CMsgSuspiciousActivity_Activity ESuspiciousActivity = ESuspiciousActivity_k_ESuspiciousActivity_VAC_MultipleInstances
 
@@ -4694,9 +4912,10 @@ type CMsgServerToGCRequestStatus struct {
 	XXX_unrecognized []byte `json:"-"`
 }
 
-func (m *CMsgServerToGCRequestStatus) Reset()         { *m = CMsgServerToGCRequestStatus{} }
-func (m *CMsgServerToGCRequestStatus) String() string { return proto.CompactTextString(m) }
-func (*CMsgServerToGCRequestStatus) ProtoMessage()    {}
+func (m *CMsgServerToGCRequestStatus) Reset()                    { *m = CMsgServerToGCRequestStatus{} }
+func (m *CMsgServerToGCRequestStatus) String() string            { return proto.CompactTextString(m) }
+func (*CMsgServerToGCRequestStatus) ProtoMessage()               {}
+func (*CMsgServerToGCRequestStatus) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{65} }
 
 type CMsgServerToGCRequestStatus_Response struct {
 	Response         *uint32 `protobuf:"varint,1,opt,name=response" json:"response,omitempty"`
@@ -4706,6 +4925,9 @@ type CMsgServerToGCRequestStatus_Response struct {
 func (m *CMsgServerToGCRequestStatus_Response) Reset()         { *m = CMsgServerToGCRequestStatus_Response{} }
 func (m *CMsgServerToGCRequestStatus_Response) String() string { return proto.CompactTextString(m) }
 func (*CMsgServerToGCRequestStatus_Response) ProtoMessage()    {}
+func (*CMsgServerToGCRequestStatus_Response) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{66}
+}
 
 func (m *CMsgServerToGCRequestStatus_Response) GetResponse() uint32 {
 	if m != nil && m.Response != nil {
@@ -4729,6 +4951,9 @@ type CMsgSignOutAssassinMiniGameInfo struct {
 func (m *CMsgSignOutAssassinMiniGameInfo) Reset()         { *m = CMsgSignOutAssassinMiniGameInfo{} }
 func (m *CMsgSignOutAssassinMiniGameInfo) String() string { return proto.CompactTextString(m) }
 func (*CMsgSignOutAssassinMiniGameInfo) ProtoMessage()    {}
+func (*CMsgSignOutAssassinMiniGameInfo) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{67}
+}
 
 func (m *CMsgSignOutAssassinMiniGameInfo) GetWinningPlayers() []uint64 {
 	if m != nil {
@@ -4787,17 +5012,20 @@ func (m *CMsgSignOutAssassinMiniGameInfo) GetPaIsRadiant() bool {
 }
 
 type CMsgServerToGCGetIngameEventData struct {
-	Event            *EIngameEvent `protobuf:"varint,1,opt,name=event,enum=EIngameEvent,def=0" json:"event,omitempty"`
-	XXX_unrecognized []byte        `json:"-"`
+	Event            *EEvent `protobuf:"varint,1,opt,name=event,enum=EEvent,def=0" json:"event,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
 }
 
 func (m *CMsgServerToGCGetIngameEventData) Reset()         { *m = CMsgServerToGCGetIngameEventData{} }
 func (m *CMsgServerToGCGetIngameEventData) String() string { return proto.CompactTextString(m) }
 func (*CMsgServerToGCGetIngameEventData) ProtoMessage()    {}
+func (*CMsgServerToGCGetIngameEventData) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{68}
+}
 
-const Default_CMsgServerToGCGetIngameEventData_Event EIngameEvent = EIngameEvent_k_EIngameEvent_OraclePA
+const Default_CMsgServerToGCGetIngameEventData_Event EEvent = EEvent_EVENT_ID_NONE
 
-func (m *CMsgServerToGCGetIngameEventData) GetEvent() EIngameEvent {
+func (m *CMsgServerToGCGetIngameEventData) GetEvent() EEvent {
 	if m != nil && m.Event != nil {
 		return *m.Event
 	}
@@ -4812,6 +5040,9 @@ type CMsgGCToServerIngameEventDataOraclePA struct {
 func (m *CMsgGCToServerIngameEventDataOraclePA) Reset()         { *m = CMsgGCToServerIngameEventDataOraclePA{} }
 func (m *CMsgGCToServerIngameEventDataOraclePA) String() string { return proto.CompactTextString(m) }
 func (*CMsgGCToServerIngameEventDataOraclePA) ProtoMessage()    {}
+func (*CMsgGCToServerIngameEventDataOraclePA) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{69}
+}
 
 func (m *CMsgGCToServerIngameEventDataOraclePA) GetTargetHeroIds() []uint32 {
 	if m != nil {
@@ -4826,9 +5057,10 @@ type CMsgServerToGCKillSummaries struct {
 	XXX_unrecognized []byte                                     `json:"-"`
 }
 
-func (m *CMsgServerToGCKillSummaries) Reset()         { *m = CMsgServerToGCKillSummaries{} }
-func (m *CMsgServerToGCKillSummaries) String() string { return proto.CompactTextString(m) }
-func (*CMsgServerToGCKillSummaries) ProtoMessage()    {}
+func (m *CMsgServerToGCKillSummaries) Reset()                    { *m = CMsgServerToGCKillSummaries{} }
+func (m *CMsgServerToGCKillSummaries) String() string            { return proto.CompactTextString(m) }
+func (*CMsgServerToGCKillSummaries) ProtoMessage()               {}
+func (*CMsgServerToGCKillSummaries) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{70} }
 
 func (m *CMsgServerToGCKillSummaries) GetIngameeventId() uint32 {
 	if m != nil && m.IngameeventId != nil {
@@ -4856,6 +5088,9 @@ func (m *CMsgServerToGCKillSummaries_KillSummary) Reset() {
 }
 func (m *CMsgServerToGCKillSummaries_KillSummary) String() string { return proto.CompactTextString(m) }
 func (*CMsgServerToGCKillSummaries_KillSummary) ProtoMessage()    {}
+func (*CMsgServerToGCKillSummaries_KillSummary) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{70, 0}
+}
 
 func (m *CMsgServerToGCKillSummaries_KillSummary) GetKillerHeroId() uint32 {
 	if m != nil && m.KillerHeroId != nil {
@@ -4886,9 +5121,10 @@ type CMsgGCToServerPredictionResult struct {
 	XXX_unrecognized []byte                                       `json:"-"`
 }
 
-func (m *CMsgGCToServerPredictionResult) Reset()         { *m = CMsgGCToServerPredictionResult{} }
-func (m *CMsgGCToServerPredictionResult) String() string { return proto.CompactTextString(m) }
-func (*CMsgGCToServerPredictionResult) ProtoMessage()    {}
+func (m *CMsgGCToServerPredictionResult) Reset()                    { *m = CMsgGCToServerPredictionResult{} }
+func (m *CMsgGCToServerPredictionResult) String() string            { return proto.CompactTextString(m) }
+func (*CMsgGCToServerPredictionResult) ProtoMessage()               {}
+func (*CMsgGCToServerPredictionResult) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{71} }
 
 func (m *CMsgGCToServerPredictionResult) GetAccountId() uint32 {
 	if m != nil && m.AccountId != nil {
@@ -4932,6 +5168,9 @@ func (m *CMsgGCToServerPredictionResult_Prediction) Reset() {
 }
 func (m *CMsgGCToServerPredictionResult_Prediction) String() string { return proto.CompactTextString(m) }
 func (*CMsgGCToServerPredictionResult_Prediction) ProtoMessage()    {}
+func (*CMsgGCToServerPredictionResult_Prediction) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{71, 0}
+}
 
 const Default_CMsgGCToServerPredictionResult_Prediction_Result CMsgGCToServerPredictionResult_Prediction_EResult = CMsgGCToServerPredictionResult_Prediction_k_eResult_ItemGranted
 
@@ -4976,9 +5215,10 @@ type CMsgServerToGCLockCharmTrading struct {
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *CMsgServerToGCLockCharmTrading) Reset()         { *m = CMsgServerToGCLockCharmTrading{} }
-func (m *CMsgServerToGCLockCharmTrading) String() string { return proto.CompactTextString(m) }
-func (*CMsgServerToGCLockCharmTrading) ProtoMessage()    {}
+func (m *CMsgServerToGCLockCharmTrading) Reset()                    { *m = CMsgServerToGCLockCharmTrading{} }
+func (m *CMsgServerToGCLockCharmTrading) String() string            { return proto.CompactTextString(m) }
+func (*CMsgServerToGCLockCharmTrading) ProtoMessage()               {}
+func (*CMsgServerToGCLockCharmTrading) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{72} }
 
 func (m *CMsgServerToGCLockCharmTrading) GetAccountId() uint32 {
 	if m != nil && m.AccountId != nil {
@@ -5000,9 +5240,10 @@ type CMsgDOTACNY2015EventPointUsage struct {
 	XXX_unrecognized []byte                                     `json:"-"`
 }
 
-func (m *CMsgDOTACNY2015EventPointUsage) Reset()         { *m = CMsgDOTACNY2015EventPointUsage{} }
-func (m *CMsgDOTACNY2015EventPointUsage) String() string { return proto.CompactTextString(m) }
-func (*CMsgDOTACNY2015EventPointUsage) ProtoMessage()    {}
+func (m *CMsgDOTACNY2015EventPointUsage) Reset()                    { *m = CMsgDOTACNY2015EventPointUsage{} }
+func (m *CMsgDOTACNY2015EventPointUsage) String() string            { return proto.CompactTextString(m) }
+func (*CMsgDOTACNY2015EventPointUsage) ProtoMessage()               {}
+func (*CMsgDOTACNY2015EventPointUsage) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{73} }
 
 func (m *CMsgDOTACNY2015EventPointUsage) GetWinningTeamUsage() *CMsgDOTACNY2015EventPointUsage_PointUsage {
 	if m != nil {
@@ -5030,6 +5271,9 @@ func (m *CMsgDOTACNY2015EventPointUsage_PointUsage) Reset() {
 }
 func (m *CMsgDOTACNY2015EventPointUsage_PointUsage) String() string { return proto.CompactTextString(m) }
 func (*CMsgDOTACNY2015EventPointUsage_PointUsage) ProtoMessage()    {}
+func (*CMsgDOTACNY2015EventPointUsage_PointUsage) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{73, 0}
+}
 
 func (m *CMsgDOTACNY2015EventPointUsage_PointUsage) GetPath() []uint32 {
 	if m != nil {
@@ -5063,6 +5307,9 @@ type CMsgSignOutUpdatePlayerChallenge struct {
 func (m *CMsgSignOutUpdatePlayerChallenge) Reset()         { *m = CMsgSignOutUpdatePlayerChallenge{} }
 func (m *CMsgSignOutUpdatePlayerChallenge) String() string { return proto.CompactTextString(m) }
 func (*CMsgSignOutUpdatePlayerChallenge) ProtoMessage()    {}
+func (*CMsgSignOutUpdatePlayerChallenge) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{74}
+}
 
 func (m *CMsgSignOutUpdatePlayerChallenge) GetAccountId() uint32 {
 	if m != nil && m.AccountId != nil {
@@ -5105,6 +5352,9 @@ func (m *CMsgSignOutUpdatePlayerChallenge_Challenge) String() string {
 	return proto.CompactTextString(m)
 }
 func (*CMsgSignOutUpdatePlayerChallenge_Challenge) ProtoMessage() {}
+func (*CMsgSignOutUpdatePlayerChallenge_Challenge) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{74, 0}
+}
 
 func (m *CMsgSignOutUpdatePlayerChallenge_Challenge) GetEventId() uint32 {
 	if m != nil && m.EventId != nil {
@@ -5129,6 +5379,9 @@ type CMsgServerToGCRerollPlayerChallenge struct {
 func (m *CMsgServerToGCRerollPlayerChallenge) Reset()         { *m = CMsgServerToGCRerollPlayerChallenge{} }
 func (m *CMsgServerToGCRerollPlayerChallenge) String() string { return proto.CompactTextString(m) }
 func (*CMsgServerToGCRerollPlayerChallenge) ProtoMessage()    {}
+func (*CMsgServerToGCRerollPlayerChallenge) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{75}
+}
 
 func (m *CMsgServerToGCRerollPlayerChallenge) GetAccountId() uint32 {
 	if m != nil && m.AccountId != nil {
@@ -5152,9 +5405,10 @@ type CMsgServerToGCHoldEventPoints struct {
 	XXX_unrecognized []byte                                       `json:"-"`
 }
 
-func (m *CMsgServerToGCHoldEventPoints) Reset()         { *m = CMsgServerToGCHoldEventPoints{} }
-func (m *CMsgServerToGCHoldEventPoints) String() string { return proto.CompactTextString(m) }
-func (*CMsgServerToGCHoldEventPoints) ProtoMessage()    {}
+func (m *CMsgServerToGCHoldEventPoints) Reset()                    { *m = CMsgServerToGCHoldEventPoints{} }
+func (m *CMsgServerToGCHoldEventPoints) String() string            { return proto.CompactTextString(m) }
+func (*CMsgServerToGCHoldEventPoints) ProtoMessage()               {}
+func (*CMsgServerToGCHoldEventPoints) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{76} }
 
 func (m *CMsgServerToGCHoldEventPoints) GetHolds() []*CMsgServerToGCHoldEventPoints_HoldRequest {
 	if m != nil {
@@ -5196,6 +5450,9 @@ func (m *CMsgServerToGCHoldEventPoints_HoldRequest) Reset() {
 }
 func (m *CMsgServerToGCHoldEventPoints_HoldRequest) String() string { return proto.CompactTextString(m) }
 func (*CMsgServerToGCHoldEventPoints_HoldRequest) ProtoMessage()    {}
+func (*CMsgServerToGCHoldEventPoints_HoldRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{76, 0}
+}
 
 func (m *CMsgServerToGCHoldEventPoints_HoldRequest) GetAccountId() uint32 {
 	if m != nil && m.AccountId != nil {
@@ -5228,6 +5485,9 @@ type CMsgSignOutReleaseEventPointHolds struct {
 func (m *CMsgSignOutReleaseEventPointHolds) Reset()         { *m = CMsgSignOutReleaseEventPointHolds{} }
 func (m *CMsgSignOutReleaseEventPointHolds) String() string { return proto.CompactTextString(m) }
 func (*CMsgSignOutReleaseEventPointHolds) ProtoMessage()    {}
+func (*CMsgSignOutReleaseEventPointHolds) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{77}
+}
 
 func (m *CMsgSignOutReleaseEventPointHolds) GetAccountIds() []uint32 {
 	if m != nil {
@@ -5260,6 +5520,9 @@ type CMsgGCToServerUpdateBroadcastCheers struct {
 func (m *CMsgGCToServerUpdateBroadcastCheers) Reset()         { *m = CMsgGCToServerUpdateBroadcastCheers{} }
 func (m *CMsgGCToServerUpdateBroadcastCheers) String() string { return proto.CompactTextString(m) }
 func (*CMsgGCToServerUpdateBroadcastCheers) ProtoMessage()    {}
+func (*CMsgGCToServerUpdateBroadcastCheers) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{78}
+}
 
 func (m *CMsgGCToServerUpdateBroadcastCheers) GetTimeStamp() uint32 {
 	if m != nil && m.TimeStamp != nil {
@@ -5282,7 +5545,188 @@ func (m *CMsgGCToServerUpdateBroadcastCheers) GetTeam_2Cheers() uint32 {
 	return 0
 }
 
+type CMsgSignOutWagerStats struct {
+	Players          []*CMsgSignOutWagerStats_Player `protobuf:"bytes,1,rep,name=players" json:"players,omitempty"`
+	EventId          *uint32                         `protobuf:"varint,2,opt,name=event_id" json:"event_id,omitempty"`
+	XXX_unrecognized []byte                          `json:"-"`
+}
+
+func (m *CMsgSignOutWagerStats) Reset()                    { *m = CMsgSignOutWagerStats{} }
+func (m *CMsgSignOutWagerStats) String() string            { return proto.CompactTextString(m) }
+func (*CMsgSignOutWagerStats) ProtoMessage()               {}
+func (*CMsgSignOutWagerStats) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{79} }
+
+func (m *CMsgSignOutWagerStats) GetPlayers() []*CMsgSignOutWagerStats_Player {
+	if m != nil {
+		return m.Players
+	}
+	return nil
+}
+
+func (m *CMsgSignOutWagerStats) GetEventId() uint32 {
+	if m != nil && m.EventId != nil {
+		return *m.EventId
+	}
+	return 0
+}
+
+type CMsgSignOutWagerStats_Player struct {
+	AccountId        *uint32 `protobuf:"varint,1,opt,name=account_id" json:"account_id,omitempty"`
+	Winnings         *uint32 `protobuf:"varint,2,opt,name=winnings" json:"winnings,omitempty"`
+	MaxWager         *uint32 `protobuf:"varint,3,opt,name=max_wager" json:"max_wager,omitempty"`
+	Wager            *uint32 `protobuf:"varint,4,opt,name=wager" json:"wager,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
+}
+
+func (m *CMsgSignOutWagerStats_Player) Reset()         { *m = CMsgSignOutWagerStats_Player{} }
+func (m *CMsgSignOutWagerStats_Player) String() string { return proto.CompactTextString(m) }
+func (*CMsgSignOutWagerStats_Player) ProtoMessage()    {}
+func (*CMsgSignOutWagerStats_Player) Descriptor() ([]byte, []int) {
+	return fileDescriptor4, []int{79, 0}
+}
+
+func (m *CMsgSignOutWagerStats_Player) GetAccountId() uint32 {
+	if m != nil && m.AccountId != nil {
+		return *m.AccountId
+	}
+	return 0
+}
+
+func (m *CMsgSignOutWagerStats_Player) GetWinnings() uint32 {
+	if m != nil && m.Winnings != nil {
+		return *m.Winnings
+	}
+	return 0
+}
+
+func (m *CMsgSignOutWagerStats_Player) GetMaxWager() uint32 {
+	if m != nil && m.MaxWager != nil {
+		return *m.MaxWager
+	}
+	return 0
+}
+
+func (m *CMsgSignOutWagerStats_Player) GetWager() uint32 {
+	if m != nil && m.Wager != nil {
+		return *m.Wager
+	}
+	return 0
+}
+
 func init() {
+	proto.RegisterType((*CMsgSpawnLootGreevil)(nil), "CMsgSpawnLootGreevil")
+	proto.RegisterType((*CMsgDismissLootGreevil)(nil), "CMsgDismissLootGreevil")
+	proto.RegisterType((*CMsgDismissLootGreevilResponse)(nil), "CMsgDismissLootGreevilResponse")
+	proto.RegisterType((*CMsgPoorNetworkConditions)(nil), "CMsgPoorNetworkConditions")
+	proto.RegisterType((*CMsgPoorNetworkConditions_Player)(nil), "CMsgPoorNetworkConditions.Player")
+	proto.RegisterType((*CMsgGameserverCrash)(nil), "CMsgGameserverCrash")
+	proto.RegisterType((*CMsgConnectedPlayers)(nil), "CMsgConnectedPlayers")
+	proto.RegisterType((*CMsgConnectedPlayers_Player)(nil), "CMsgConnectedPlayers.Player")
+	proto.RegisterType((*CMsgGameServerInfo)(nil), "CMsgGameServerInfo")
+	proto.RegisterType((*CMsgLeaverDetected)(nil), "CMsgLeaverDetected")
+	proto.RegisterType((*CMsgLeaverDetectedResponse)(nil), "CMsgLeaverDetectedResponse")
+	proto.RegisterType((*CMsgDOTAFantasyPlayerStats)(nil), "CMsgDOTAFantasyPlayerStats")
+	proto.RegisterType((*CMsgDOTAFantasyMatch)(nil), "CMsgDOTAFantasyMatch")
+	proto.RegisterType((*CMsgServerToGCRealtimeStats)(nil), "CMsgServerToGCRealtimeStats")
+	proto.RegisterType((*CMsgGCToServerRealtimeStatsStartStop)(nil), "CMsgGCToServerRealtimeStatsStartStop")
+	proto.RegisterType((*CMsgGameMatchSignOut)(nil), "CMsgGameMatchSignOut")
+	proto.RegisterType((*CMsgGameMatchSignOut_CTeam)(nil), "CMsgGameMatchSignOut.CTeam")
+	proto.RegisterType((*CMsgGameMatchSignOut_CTeam_CPlayer)(nil), "CMsgGameMatchSignOut.CTeam.CPlayer")
+	proto.RegisterType((*CMsgGameMatchSignOut_CTeam_CPlayer_CCustomGameData)(nil), "CMsgGameMatchSignOut.CTeam.CPlayer.CCustomGameData")
+	proto.RegisterType((*CMsgGameMatchSignOut_CAdditionalSignoutMsg)(nil), "CMsgGameMatchSignOut.CAdditionalSignoutMsg")
+	proto.RegisterType((*CMsgGameMatchSignOut_CSocialFeedMatchEvent)(nil), "CMsgGameMatchSignOut.CSocialFeedMatchEvent")
+	proto.RegisterType((*CMsgGameMatchSignOut_CCustomGameData)(nil), "CMsgGameMatchSignOut.CCustomGameData")
+	proto.RegisterType((*CMsgSignOutDraftInfo)(nil), "CMsgSignOutDraftInfo")
+	proto.RegisterType((*CMsgSignOutBotInfo)(nil), "CMsgSignOutBotInfo")
+	proto.RegisterType((*CMsgSignOutBotInfo_CMsgBotSlotDifficulty)(nil), "CMsgSignOutBotInfo.CMsgBotSlotDifficulty")
+	proto.RegisterType((*CMsgSignOutPlayerStats)(nil), "CMsgSignOutPlayerStats")
+	proto.RegisterType((*CMsgSignOutCommunicationSummary)(nil), "CMsgSignOutCommunicationSummary")
+	proto.RegisterType((*CMsgSignOutCommunicationSummary_PlayerCommunication)(nil), "CMsgSignOutCommunicationSummary.PlayerCommunication")
+	proto.RegisterType((*CMsgGameMatchSignoutResponse)(nil), "CMsgGameMatchSignoutResponse")
+	proto.RegisterType((*CMsgGameMatchSignoutResponse_CAdditionalSignoutMsg)(nil), "CMsgGameMatchSignoutResponse.CAdditionalSignoutMsg")
+	proto.RegisterType((*CMsgGameMatchSignOutPermissionRequest)(nil), "CMsgGameMatchSignOutPermissionRequest")
+	proto.RegisterType((*CMsgGameMatchSignOutPermissionResponse)(nil), "CMsgGameMatchSignOutPermissionResponse")
+	proto.RegisterType((*CMsgGameChatLog)(nil), "CMsgGameChatLog")
+	proto.RegisterType((*CMsgGameChatLog_CChatLine)(nil), "CMsgGameChatLog.CChatLine")
+	proto.RegisterType((*CMsgDOTALiveScoreboardUpdate)(nil), "CMsgDOTALiveScoreboardUpdate")
+	proto.RegisterType((*CMsgDOTALiveScoreboardUpdate_Team)(nil), "CMsgDOTALiveScoreboardUpdate.Team")
+	proto.RegisterType((*CMsgDOTALiveScoreboardUpdate_Team_Player)(nil), "CMsgDOTALiveScoreboardUpdate.Team.Player")
+	proto.RegisterType((*CMsgDOTALiveScoreboardUpdate_Team_Player_HeroAbility)(nil), "CMsgDOTALiveScoreboardUpdate.Team.Player.HeroAbility")
+	proto.RegisterType((*CMsgDOTARequestPlayerResources)(nil), "CMsgDOTARequestPlayerResources")
+	proto.RegisterType((*CMsgDOTARequestPlayerResourcesResponse)(nil), "CMsgDOTARequestPlayerResourcesResponse")
+	proto.RegisterType((*CMsgDOTARequestBatchPlayerResources)(nil), "CMsgDOTARequestBatchPlayerResources")
+	proto.RegisterType((*CMsgDOTARequestBatchPlayerResourcesResponse)(nil), "CMsgDOTARequestBatchPlayerResourcesResponse")
+	proto.RegisterType((*CMsgDOTARequestBatchPlayerResourcesResponse_Result)(nil), "CMsgDOTARequestBatchPlayerResourcesResponse.Result")
+	proto.RegisterType((*CMsgDOTAPlayerFailedToConnect)(nil), "CMsgDOTAPlayerFailedToConnect")
+	proto.RegisterType((*CMsgGCToRelayConnect)(nil), "CMsgGCToRelayConnect")
+	proto.RegisterType((*CMsgGCGCToLANServerRelayConnect)(nil), "CMsgGCGCToLANServerRelayConnect")
+	proto.RegisterType((*CMsgGCToRelayConnectResponse)(nil), "CMsgGCToRelayConnectResponse")
+	proto.RegisterType((*CMsgGCBanStatusRequest)(nil), "CMsgGCBanStatusRequest")
+	proto.RegisterType((*CMsgGCBanStatusResponse)(nil), "CMsgGCBanStatusResponse")
+	proto.RegisterType((*CMsgTournamentItemEvent)(nil), "CMsgTournamentItemEvent")
+	proto.RegisterType((*CMsgTournamentItemEventResponse)(nil), "CMsgTournamentItemEventResponse")
+	proto.RegisterType((*CMsgTeamFanfare)(nil), "CMsgTeamFanfare")
+	proto.RegisterType((*CMsgResponseTeamFanfare)(nil), "CMsgResponseTeamFanfare")
+	proto.RegisterType((*CMsgGameServerUploadSaveGame)(nil), "CMsgGameServerUploadSaveGame")
+	proto.RegisterType((*CMsgGameServerSaveGameResult)(nil), "CMsgGameServerSaveGameResult")
+	proto.RegisterType((*CMsgGameServerGetLoadGame)(nil), "CMsgGameServerGetLoadGame")
+	proto.RegisterType((*CMsgGameServerGetLoadGameResult)(nil), "CMsgGameServerGetLoadGameResult")
+	proto.RegisterType((*CMsgDOTAGenerateDiretidePrizeList)(nil), "CMsgDOTAGenerateDiretidePrizeList")
+	proto.RegisterType((*CMsgDOTAGenerateDiretidePrizeListResponse)(nil), "CMsgDOTAGenerateDiretidePrizeListResponse")
+	proto.RegisterType((*CMsgDOTARewardDiretidePrizes)(nil), "CMsgDOTARewardDiretidePrizes")
+	proto.RegisterType((*CMsgDOTADiretidePrizesRewardedResponse)(nil), "CMsgDOTADiretidePrizesRewardedResponse")
+	proto.RegisterType((*CMsgDOTAAwardEventPoints)(nil), "CMsgDOTAAwardEventPoints")
+	proto.RegisterType((*CMsgDOTAAwardEventPoints_AwardPoints)(nil), "CMsgDOTAAwardEventPoints.AwardPoints")
+	proto.RegisterType((*CMsgServerToGCSignoutAwardAdditionalDrops)(nil), "CMsgServerToGCSignoutAwardAdditionalDrops")
+	proto.RegisterType((*CMsgServerToGCSignoutAwardAdditionalDrops_AdditionalDrops)(nil), "CMsgServerToGCSignoutAwardAdditionalDrops.AdditionalDrops")
+	proto.RegisterType((*CMsgDOTAUpdateTI4HeroQuest)(nil), "CMsgDOTAUpdateTI4HeroQuest")
+	proto.RegisterType((*CMsgDOTAUpdateTI4HeroQuest_Player)(nil), "CMsgDOTAUpdateTI4HeroQuest.Player")
+	proto.RegisterType((*CMsgDOTAFrostivusTimeElapsed)(nil), "CMsgDOTAFrostivusTimeElapsed")
+	proto.RegisterType((*CMsgDOTAFrostivusTimeElapsed_User)(nil), "CMsgDOTAFrostivusTimeElapsed.User")
+	proto.RegisterType((*CMsgGCToServerPingRequest)(nil), "CMsgGCToServerPingRequest")
+	proto.RegisterType((*CMsgGCToServerPingResponse)(nil), "CMsgGCToServerPingResponse")
+	proto.RegisterType((*CMsgGCToServerConsoleCommand)(nil), "CMsgGCToServerConsoleCommand")
+	proto.RegisterType((*CMsgServerGetEventPoints)(nil), "CMsgServerGetEventPoints")
+	proto.RegisterType((*CMsgServerGetEventPointsResponse)(nil), "CMsgServerGetEventPointsResponse")
+	proto.RegisterType((*CMsgServerGetEventPointsResponse_Points)(nil), "CMsgServerGetEventPointsResponse.Points")
+	proto.RegisterType((*CMsgServerGrantSurveyPermission)(nil), "CMsgServerGrantSurveyPermission")
+	proto.RegisterType((*CMsgServerGrantSurveyPermission_Survey)(nil), "CMsgServerGrantSurveyPermission.Survey")
+	proto.RegisterType((*CMsgServerGrantSurveyPermissionResponse)(nil), "CMsgServerGrantSurveyPermissionResponse")
+	proto.RegisterType((*CMsgServerToGCMatchConnectionStats)(nil), "CMsgServerToGCMatchConnectionStats")
+	proto.RegisterType((*CMsgServerToGCMatchConnectionStats_Player)(nil), "CMsgServerToGCMatchConnectionStats.Player")
+	proto.RegisterType((*CMsgServerGCUpdateSpectatorCount)(nil), "CMsgServerGCUpdateSpectatorCount")
+	proto.RegisterType((*CSerializedCombatLog)(nil), "CSerializedCombatLog")
+	proto.RegisterType((*CSerializedCombatLog_Dictionary)(nil), "CSerializedCombatLog.Dictionary")
+	proto.RegisterType((*CSerializedCombatLog_Dictionary_DictString)(nil), "CSerializedCombatLog.Dictionary.DictString")
+	proto.RegisterType((*CMsgServerToGCGetAdditionalEquips)(nil), "CMsgServerToGCGetAdditionalEquips")
+	proto.RegisterType((*CMsgServerToGCGetAdditionalEquipsResponse)(nil), "CMsgServerToGCGetAdditionalEquipsResponse")
+	proto.RegisterType((*CMsgServerToGCGetAdditionalEquipsResponse_CUserEquips)(nil), "CMsgServerToGCGetAdditionalEquipsResponse.CUserEquips")
+	proto.RegisterType((*CMsgServerToGCGetProfileCard)(nil), "CMsgServerToGCGetProfileCard")
+	proto.RegisterType((*CMsgServerToGCGetProfileCardResponse)(nil), "CMsgServerToGCGetProfileCardResponse")
+	proto.RegisterType((*CMsgServerToGCVictoryPredictions)(nil), "CMsgServerToGCVictoryPredictions")
+	proto.RegisterType((*CMsgServerToGCVictoryPredictions_Record)(nil), "CMsgServerToGCVictoryPredictions.Record")
+	proto.RegisterType((*CMsgSuspiciousActivity)(nil), "CMsgSuspiciousActivity")
+	proto.RegisterType((*CMsgServerToGCRequestStatus)(nil), "CMsgServerToGCRequestStatus")
+	proto.RegisterType((*CMsgServerToGCRequestStatus_Response)(nil), "CMsgServerToGCRequestStatus_Response")
+	proto.RegisterType((*CMsgSignOutAssassinMiniGameInfo)(nil), "CMsgSignOutAssassinMiniGameInfo")
+	proto.RegisterType((*CMsgServerToGCGetIngameEventData)(nil), "CMsgServerToGCGetIngameEventData")
+	proto.RegisterType((*CMsgGCToServerIngameEventDataOraclePA)(nil), "CMsgGCToServerIngameEventDataOraclePA")
+	proto.RegisterType((*CMsgServerToGCKillSummaries)(nil), "CMsgServerToGCKillSummaries")
+	proto.RegisterType((*CMsgServerToGCKillSummaries_KillSummary)(nil), "CMsgServerToGCKillSummaries.KillSummary")
+	proto.RegisterType((*CMsgGCToServerPredictionResult)(nil), "CMsgGCToServerPredictionResult")
+	proto.RegisterType((*CMsgGCToServerPredictionResult_Prediction)(nil), "CMsgGCToServerPredictionResult.Prediction")
+	proto.RegisterType((*CMsgServerToGCLockCharmTrading)(nil), "CMsgServerToGCLockCharmTrading")
+	proto.RegisterType((*CMsgDOTACNY2015EventPointUsage)(nil), "CMsgDOTACNY2015EventPointUsage")
+	proto.RegisterType((*CMsgDOTACNY2015EventPointUsage_PointUsage)(nil), "CMsgDOTACNY2015EventPointUsage.PointUsage")
+	proto.RegisterType((*CMsgSignOutUpdatePlayerChallenge)(nil), "CMsgSignOutUpdatePlayerChallenge")
+	proto.RegisterType((*CMsgSignOutUpdatePlayerChallenge_Challenge)(nil), "CMsgSignOutUpdatePlayerChallenge.Challenge")
+	proto.RegisterType((*CMsgServerToGCRerollPlayerChallenge)(nil), "CMsgServerToGCRerollPlayerChallenge")
+	proto.RegisterType((*CMsgServerToGCHoldEventPoints)(nil), "CMsgServerToGCHoldEventPoints")
+	proto.RegisterType((*CMsgServerToGCHoldEventPoints_HoldRequest)(nil), "CMsgServerToGCHoldEventPoints.HoldRequest")
+	proto.RegisterType((*CMsgSignOutReleaseEventPointHolds)(nil), "CMsgSignOutReleaseEventPointHolds")
+	proto.RegisterType((*CMsgGCToServerUpdateBroadcastCheers)(nil), "CMsgGCToServerUpdateBroadcastCheers")
+	proto.RegisterType((*CMsgSignOutWagerStats)(nil), "CMsgSignOutWagerStats")
+	proto.RegisterType((*CMsgSignOutWagerStats_Player)(nil), "CMsgSignOutWagerStats.Player")
 	proto.RegisterEnum("EPoorNetworkConditionsType", EPoorNetworkConditionsType_name, EPoorNetworkConditionsType_value)
 	proto.RegisterEnum("EAbilityAbuseType", EAbilityAbuseType_name, EAbilityAbuseType_value)
 	proto.RegisterEnum("EIntentionalFeedingType", EIntentionalFeedingType_name, EIntentionalFeedingType_value)
@@ -5293,4 +5737,433 @@ func init() {
 	proto.RegisterEnum("CMsgDOTALiveScoreboardUpdate_Team_Player_DOTAUltimateState", CMsgDOTALiveScoreboardUpdate_Team_Player_DOTAUltimateState_name, CMsgDOTALiveScoreboardUpdate_Team_Player_DOTAUltimateState_value)
 	proto.RegisterEnum("CMsgGameServerSaveGameResult_Result", CMsgGameServerSaveGameResult_Result_name, CMsgGameServerSaveGameResult_Result_value)
 	proto.RegisterEnum("CMsgGCToServerPredictionResult_Prediction_EResult", CMsgGCToServerPredictionResult_Prediction_EResult_name, CMsgGCToServerPredictionResult_Prediction_EResult_value)
+}
+
+var fileDescriptor4 = []byte{
+	// 6798 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xb4, 0x5c, 0x4b, 0x6c, 0x24, 0x49,
+	0x5a, 0x9e, 0xaa, 0xf2, 0x33, 0xdc, 0xb6, 0xcb, 0xd5, 0x2f, 0x77, 0xf5, 0x73, 0xb2, 0xbb, 0xa7,
+	0x67, 0xba, 0x67, 0x73, 0xbb, 0xdd, 0xdd, 0xbb, 0xb3, 0x9e, 0x7d, 0xd9, 0xe5, 0xea, 0x6e, 0x6b,
+	0xdc, 0xb6, 0xc7, 0x55, 0xee, 0x65, 0x24, 0xa4, 0x54, 0xba, 0x2a, 0x5c, 0x4e, 0x9c, 0x95, 0x99,
+	0x9b, 0x99, 0x65, 0xb7, 0x57, 0x1c, 0xe6, 0xb2, 0x20, 0xe0, 0xc2, 0x69, 0x39, 0x20, 0x71, 0x19,
+	0x09, 0xad, 0x04, 0x12, 0x20, 0xd0, 0x1e, 0x90, 0x90, 0x90, 0x10, 0x48, 0xdc, 0x11, 0x17, 0x60,
+	0xc5, 0xe3, 0x04, 0x67, 0x84, 0x84, 0x16, 0x24, 0xfe, 0x47, 0x44, 0x66, 0x56, 0x55, 0x96, 0xed,
+	0x61, 0xe1, 0x60, 0xa9, 0x32, 0xe2, 0x8f, 0xc8, 0x3f, 0xfe, 0xf8, 0x1f, 0xdf, 0xff, 0x47, 0xa4,
+	0xc5, 0x8d, 0xb6, 0x1f, 0xdb, 0x56, 0xa7, 0xd5, 0x95, 0x51, 0x64, 0x77, 0x64, 0x64, 0x45, 0x32,
+	0x3c, 0x92, 0xa1, 0x19, 0x84, 0x7e, 0xec, 0x57, 0x2f, 0x46, 0xb1, 0xb4, 0xbb, 0xba, 0x4f, 0x35,
+	0x0e, 0x0d, 0x69, 0xf9, 0xdd, 0xae, 0xef, 0xa9, 0xde, 0xcb, 0xb2, 0xe5, 0x7b, 0x99, 0x5e, 0xd5,
+	0xbc, 0xe8, 0xc9, 0xf8, 0xd8, 0x0f, 0x0f, 0x81, 0xd8, 0xf3, 0x64, 0x2b, 0x76, 0xf4, 0x00, 0xe3,
+	0x9e, 0xb8, 0x54, 0x7b, 0x1d, 0x75, 0x1a, 0x81, 0x7d, 0xec, 0x6d, 0xf8, 0x7e, 0xfc, 0x32, 0x94,
+	0xf2, 0xc8, 0x71, 0x2b, 0x17, 0xc4, 0x58, 0x68, 0x87, 0x72, 0xb1, 0x70, 0xa7, 0xf0, 0xfe, 0x94,
+	0xf1, 0x35, 0x71, 0x05, 0xa9, 0xd6, 0x9c, 0xa8, 0xeb, 0x44, 0x51, 0x96, 0x6e, 0x4e, 0x4c, 0x1c,
+	0x3a, 0xae, 0x2b, 0xdb, 0x8b, 0x45, 0xa4, 0x4c, 0xc6, 0x95, 0x68, 0xdc, 0x1d, 0x71, 0x2b, 0x7f,
+	0xdc, 0x8e, 0x8c, 0x02, 0xdf, 0x8b, 0xa4, 0xf1, 0xd7, 0x45, 0x71, 0x0d, 0x49, 0xb6, 0x7d, 0x3f,
+	0xdc, 0x64, 0x26, 0x6b, 0xbe, 0xd7, 0x76, 0x90, 0xc5, 0xa8, 0xb2, 0x23, 0xe6, 0xda, 0x32, 0x66,
+	0x86, 0xad, 0xf8, 0x24, 0x60, 0x7e, 0xe6, 0x96, 0xae, 0x9b, 0xf5, 0xdc, 0x01, 0x4d, 0x20, 0x59,
+	0xbe, 0x79, 0x68, 0xe5, 0xf7, 0x5a, 0x9b, 0xbe, 0x27, 0x2b, 0x4b, 0x62, 0x32, 0x70, 0xed, 0x13,
+	0x19, 0x46, 0xc0, 0x72, 0xe9, 0xfd, 0x99, 0xa5, 0x77, 0xcd, 0x91, 0x0c, 0x98, 0xdb, 0x44, 0x59,
+	0xfd, 0xa2, 0x20, 0x26, 0xf8, 0x67, 0xa5, 0x22, 0x84, 0xdd, 0x6a, 0xf9, 0x3d, 0x2f, 0xb6, 0x9c,
+	0x36, 0xb1, 0x33, 0x5b, 0x69, 0x88, 0x85, 0xb6, 0x13, 0x29, 0xd9, 0x5a, 0xa1, 0xb4, 0x23, 0xdf,
+	0x23, 0x79, 0xcc, 0x2d, 0xdd, 0x30, 0xeb, 0x6a, 0xd6, 0xb5, 0x84, 0x02, 0x66, 0xde, 0x21, 0x9a,
+	0xe5, 0xea, 0x66, 0xbd, 0xf9, 0xbd, 0xad, 0x9d, 0x4f, 0xac, 0xb5, 0xf5, 0x46, 0x6d, 0x6b, 0x73,
+	0xb3, 0x5e, 0x6b, 0x5a, 0xeb, 0x9b, 0x6f, 0x56, 0x36, 0xd6, 0xd7, 0x2a, 0xd7, 0xc4, 0x82, 0xd7,
+	0xeb, 0x5a, 0x7b, 0x76, 0xdb, 0x72, 0xbc, 0x18, 0xf4, 0xc2, 0x76, 0x23, 0x12, 0xeb, 0x6c, 0xe5,
+	0xb2, 0x98, 0x0d, 0xa4, 0x7d, 0x68, 0xb9, 0x7e, 0x14, 0x59, 0x41, 0x2b, 0x5e, 0x1c, 0xc3, 0x66,
+	0xe3, 0x0f, 0x8a, 0xe2, 0x22, 0x2e, 0xe5, 0xa5, 0x0d, 0xdb, 0x4f, 0x8a, 0x54, 0x0b, 0xed, 0xe8,
+	0xa0, 0x52, 0x16, 0x53, 0x5d, 0x3b, 0x6e, 0x1d, 0x68, 0x86, 0xc7, 0xb0, 0xc5, 0xf5, 0xf7, 0xf6,
+	0x4e, 0xb0, 0x05, 0xf9, 0x9c, 0xa8, 0x7c, 0x5b, 0x88, 0x0e, 0x0c, 0xb3, 0xa2, 0xd8, 0x8e, 0x79,
+	0xf7, 0xe6, 0x96, 0xe6, 0xcd, 0xb5, 0xad, 0xe6, 0x8a, 0x85, 0xd3, 0x35, 0xb0, 0x79, 0xf9, 0x1a,
+	0x3f, 0xaf, 0xbc, 0xae, 0xef, 0xec, 0x6e, 0xd4, 0x1b, 0x56, 0xa3, 0xb9, 0xd2, 0xac, 0x03, 0xc3,
+	0xeb, 0xcd, 0x4a, 0x55, 0x54, 0x22, 0xe9, 0xc5, 0x8e, 0x27, 0x5d, 0x2b, 0xb2, 0x8f, 0xa4, 0x15,
+	0x3b, 0x5d, 0x49, 0x7c, 0x4d, 0x56, 0xae, 0x88, 0xb9, 0x56, 0x2f, 0x8a, 0xfd, 0xae, 0x45, 0xaf,
+	0x80, 0x77, 0xce, 0xd0, 0x3b, 0xaf, 0x8a, 0x79, 0x66, 0xd3, 0x22, 0x45, 0xc7, 0x8e, 0x71, 0xea,
+	0xb8, 0x29, 0x2e, 0xab, 0x8e, 0xa0, 0xb7, 0xe7, 0x3a, 0x2d, 0xcb, 0x09, 0x2c, 0xbb, 0xdd, 0x0e,
+	0x17, 0x27, 0x68, 0xbe, 0x8b, 0x62, 0x46, 0x77, 0xfb, 0x61, 0xbc, 0x38, 0x49, 0x32, 0x81, 0x97,
+	0xa8, 0xc6, 0x96, 0x0b, 0x2f, 0x93, 0xe1, 0xe2, 0x14, 0xb5, 0xcf, 0x88, 0x52, 0x00, 0x13, 0x4f,
+	0xd3, 0x03, 0x68, 0xab, 0xf4, 0x3a, 0xc0, 0xe4, 0xa2, 0x20, 0x89, 0xfd, 0x68, 0x92, 0xd5, 0xbf,
+	0xc6, 0x1b, 0x23, 0xdb, 0xbc, 0xc9, 0x51, 0xe5, 0xeb, 0x62, 0xa1, 0xa5, 0xdb, 0x2c, 0xad, 0x2e,
+	0x05, 0x52, 0x97, 0x1b, 0x66, 0xde, 0x08, 0xa5, 0x29, 0x95, 0x65, 0x71, 0x29, 0x55, 0x85, 0xcc,
+	0xd8, 0xc9, 0x73, 0x8c, 0xed, 0xdf, 0x83, 0xe2, 0x97, 0xde, 0x83, 0x1b, 0xe2, 0xd2, 0xbe, 0x13,
+	0x46, 0xb1, 0xb5, 0xe7, 0xfa, 0x7e, 0xdb, 0x3a, 0xb0, 0x83, 0x40, 0x7a, 0x60, 0x99, 0x13, 0x64,
+	0x99, 0xb7, 0xc4, 0x15, 0x57, 0x76, 0xec, 0xd6, 0x89, 0xd5, 0xb5, 0x41, 0x6d, 0x52, 0x2e, 0x49,
+	0x36, 0x53, 0x95, 0x8f, 0xc5, 0xd5, 0x00, 0x6c, 0xc0, 0xca, 0xb8, 0x0a, 0x65, 0x05, 0x24, 0xac,
+	0x99, 0xa5, 0xea, 0x68, 0x3b, 0x01, 0xd6, 0x61, 0x4b, 0xbc, 0xb6, 0xd6, 0xfd, 0x29, 0xe2, 0xfd,
+	0x4e, 0xfe, 0x6a, 0x1b, 0x40, 0xa8, 0xf4, 0x7f, 0x52, 0x2b, 0x3b, 0x68, 0x74, 0x68, 0xb7, 0x1d,
+	0x1b, 0xac, 0x0a, 0xdd, 0x49, 0x44, 0x1a, 0x32, 0x8b, 0xc6, 0xd6, 0x76, 0x42, 0xa9, 0xda, 0x2e,
+	0x50, 0xdb, 0x25, 0x71, 0x41, 0x93, 0xba, 0xd2, 0x6e, 0x2f, 0xce, 0x41, 0xeb, 0x38, 0x6e, 0xff,
+	0x5e, 0xcf, 0x71, 0xdb, 0x8e, 0xd7, 0x51, 0xf2, 0x9b, 0x47, 0xea, 0xea, 0x8f, 0x53, 0xcb, 0x05,
+	0xa5, 0x4f, 0xf4, 0xac, 0x40, 0x7a, 0x36, 0x2f, 0x26, 0x0f, 0x64, 0xe8, 0x6b, 0x2b, 0x98, 0xad,
+	0xbc, 0x27, 0x2e, 0xc0, 0x9c, 0xac, 0x91, 0xda, 0x0e, 0x66, 0x96, 0xca, 0xb4, 0x8e, 0x0d, 0xea,
+	0xa0, 0x4d, 0xc8, 0x37, 0xf8, 0xb1, 0x9f, 0xcf, 0xe0, 0x8d, 0x5f, 0x2b, 0x0a, 0x91, 0xca, 0x06,
+	0x14, 0x57, 0x4b, 0xa7, 0xfc, 0x4e, 0x65, 0x56, 0x4c, 0xbf, 0xaa, 0xaf, 0xec, 0x34, 0x57, 0xeb,
+	0x2b, 0xcd, 0x72, 0x01, 0xf4, 0x58, 0xa0, 0x06, 0xf0, 0xe6, 0x97, 0x8b, 0xb0, 0x90, 0x99, 0x17,
+	0xeb, 0x3b, 0x8d, 0xa6, 0xb5, 0xba, 0xb1, 0xb5, 0xb5, 0x56, 0x2e, 0x81, 0x90, 0xca, 0xdb, 0x1b,
+	0x2b, 0x9f, 0xd5, 0x77, 0x2c, 0xf5, 0x96, 0xfa, 0x5a, 0x79, 0x0c, 0xc9, 0x54, 0xeb, 0xab, 0xfa,
+	0xce, 0x56, 0x79, 0xbc, 0x72, 0x4f, 0xdc, 0x51, 0x0d, 0x29, 0x3f, 0xf5, 0x35, 0x1c, 0xd3, 0xa8,
+	0x7f, 0xba, 0x5b, 0xdf, 0xac, 0xd5, 0x1b, 0xe5, 0x09, 0x90, 0x8a, 0x91, 0x47, 0xb5, 0xb9, 0xd5,
+	0x47, 0x37, 0x09, 0x9b, 0xb8, 0x80, 0x5c, 0xb1, 0x46, 0x36, 0xd7, 0x5f, 0xd7, 0xb7, 0x76, 0x9b,
+	0x65, 0x01, 0xe6, 0x3a, 0xff, 0x7a, 0xa5, 0xd1, 0xc8, 0x0c, 0x2e, 0xcf, 0x54, 0xa6, 0xc5, 0xf8,
+	0x27, 0xeb, 0x1b, 0x1b, 0x8d, 0x32, 0x6e, 0xf2, 0xdc, 0xea, 0xee, 0xfa, 0xc6, 0xda, 0xfa, 0xe6,
+	0x4b, 0xb5, 0xa0, 0x39, 0xe3, 0xef, 0xc7, 0x45, 0x45, 0xbb, 0xb2, 0x06, 0x99, 0xf5, 0xba, 0xb7,
+	0xef, 0x8f, 0x76, 0x0c, 0x05, 0x72, 0x0c, 0xa0, 0xe2, 0xba, 0x3b, 0x74, 0x8e, 0x60, 0xa3, 0x92,
+	0xfe, 0x62, 0x9e, 0xe3, 0x28, 0x0d, 0x38, 0x8e, 0xf8, 0x88, 0xdb, 0xc9, 0x9b, 0x56, 0x6e, 0x8b,
+	0xab, 0x60, 0x27, 0x4e, 0x07, 0x2c, 0xc8, 0x1a, 0x20, 0xb8, 0x42, 0x04, 0xef, 0x8a, 0x6b, 0x59,
+	0xf7, 0xd5, 0xb6, 0x63, 0xbb, 0x13, 0x82, 0x7a, 0x11, 0xc9, 0x65, 0xad, 0xbf, 0x8a, 0xe4, 0x50,
+	0x9e, 0x90, 0x73, 0x9b, 0x66, 0x4f, 0x49, 0x6d, 0x07, 0xce, 0x9e, 0x0c, 0x3d, 0x1b, 0xd5, 0x43,
+	0xd9, 0xe8, 0x77, 0x13, 0x06, 0x29, 0xd8, 0x4d, 0x92, 0x46, 0xdd, 0x32, 0x87, 0x25, 0x61, 0xf2,
+	0x4f, 0x8a, 0x77, 0x33, 0xbb, 0x9b, 0x8d, 0xed, 0x7a, 0x6d, 0xfd, 0xc5, 0x7a, 0x9d, 0x0c, 0x49,
+	0xcd, 0x10, 0xca, 0x8e, 0xa3, 0x4c, 0x31, 0xbb, 0x48, 0xd7, 0xb7, 0xdb, 0xf6, 0x51, 0x87, 0x8c,
+	0xbe, 0x58, 0xb9, 0x23, 0x16, 0xd3, 0xb5, 0xed, 0x85, 0xd0, 0xd7, 0xb2, 0xc1, 0x81, 0x90, 0xf3,
+	0x16, 0x44, 0xb1, 0x28, 0xca, 0x8a, 0x82, 0x7c, 0x13, 0xf5, 0xcc, 0x50, 0xcf, 0x03, 0x71, 0x3b,
+	0x79, 0x15, 0x58, 0x98, 0x95, 0x3a, 0xbd, 0xc4, 0xcc, 0x2e, 0x68, 0x3f, 0xcf, 0x14, 0x91, 0xeb,
+	0xc7, 0x11, 0xb8, 0x9f, 0xb7, 0x8b, 0xb3, 0xc4, 0x15, 0xcc, 0x4d, 0x1d, 0x51, 0x3a, 0x56, 0x99,
+	0x33, 0x08, 0x5f, 0x4d, 0xea, 0x3a, 0x10, 0x56, 0xb2, 0x04, 0xf3, 0x44, 0x70, 0x4f, 0xdc, 0x20,
+	0x02, 0x78, 0x1b, 0xfb, 0xcc, 0x81, 0x40, 0x52, 0xa6, 0x37, 0x83, 0xac, 0x03, 0x40, 0x23, 0x5e,
+	0x9c, 0xb0, 0x08, 0x71, 0x7b, 0x71, 0x41, 0x8b, 0x04, 0xd6, 0x1c, 0xc9, 0x56, 0x28, 0x63, 0xe8,
+	0x68, 0xcb, 0xc5, 0x0a, 0x8d, 0x49, 0x45, 0x05, 0x7f, 0x11, 0x8a, 0xf0, 0xe2, 0x88, 0x00, 0x73,
+	0x89, 0x62, 0xc8, 0x12, 0x5a, 0xad, 0xde, 0x0c, 0x34, 0xb1, 0xcc, 0x76, 0x80, 0xe5, 0x4e, 0x89,
+	0x31, 0x34, 0x0a, 0x30, 0x5a, 0x50, 0xf9, 0xed, 0x9d, 0xad, 0x5f, 0xf8, 0xac, 0x5c, 0x34, 0x7e,
+	0x52, 0x64, 0xf5, 0x66, 0x9f, 0xb2, 0x46, 0x10, 0x47, 0xb6, 0x73, 0x3c, 0xd4, 0x37, 0xc5, 0x6c,
+	0xc6, 0x21, 0xf5, 0x22, 0x15, 0x15, 0x2e, 0x52, 0x54, 0x48, 0x3d, 0x52, 0x2f, 0xb2, 0xe2, 0xe5,
+	0x32, 0x45, 0x86, 0x8d, 0xfa, 0xca, 0x1b, 0xb0, 0xd4, 0xcd, 0xad, 0xcd, 0xfa, 0x90, 0x3b, 0x1b,
+	0x1b, 0xe1, 0xce, 0x86, 0x97, 0x36, 0x3e, 0x1a, 0xd7, 0x4c, 0xfc, 0x9c, 0xb8, 0xe6, 0x94, 0x38,
+	0x33, 0x79, 0x56, 0x9c, 0x31, 0x3e, 0x14, 0xd5, 0x61, 0xb9, 0x69, 0x30, 0x89, 0xe1, 0x3d, 0x94,
+	0x51, 0xcf, 0x8d, 0x19, 0x97, 0x19, 0xff, 0x50, 0x64, 0x72, 0x14, 0xcc, 0x0b, 0x08, 0x18, 0x76,
+	0x74, 0xc2, 0xb1, 0x00, 0x97, 0x1d, 0x21, 0xc2, 0xe2, 0xf0, 0x6c, 0x0d, 0x21, 0xba, 0x2c, 0x64,
+	0x2a, 0x12, 0x64, 0x02, 0x25, 0xe6, 0x16, 0xc0, 0xdb, 0x81, 0x2b, 0x51, 0x13, 0x09, 0xe3, 0x82,
+	0x6b, 0x1e, 0x77, 0xe5, 0x91, 0x74, 0x95, 0xdb, 0x80, 0x47, 0x8e, 0x56, 0xe3, 0x1a, 0x71, 0xb4,
+	0xa5, 0x1d, 0x1f, 0x44, 0x24, 0xb7, 0x59, 0x0c, 0x39, 0xe8, 0x55, 0xa2, 0x38, 0x52, 0xb8, 0x65,
+	0x41, 0x4c, 0xbb, 0x68, 0x72, 0x07, 0x0e, 0x34, 0x4d, 0xa5, 0x63, 0x3c, 0x47, 0x46, 0x0a, 0xb5,
+	0x00, 0x84, 0xe9, 0x04, 0x5d, 0x65, 0x8f, 0x00, 0xb0, 0xdf, 0x06, 0xf0, 0xc4, 0x36, 0x08, 0x6f,
+	0x8b, 0xe2, 0x9e, 0xc7, 0xb1, 0xb1, 0xc8, 0x01, 0xcd, 0x76, 0x21, 0x08, 0x92, 0x85, 0x15, 0xd1,
+	0xe3, 0xc5, 0xfe, 0x31, 0xfa, 0x1f, 0xe2, 0x69, 0x2e, 0x89, 0xa0, 0x7e, 0x74, 0x60, 0x7b, 0xaa,
+	0x75, 0x5e, 0x73, 0x96, 0x35, 0x1e, 0xe6, 0x4c, 0xda, 0x9d, 0x1e, 0x21, 0xb6, 0x05, 0xbd, 0xb8,
+	0x36, 0x1a, 0x12, 0x99, 0xca, 0xac, 0xf1, 0x5b, 0x05, 0x86, 0x4f, 0x19, 0xf9, 0xbe, 0x46, 0x19,
+	0xe5, 0x20, 0xce, 0xbe, 0xc9, 0x8a, 0x7a, 0x7e, 0xd0, 0x3a, 0x58, 0x26, 0x36, 0x95, 0x12, 0x7f,
+	0x19, 0xdb, 0x61, 0x9c, 0xa2, 0xc7, 0x59, 0xe5, 0xb4, 0x91, 0x8c, 0x7c, 0x62, 0x22, 0x56, 0x62,
+	0xf6, 0x89, 0x12, 0xab, 0x7e, 0x5e, 0x62, 0xa9, 0x1a, 0xbf, 0x2c, 0xae, 0x53, 0x5a, 0xc3, 0x86,
+	0xe9, 0xbf, 0xac, 0x81, 0x62, 0xba, 0x38, 0x29, 0xef, 0xfc, 0x63, 0x31, 0xd9, 0x66, 0xef, 0x41,
+	0xec, 0xcd, 0x2c, 0xdd, 0x36, 0xf5, 0x3a, 0x34, 0xa1, 0x46, 0x5c, 0x51, 0x13, 0xbc, 0x80, 0xac,
+	0x3c, 0x12, 0x93, 0xad, 0x5e, 0x88, 0xae, 0x84, 0xb8, 0xd7, 0x5a, 0x9a, 0x3b, 0xc2, 0x78, 0x25,
+	0xee, 0x91, 0xcb, 0xae, 0x35, 0x7d, 0xe6, 0xa0, 0xef, 0xed, 0x0d, 0x5c, 0x61, 0x23, 0xf6, 0x03,
+	0x14, 0x79, 0x96, 0x8d, 0x29, 0x6c, 0xc8, 0xbe, 0x65, 0xca, 0xf8, 0xf7, 0x0a, 0x4b, 0x18, 0xe7,
+	0x26, 0xd1, 0x36, 0x20, 0x20, 0x6d, 0xf5, 0x62, 0x30, 0xd9, 0x01, 0x09, 0xaf, 0x8e, 0x7d, 0xfe,
+	0xbb, 0x37, 0x0b, 0x28, 0xf9, 0x76, 0x2f, 0xe4, 0x98, 0x52, 0xd4, 0xc9, 0x42, 0x07, 0xe1, 0x60,
+	0xa7, 0x07, 0x7e, 0xf6, 0xd8, 0xf1, 0x94, 0xda, 0x82, 0x1e, 0xb5, 0xb5, 0x4f, 0xa0, 0xc8, 0x88,
+	0xc9, 0x86, 0x46, 0xab, 0xe3, 0x80, 0x56, 0x67, 0x2b, 0x0f, 0xc5, 0x38, 0x0a, 0x15, 0x55, 0x17,
+	0xc1, 0xeb, 0x75, 0x33, 0x8f, 0x13, 0xb3, 0xd6, 0x04, 0x1a, 0xd4, 0x29, 0x56, 0x34, 0xe5, 0xa7,
+	0xa6, 0x68, 0x06, 0x30, 0x9a, 0x3d, 0x3b, 0x0c, 0xed, 0xd6, 0x61, 0xa4, 0x3b, 0xa6, 0xa9, 0x03,
+	0x17, 0xaa, 0x5c, 0x8d, 0xc8, 0xec, 0x32, 0xba, 0x20, 0x8a, 0xd7, 0x33, 0x14, 0x2a, 0x21, 0x3e,
+	0x64, 0x01, 0x2d, 0x29, 0x45, 0x02, 0x02, 0xc9, 0xed, 0xef, 0xd9, 0xae, 0xed, 0xb5, 0x64, 0xaa,
+	0xed, 0x60, 0x89, 0x60, 0xc7, 0xe0, 0x91, 0x20, 0x07, 0x65, 0x6d, 0x7f, 0x28, 0x44, 0xe0, 0x20,
+	0x03, 0x7b, 0xb6, 0x87, 0xba, 0x8e, 0x4b, 0xb9, 0x02, 0x4b, 0xc1, 0x35, 0xbc, 0x02, 0xf4, 0xd7,
+	0x90, 0x2e, 0x78, 0x91, 0x3a, 0x8e, 0x83, 0xdc, 0x70, 0x76, 0x9f, 0xf5, 0x98, 0xd8, 0x8d, 0xc0,
+	0x12, 0xd2, 0x95, 0x8f, 0xf0, 0x22, 0x5b, 0xe2, 0x8e, 0xf2, 0x22, 0x51, 0x1c, 0xda, 0x5e, 0x47,
+	0x72, 0x94, 0x81, 0x75, 0xfc, 0x12, 0x2c, 0xb0, 0x8b, 0xd1, 0x0b, 0xac, 0x07, 0xa7, 0xb9, 0x4f,
+	0xd3, 0xd4, 0xc1, 0xe1, 0xe9, 0xf1, 0x44, 0x5f, 0x43, 0xf2, 0x95, 0x84, 0xba, 0x72, 0x5d, 0x5c,
+	0xb4, 0x7b, 0x90, 0x2d, 0xc1, 0x26, 0xb6, 0xac, 0x88, 0xd4, 0xa1, 0x0d, 0x72, 0xaa, 0xd0, 0xb6,
+	0x8d, 0x8a, 0x4e, 0xa3, 0xd1, 0xfd, 0xe5, 0xb3, 0xd0, 0xfd, 0xdd, 0x33, 0xd1, 0xfd, 0x9a, 0x98,
+	0x87, 0x5d, 0xa1, 0x07, 0xdb, 0xb5, 0xba, 0x51, 0x27, 0x82, 0xd8, 0x87, 0x2b, 0x7a, 0x34, 0x42,
+	0x25, 0x56, 0x12, 0x6a, 0x6c, 0xf2, 0x7b, 0x31, 0x50, 0x55, 0x5e, 0x02, 0xf0, 0xf1, 0x5b, 0x0e,
+	0xcc, 0xb0, 0x2f, 0x21, 0x6c, 0xd3, 0x4e, 0x45, 0x8b, 0xf7, 0x4e, 0x9d, 0xa8, 0x41, 0x03, 0x5e,
+	0x00, 0x3d, 0xb5, 0xf3, 0x2e, 0xc1, 0x5a, 0xd1, 0xfd, 0xdb, 0x20, 0x6a, 0x5e, 0x4e, 0x7c, 0x60,
+	0x81, 0x1d, 0xc5, 0x36, 0x01, 0xb3, 0x05, 0xcc, 0x83, 0xfa, 0xdb, 0xad, 0xae, 0xe3, 0x3d, 0x79,
+	0xbc, 0x78, 0x75, 0x74, 0xef, 0xd2, 0xe3, 0xc5, 0x45, 0xea, 0x05, 0x5c, 0x01, 0xf8, 0xc4, 0xe9,
+	0x82, 0x31, 0x40, 0x76, 0x8d, 0xd9, 0x44, 0x42, 0x4c, 0xd9, 0xc6, 0x35, 0xa2, 0x02, 0xd8, 0xa4,
+	0x39, 0x90, 0x6f, 0x03, 0xf4, 0x4e, 0xa0, 0x84, 0x8a, 0x87, 0x2a, 0x51, 0x00, 0x8f, 0x83, 0x3d,
+	0x8a, 0x8b, 0xeb, 0xa7, 0xf5, 0x03, 0x1f, 0x37, 0xa8, 0x1f, 0x00, 0xd0, 0x9e, 0xef, 0x41, 0x5c,
+	0xef, 0xf8, 0x6e, 0x1b, 0xcd, 0xd6, 0x83, 0x2d, 0xe7, 0x09, 0x6e, 0x9e, 0x4a, 0x00, 0x33, 0xdc,
+	0x1a, 0x4d, 0x10, 0xfb, 0xb1, 0xed, 0x2e, 0xde, 0xd6, 0x2a, 0x93, 0x21, 0x80, 0xd5, 0x26, 0x6f,
+	0xb8, 0xa3, 0x59, 0xcc, 0xeb, 0x87, 0x17, 0xbc, 0x3b, 0xb2, 0x9f, 0xe7, 0x37, 0x68, 0xfe, 0xef,
+	0x88, 0x72, 0x36, 0xed, 0x47, 0x7c, 0xbc, 0x78, 0x9f, 0x74, 0xed, 0xfe, 0x88, 0xdd, 0xae, 0x11,
+	0x39, 0xb6, 0xaf, 0x01, 0x71, 0x15, 0xb2, 0xf3, 0x71, 0xf6, 0x2e, 0xcf, 0xd2, 0x9a, 0x0d, 0x27,
+	0xe1, 0x77, 0x4f, 0xf1, 0x45, 0x66, 0x4d, 0x55, 0x6d, 0xfe, 0x76, 0x42, 0x4c, 0xd6, 0xce, 0x93,
+	0xfc, 0x95, 0x74, 0x70, 0x73, 0x62, 0x09, 0xee, 0x6e, 0x8c, 0x5c, 0x14, 0x38, 0x48, 0x5c, 0x98,
+	0x0a, 0x38, 0x49, 0x58, 0x9f, 0x18, 0x08, 0xeb, 0x93, 0x83, 0x61, 0x7d, 0x4a, 0x7b, 0xdd, 0x7e,
+	0xe0, 0x36, 0x3d, 0x1c, 0xed, 0xc5, 0x40, 0xb4, 0x9f, 0x49, 0x5c, 0x1b, 0x0a, 0x34, 0x60, 0x71,
+	0x2b, 0x87, 0x07, 0xf3, 0xbd, 0x0d, 0x74, 0x5b, 0x2f, 0x96, 0x0a, 0x41, 0x43, 0xc0, 0x24, 0xe2,
+	0x28, 0xc0, 0x98, 0x31, 0xa7, 0x59, 0x65, 0x40, 0x32, 0xaf, 0x3d, 0x2b, 0xad, 0xb3, 0x6d, 0x77,
+	0x41, 0x5f, 0x55, 0x6c, 0x4f, 0xdc, 0xb5, 0x6a, 0x5d, 0xd0, 0xad, 0x44, 0xaa, 0x31, 0x44, 0x25,
+	0x01, 0xca, 0xe0, 0x79, 0x2d, 0x62, 0x3c, 0x92, 0x52, 0xbb, 0x1c, 0x4c, 0xc6, 0x7a, 0x01, 0x66,
+	0x3b, 0x96, 0xbd, 0xe7, 0xb8, 0x4e, 0x7c, 0x62, 0x1d, 0xd9, 0x6e, 0x4f, 0x32, 0x2e, 0x46, 0x89,
+	0x03, 0xf6, 0x8e, 0xa9, 0xc6, 0x74, 0x99, 0x30, 0x00, 0x4c, 0x1f, 0xb5, 0x6c, 0x17, 0x6c, 0x9f,
+	0x45, 0xb9, 0x48, 0x4e, 0x1b, 0x33, 0x16, 0x6e, 0x55, 0x12, 0xbd, 0x46, 0xcd, 0xe8, 0xe8, 0xb8,
+	0x59, 0x0b, 0xb6, 0x4a, 0xed, 0x00, 0xda, 0x5a, 0xae, 0x0d, 0xfc, 0xb4, 0xad, 0x7d, 0x3b, 0xec,
+	0x92, 0xf2, 0x91, 0x4d, 0x11, 0xfb, 0x9a, 0x21, 0x6a, 0xbd, 0xa1, 0xd9, 0xd7, 0x03, 0x94, 0x9c,
+	0x6f, 0x0e, 0xb6, 0x63, 0x71, 0x12, 0xda, 0x6f, 0xe9, 0xfd, 0x50, 0xcf, 0x6c, 0x26, 0xcf, 0x45,
+	0x59, 0x2f, 0xaf, 0x17, 0x40, 0x82, 0xd7, 0x86, 0x9e, 0x3b, 0x49, 0x58, 0x40, 0xed, 0x63, 0x15,
+	0x5b, 0x61, 0xa2, 0x5d, 0xa6, 0xa9, 0xac, 0x8a, 0x6a, 0xc6, 0x67, 0xf6, 0x3c, 0xd8, 0x70, 0xcb,
+	0xf1, 0xd0, 0x7f, 0xf9, 0xe1, 0x09, 0x58, 0x10, 0x4e, 0x70, 0x4b, 0x4d, 0x90, 0xba, 0xcb, 0x5d,
+	0xa0, 0x5b, 0xd7, 0x54, 0xa8, 0x2d, 0xe0, 0x7d, 0x2c, 0x72, 0x3f, 0xca, 0xa8, 0x5e, 0xe7, 0x18,
+	0x15, 0x3b, 0xf0, 0xa7, 0xe7, 0x30, 0x89, 0x21, 0x13, 0x7b, 0x26, 0xe6, 0x07, 0x9a, 0xf0, 0xa5,
+	0x54, 0x62, 0x46, 0x6b, 0x51, 0x68, 0x18, 0x44, 0xc2, 0xfe, 0x83, 0x51, 0x49, 0xf5, 0xb9, 0xb8,
+	0x9c, 0xef, 0xe2, 0x85, 0x28, 0x66, 0x21, 0x34, 0x04, 0x99, 0x98, 0x9c, 0x3c, 0x0e, 0xbb, 0x50,
+	0xfd, 0x01, 0x0c, 0xcb, 0x75, 0xe8, 0x79, 0x35, 0x55, 0x60, 0x03, 0xb5, 0x0e, 0xac, 0xa7, 0x1b,
+	0x28, 0x24, 0x03, 0x64, 0x1c, 0xde, 0x09, 0x08, 0x96, 0x34, 0x59, 0x9a, 0x97, 0x8e, 0x51, 0x6a,
+	0x08, 0x0a, 0x1f, 0x4a, 0x74, 0x17, 0xdc, 0x48, 0xf6, 0x5b, 0xfd, 0x70, 0x78, 0xa1, 0x08, 0xff,
+	0xb1, 0x8a, 0x10, 0x1d, 0x58, 0xe9, 0x9b, 0x38, 0x71, 0xf8, 0x55, 0x05, 0x6c, 0x95, 0x10, 0xd7,
+	0x42, 0x7b, 0x3f, 0xa6, 0x02, 0x84, 0x21, 0xaa, 0xba, 0xf8, 0xd4, 0xb2, 0x83, 0xd8, 0x76, 0xbc,
+	0xe1, 0xdc, 0x01, 0x1c, 0x2f, 0x15, 0xad, 0x72, 0x08, 0x8a, 0x39, 0x88, 0xa4, 0x74, 0x1a, 0x22,
+	0x31, 0xfe, 0x54, 0x65, 0x8a, 0x8a, 0x93, 0x55, 0x9f, 0xf9, 0x00, 0x55, 0xb7, 0x5d, 0xd7, 0x3f,
+	0xb6, 0x5a, 0x60, 0xab, 0x71, 0xa4, 0xe0, 0xe3, 0xaa, 0x98, 0xdb, 0xf3, 0x63, 0x08, 0xfe, 0xfb,
+	0xfb, 0x4e, 0x0b, 0xd2, 0xa0, 0x13, 0x95, 0x2e, 0x56, 0x28, 0x5d, 0x84, 0xb1, 0x6b, 0x49, 0xcf,
+	0xf2, 0x95, 0xd5, 0xad, 0x26, 0xa4, 0x67, 0x2f, 0x5e, 0xac, 0xd7, 0x76, 0x37, 0x9a, 0x9f, 0x59,
+	0xdb, 0x2b, 0x8d, 0xc6, 0xfa, 0x9b, 0x3a, 0x9a, 0x23, 0x64, 0xc4, 0x36, 0xa6, 0xf1, 0x54, 0x22,
+	0x56, 0x70, 0xf1, 0x95, 0xb8, 0x8c, 0x53, 0x63, 0x06, 0x9f, 0xce, 0x8f, 0xc6, 0x34, 0x46, 0xec,
+	0x7f, 0x60, 0x0e, 0x33, 0x49, 0x4d, 0xf0, 0xbb, 0xe1, 0x66, 0x5f, 0x5c, 0x75, 0x40, 0x0b, 0xf2,
+	0x3a, 0xd0, 0xe1, 0xe2, 0xf4, 0x4a, 0x8a, 0xff, 0x07, 0x6b, 0x31, 0xfe, 0xa9, 0xc4, 0xe7, 0x16,
+	0x8a, 0xaf, 0x2c, 0x6a, 0x1b, 0x56, 0xb9, 0xf1, 0x9c, 0xa4, 0x8f, 0x4e, 0x33, 0xbc, 0x43, 0xa5,
+	0x6b, 0x99, 0x88, 0x31, 0xa6, 0x55, 0x3c, 0x04, 0xa5, 0xc1, 0x83, 0x16, 0x15, 0x26, 0xd0, 0xaf,
+	0x86, 0x0e, 0xe4, 0x87, 0x56, 0x36, 0x5a, 0x00, 0xa2, 0xcb, 0xe2, 0x58, 0xe5, 0x76, 0x54, 0xe8,
+	0x00, 0x35, 0xcc, 0x76, 0x76, 0x1c, 0xd8, 0x77, 0x15, 0x44, 0x00, 0x3e, 0x03, 0x8b, 0x80, 0x11,
+	0xc2, 0xc8, 0x52, 0xa7, 0x2c, 0xd3, 0xba, 0x70, 0x62, 0xcb, 0x8e, 0x13, 0xe1, 0x89, 0x91, 0x87,
+	0x2c, 0x43, 0x8f, 0xd0, 0x71, 0x02, 0x9e, 0x24, 0xf6, 0xe0, 0x26, 0x7a, 0x2a, 0xa8, 0xa0, 0xb3,
+	0x0b, 0xa5, 0x0c, 0x08, 0x86, 0xb7, 0x0e, 0x65, 0x5b, 0x85, 0x15, 0xb0, 0x95, 0x7d, 0xa7, 0x73,
+	0xa0, 0x11, 0x33, 0xc3, 0x68, 0x90, 0x0d, 0xb9, 0xd6, 0x14, 0x45, 0xb3, 0x97, 0x56, 0xbe, 0x95,
+	0x9b, 0xe7, 0x35, 0x69, 0xd0, 0x03, 0x03, 0xe2, 0xb6, 0xb2, 0xce, 0x49, 0x79, 0xf1, 0x0b, 0x03,
+	0xa1, 0xb2, 0x32, 0x18, 0x2a, 0x2f, 0x0e, 0xc7, 0xc4, 0x4b, 0x03, 0x31, 0xf1, 0x72, 0x36, 0x03,
+	0xbe, 0xd2, 0x97, 0x01, 0x23, 0x9c, 0x2b, 0x1a, 0x7f, 0x53, 0x12, 0xb7, 0x33, 0x7b, 0x5c, 0xf3,
+	0xbb, 0x5d, 0x70, 0xb6, 0x2d, 0xca, 0x80, 0x1a, 0xbd, 0x6e, 0xd7, 0x06, 0x3f, 0x5a, 0x1f, 0x84,
+	0x0f, 0xcf, 0xcc, 0x33, 0x86, 0xa8, 0x92, 0x7c, 0x5f, 0x57, 0xf5, 0x5f, 0x8b, 0xe2, 0x62, 0x4e,
+	0x7b, 0xae, 0xfb, 0x02, 0x21, 0x04, 0x10, 0x42, 0x23, 0x65, 0xf2, 0x80, 0x95, 0x00, 0x56, 0x5a,
+	0xd4, 0x44, 0x51, 0x5c, 0x1f, 0xe9, 0xa4, 0x45, 0x48, 0x3a, 0xeb, 0xc3, 0x9a, 0x25, 0x8f, 0x63,
+	0x0d, 0x7b, 0x20, 0x6e, 0xe3, 0xb8, 0xfe, 0xbe, 0xfe, 0x09, 0x58, 0xf1, 0xaa, 0xa2, 0x42, 0xf0,
+	0xa6, 0x75, 0x60, 0xc7, 0x96, 0x3e, 0xfd, 0x53, 0xea, 0x07, 0x1a, 0x06, 0xce, 0x62, 0xa0, 0x6b,
+	0x52, 0x6b, 0x26, 0x35, 0x1f, 0x83, 0xce, 0xb8, 0x69, 0x67, 0x52, 0x87, 0x08, 0xec, 0x5e, 0x94,
+	0xd4, 0x21, 0x40, 0xdd, 0x7b, 0x9e, 0x6a, 0x49, 0xb2, 0x36, 0x00, 0x0a, 0xa0, 0x6b, 0xed, 0xd0,
+	0x3e, 0xd6, 0xba, 0x06, 0xac, 0x1c, 0xf9, 0x0e, 0xa0, 0x5a, 0x9a, 0x39, 0xc2, 0x13, 0xc9, 0xb6,
+	0x2e, 0xde, 0x83, 0xa8, 0x98, 0x0d, 0x80, 0x30, 0x91, 0xc2, 0x30, 0x30, 0x09, 0xd3, 0x73, 0x23,
+	0x81, 0x18, 0xe3, 0x2f, 0x8a, 0xe2, 0xc6, 0x50, 0x3c, 0x83, 0x28, 0x93, 0xd4, 0x7a, 0x86, 0x4b,
+	0x0c, 0xa9, 0xdf, 0x8f, 0x20, 0xdb, 0x56, 0x25, 0xdf, 0xaf, 0x8b, 0x4b, 0x31, 0xc5, 0xf8, 0x50,
+	0x1e, 0xdb, 0x21, 0x42, 0x00, 0xf0, 0xc9, 0xae, 0xf6, 0xba, 0xd7, 0xcc, 0xda, 0x06, 0x3a, 0xb9,
+	0x26, 0x92, 0xec, 0x10, 0xc5, 0x1a, 0x13, 0x54, 0x3e, 0x14, 0x0b, 0x00, 0xb8, 0x06, 0x46, 0xb1,
+	0xb3, 0x5b, 0x30, 0x6b, 0x54, 0x7e, 0xc3, 0x91, 0xaf, 0x65, 0x77, 0x8f, 0xe1, 0x25, 0x97, 0x37,
+	0x1c, 0x0d, 0x18, 0x37, 0x86, 0x73, 0x26, 0x4e, 0xa3, 0x73, 0xe2, 0x74, 0x66, 0x5d, 0xf9, 0xb9,
+	0xd3, 0xff, 0x32, 0xe2, 0x1a, 0x3f, 0x2c, 0x88, 0xfb, 0x79, 0xa8, 0x60, 0x5b, 0x86, 0x88, 0x71,
+	0xa8, 0x60, 0xf7, 0xfd, 0x1e, 0x84, 0xbe, 0x9c, 0xbc, 0xb2, 0x90, 0xe0, 0x58, 0x1f, 0x70, 0x98,
+	0x65, 0xc7, 0x80, 0x8d, 0x83, 0x38, 0x2d, 0x2a, 0x10, 0xd4, 0x4f, 0x9a, 0x33, 0xb5, 0x74, 0xda,
+	0x6f, 0xeb, 0xd8, 0x76, 0xb0, 0x46, 0xc6, 0x27, 0x93, 0xbf, 0x51, 0x10, 0xef, 0x9d, 0xc5, 0x87,
+	0xda, 0xd7, 0x77, 0x45, 0x25, 0x48, 0x5a, 0x2d, 0xc0, 0x52, 0x5e, 0xac, 0xcb, 0x23, 0xcb, 0xe3,
+	0xfb, 0xb6, 0x0b, 0x24, 0xb7, 0x40, 0xb4, 0x10, 0x3a, 0xdb, 0xd0, 0x1f, 0xb1, 0x24, 0x18, 0x97,
+	0xa4, 0xfd, 0x17, 0x43, 0x19, 0x87, 0x27, 0x56, 0x9b, 0xab, 0xce, 0x4a, 0x03, 0x89, 0xc5, 0xe5,
+	0xc2, 0x63, 0xe3, 0x8b, 0x02, 0x80, 0x01, 0xc5, 0x4d, 0x0d, 0xb4, 0x71, 0xc3, 0xef, 0xe4, 0xa8,
+	0xd3, 0x07, 0x00, 0xa3, 0x51, 0xb7, 0xd5, 0x29, 0x71, 0xd5, 0x1c, 0x18, 0x02, 0x58, 0x0a, 0x7f,
+	0x00, 0x49, 0xb5, 0x21, 0xa6, 0x93, 0x87, 0x91, 0x60, 0x06, 0xad, 0xd3, 0xf7, 0xdc, 0x13, 0x25,
+	0x41, 0xf0, 0x62, 0xb1, 0x7c, 0xcb, 0x82, 0x9b, 0x1e, 0x86, 0x31, 0xb3, 0xc6, 0x9f, 0x08, 0xb6,
+	0x00, 0x52, 0x35, 0x08, 0x0a, 0x0d, 0x74, 0xb1, 0x7b, 0x3e, 0xa8, 0xe3, 0x6e, 0x80, 0x95, 0x1b,
+	0xde, 0x83, 0x5e, 0xe8, 0xd9, 0x58, 0x35, 0x48, 0xdf, 0x85, 0x9e, 0x20, 0x6d, 0xd6, 0x27, 0xae,
+	0x45, 0xad, 0x21, 0x49, 0x75, 0xa8, 0xa4, 0x1d, 0xf8, 0x81, 0x1b, 0x1f, 0xb1, 0xa8, 0x14, 0x80,
+	0x7a, 0xae, 0xb8, 0xc5, 0xb2, 0x11, 0x69, 0xf3, 0xcc, 0x92, 0x61, 0x9e, 0xc6, 0x8a, 0xa9, 0x92,
+	0xb4, 0x29, 0x1a, 0xb6, 0x67, 0xf3, 0x91, 0xe3, 0xf9, 0x46, 0x41, 0x3a, 0xae, 0x8a, 0x91, 0x21,
+	0xa8, 0x00, 0x78, 0x11, 0x92, 0x41, 0x98, 0xa9, 0x8e, 0x26, 0x65, 0xc3, 0xa9, 0xa1, 0xd2, 0x2c,
+	0xfa, 0xa5, 0xb1, 0xea, 0xaf, 0x4f, 0x89, 0x31, 0x9a, 0x6b, 0x79, 0xd0, 0xcf, 0x7f, 0x70, 0x36,
+	0x03, 0xfa, 0xf0, 0x15, 0x2b, 0xa9, 0x14, 0xc4, 0x8a, 0xda, 0x29, 0xa5, 0xf5, 0x2c, 0x99, 0xaa,
+	0x77, 0x5f, 0x39, 0x4b, 0x97, 0x28, 0x51, 0x88, 0x08, 0x0c, 0x08, 0xd5, 0xa9, 0xe2, 0x19, 0x70,
+	0x4e, 0x6d, 0x84, 0xf1, 0xd0, 0xf2, 0x67, 0xab, 0xff, 0x3c, 0x91, 0x9c, 0x45, 0xc2, 0xf4, 0xba,
+	0x68, 0x94, 0x42, 0x9e, 0xb4, 0x11, 0x37, 0x8f, 0x18, 0x99, 0x4e, 0xe6, 0xa1, 0x26, 0x56, 0x96,
+	0x21, 0x1c, 0xf2, 0xff, 0x50, 0x73, 0xd6, 0xd9, 0xaf, 0xe8, 0x4f, 0x29, 0x47, 0xa7, 0xa8, 0xa4,
+	0x4a, 0x69, 0x8a, 0xaa, 0xa0, 0x44, 0x24, 0xe6, 0x10, 0x27, 0x52, 0xec, 0x62, 0x89, 0xcd, 0x11,
+	0x8a, 0xfb, 0xf8, 0xdc, 0x1b, 0x43, 0x70, 0x6f, 0x57, 0xcd, 0xc1, 0x47, 0xe0, 0xb7, 0x0e, 0xad,
+	0xfa, 0x50, 0xeb, 0xa6, 0x1f, 0x6f, 0x48, 0x3b, 0xf4, 0x64, 0x1b, 0xe3, 0x5d, 0xf2, 0xd2, 0x96,
+	0x0f, 0x8c, 0xfa, 0x10, 0x9b, 0xe6, 0x35, 0x36, 0xc1, 0x1c, 0xff, 0xb1, 0x4a, 0x83, 0xd5, 0xe3,
+	0x93, 0xb4, 0xbc, 0x8d, 0x8f, 0x4b, 0x0a, 0xa9, 0xa8, 0xc7, 0xa7, 0x0a, 0xa7, 0xa8, 0xc7, 0x67,
+	0x0a, 0xa3, 0xa8, 0xc7, 0xe7, 0x0a, 0xa2, 0xe0, 0x09, 0x76, 0x9f, 0x02, 0x5f, 0xd1, 0xaa, 0x91,
+	0xf1, 0x06, 0x57, 0x75, 0x5b, 0xe0, 0x47, 0xe4, 0xcb, 0xad, 0xb7, 0x2a, 0x0b, 0xce, 0xb6, 0x9d,
+	0xa8, 0x14, 0xb8, 0x2f, 0xfd, 0xab, 0xd2, 0xd0, 0x57, 0x62, 0x9a, 0x93, 0x51, 0xdc, 0xa9, 0xeb,
+	0xa4, 0xe3, 0xcf, 0xcf, 0x2f, 0x4a, 0x4c, 0x2e, 0x54, 0x9a, 0x5a, 0xfd, 0x48, 0xcc, 0x64, 0x1e,
+	0x89, 0x4f, 0x95, 0xe5, 0x26, 0x9e, 0x04, 0x96, 0xa4, 0xdb, 0x78, 0xf7, 0xc9, 0x34, 0x8c, 0xdf,
+	0x2e, 0x88, 0x85, 0x21, 0xf1, 0x43, 0x66, 0x74, 0xc6, 0xb6, 0x94, 0xdf, 0xa9, 0xdc, 0x11, 0x37,
+	0xf2, 0x68, 0x6a, 0x6a, 0x8f, 0xca, 0x05, 0xf0, 0xfe, 0x37, 0x73, 0x67, 0x81, 0x7c, 0x31, 0x7a,
+	0x6d, 0x7b, 0x76, 0xb9, 0x58, 0xb9, 0x29, 0xae, 0xe5, 0x91, 0xec, 0x48, 0xbb, 0x7d, 0x52, 0x2e,
+	0x19, 0x75, 0x75, 0xe5, 0x88, 0x0a, 0xf3, 0x14, 0xdb, 0x78, 0xf1, 0x10, 0x60, 0xc0, 0x2b, 0xb6,
+	0x64, 0x94, 0x53, 0x0a, 0x02, 0x41, 0x2b, 0xc3, 0xd3, 0x9e, 0xd2, 0xf8, 0xb1, 0x8a, 0x58, 0xa3,
+	0xe7, 0xc9, 0x22, 0x91, 0x81, 0xf9, 0x74, 0xda, 0x90, 0x9c, 0x73, 0xa4, 0xb3, 0x97, 0x34, 0x22,
+	0x0b, 0x42, 0x95, 0xcb, 0x42, 0x10, 0x20, 0xa4, 0x44, 0xb6, 0x3c, 0x45, 0x47, 0x96, 0xaa, 0x2b,
+	0x45, 0x51, 0x64, 0xd8, 0x53, 0x68, 0x77, 0x98, 0xf3, 0x05, 0xa1, 0xe3, 0x87, 0xb0, 0x2b, 0x7c,
+	0x68, 0x6c, 0xbc, 0x11, 0x77, 0x07, 0x38, 0x5d, 0x4d, 0xab, 0x12, 0xe9, 0xb2, 0xaf, 0x8a, 0x99,
+	0x54, 0x13, 0xd9, 0x41, 0xce, 0xae, 0x16, 0x41, 0xe6, 0x57, 0x84, 0x40, 0x6e, 0x29, 0xab, 0x56,
+	0xc5, 0x2f, 0x6c, 0x37, 0x7e, 0xa5, 0x28, 0x1e, 0x9d, 0x63, 0xe2, 0x44, 0x0e, 0x6b, 0x62, 0x92,
+	0x4f, 0xdf, 0xfa, 0x91, 0xce, 0x39, 0x87, 0x9b, 0x3b, 0x34, 0xb6, 0xfa, 0x9b, 0x05, 0x31, 0xc1,
+	0x3f, 0x73, 0x23, 0x69, 0xae, 0xe4, 0x8a, 0xa7, 0x48, 0xae, 0x94, 0x5e, 0x4b, 0x83, 0x1d, 0x19,
+	0xd3, 0x79, 0x15, 0xad, 0x18, 0x70, 0x8d, 0xb3, 0x17, 0x62, 0xae, 0x7b, 0xaa, 0x80, 0x77, 0xc4,
+	0x4d, 0xbd, 0x10, 0x66, 0xfe, 0x05, 0x80, 0x41, 0xd9, 0x6e, 0xfa, 0xea, 0x6a, 0x0b, 0xc6, 0x85,
+	0x7d, 0x6a, 0xa2, 0xd3, 0x75, 0x1d, 0x7e, 0x26, 0x08, 0x78, 0x33, 0x50, 0xc9, 0x74, 0x21, 0x9c,
+	0x98, 0x30, 0xfe, 0x4e, 0x55, 0x18, 0xf0, 0x8c, 0x68, 0x07, 0x63, 0xaf, 0x9e, 0x0b, 0xab, 0x6a,
+	0x24, 0x19, 0xba, 0x6d, 0xc0, 0xb7, 0x1c, 0x92, 0x2b, 0x0e, 0x94, 0x48, 0x64, 0xba, 0xd5, 0x2d,
+	0x87, 0xe4, 0x8a, 0x03, 0x23, 0xb0, 0xb4, 0x3f, 0xbd, 0xe5, 0x00, 0x61, 0x36, 0xf7, 0x9c, 0x7c,
+	0x4c, 0x57, 0xe6, 0xd4, 0x39, 0x39, 0x9f, 0x90, 0x8f, 0xeb, 0x02, 0x1f, 0x4c, 0x02, 0x79, 0x0e,
+	0x6c, 0x5e, 0xdf, 0x41, 0xf9, 0x04, 0x69, 0x39, 0xac, 0x2e, 0x7d, 0x15, 0x4d, 0xe8, 0x70, 0x4e,
+	0x3b, 0x61, 0x7c, 0xc4, 0x39, 0xd9, 0xcb, 0x1a, 0x2e, 0x6f, 0x63, 0x65, 0x53, 0x9f, 0x82, 0x65,
+	0xd6, 0x49, 0xfe, 0x92, 0xe0, 0x99, 0x1a, 0x49, 0xa6, 0x63, 0xdc, 0x52, 0xb0, 0x7f, 0x40, 0x2c,
+	0xc9, 0x7d, 0xc1, 0x0f, 0x39, 0xa3, 0x7f, 0x59, 0x5b, 0xb5, 0x3d, 0x3e, 0xf9, 0xd6, 0x08, 0x36,
+	0x47, 0x5b, 0x8c, 0x58, 0x5c, 0x1d, 0xa2, 0xce, 0x3f, 0x2b, 0x1e, 0xda, 0x7a, 0xd6, 0x29, 0x48,
+	0xb4, 0x13, 0x35, 0xc3, 0x50, 0xee, 0x25, 0xc7, 0xbe, 0xb0, 0xfa, 0x4c, 0x96, 0xa3, 0xba, 0xc8,
+	0x84, 0x8d, 0x9f, 0x16, 0xf9, 0xb5, 0xcd, 0x04, 0x86, 0xad, 0x43, 0xa0, 0xe0, 0x52, 0x17, 0x0c,
+	0xa3, 0x4c, 0x7e, 0xe8, 0xcc, 0x79, 0x92, 0x66, 0x74, 0x5a, 0xe0, 0xd2, 0x06, 0x2b, 0x46, 0x93,
+	0x00, 0x6c, 0x06, 0x2b, 0x5f, 0x73, 0x4b, 0x57, 0xf8, 0x66, 0x58, 0xfa, 0x12, 0x7a, 0x41, 0xb4,
+	0x3c, 0xd7, 0xac, 0x5b, 0x99, 0xcb, 0x40, 0xe8, 0x9e, 0x06, 0xf0, 0x5d, 0x52, 0xe1, 0xd3, 0xe5,
+	0xb1, 0xa1, 0x9a, 0xd9, 0x84, 0x8e, 0x3f, 0xae, 0xef, 0xc7, 0x96, 0x0b, 0xd0, 0x81, 0x36, 0x76,
+	0x3a, 0x53, 0x82, 0xc3, 0xea, 0xe0, 0x94, 0x2e, 0x46, 0x74, 0x31, 0xde, 0x52, 0x89, 0x42, 0x29,
+	0xd0, 0xb4, 0x96, 0xa9, 0x3a, 0x77, 0x60, 0x68, 0x95, 0x26, 0x8d, 0x74, 0x58, 0xc0, 0x8d, 0x0c,
+	0x29, 0x1e, 0xa9, 0xd2, 0x33, 0x55, 0xcb, 0x25, 0xa6, 0x8b, 0xe8, 0x41, 0x2e, 0x9b, 0xb5, 0x6d,
+	0xbc, 0xa6, 0x8a, 0xf2, 0xa3, 0xca, 0x18, 0xf5, 0x1a, 0x47, 0xac, 0x5e, 0x39, 0xf2, 0x4d, 0xb6,
+	0xb7, 0x5f, 0x62, 0x85, 0x2f, 0x25, 0x31, 0x70, 0x0f, 0x47, 0x8e, 0x3c, 0xc6, 0xaa, 0x8b, 0xce,
+	0x3f, 0x08, 0x48, 0x19, 0x77, 0x39, 0x6f, 0xc0, 0x90, 0xfa, 0xc2, 0xf6, 0xf6, 0xc1, 0x62, 0x86,
+	0xf3, 0x06, 0x63, 0x83, 0x37, 0x5f, 0x73, 0x92, 0x25, 0xc6, 0xf3, 0x4c, 0xfe, 0x49, 0xd8, 0x1a,
+	0x4f, 0x64, 0x95, 0xf6, 0xc1, 0x2b, 0x75, 0x0f, 0xc0, 0x67, 0xea, 0xe0, 0x38, 0xd4, 0x4b, 0xd3,
+	0x60, 0x36, 0xa2, 0xdd, 0x00, 0x1d, 0x49, 0xc3, 0x3e, 0xa2, 0xf3, 0xe6, 0xfe, 0xc4, 0xa1, 0x90,
+	0xb8, 0x00, 0xbc, 0x81, 0x99, 0x16, 0x88, 0x29, 0x19, 0xec, 0xbb, 0xf4, 0x59, 0x22, 0xb3, 0x07,
+	0x7e, 0x92, 0xa3, 0x4b, 0xf6, 0x07, 0xec, 0xff, 0xc7, 0x8c, 0x9f, 0x14, 0x06, 0xdf, 0xab, 0xdf,
+	0xa8, 0x7c, 0xf3, 0x5a, 0x9f, 0xf9, 0xcc, 0x2d, 0xdd, 0x33, 0x4f, 0x23, 0x57, 0xce, 0x7d, 0x79,
+	0x0e, 0x9b, 0x1b, 0xbd, 0x16, 0xf8, 0xfd, 0x68, 0xbf, 0xe7, 0x1a, 0xdb, 0x19, 0x5f, 0x3f, 0xd0,
+	0x07, 0x70, 0xe1, 0xa2, 0x98, 0x6f, 0x48, 0xca, 0x03, 0x01, 0x45, 0xbc, 0x00, 0xbd, 0x6a, 0x43,
+	0xb4, 0x5a, 0x10, 0xb3, 0x58, 0xbd, 0xdd, 0xb3, 0x23, 0x59, 0x0f, 0x43, 0x3f, 0x04, 0x44, 0x20,
+	0xc4, 0x44, 0xd3, 0xf7, 0x57, 0x9d, 0x0e, 0x84, 0xff, 0x0f, 0xf9, 0x3a, 0x71, 0xca, 0xc8, 0x4b,
+	0x09, 0xc9, 0x9a, 0xdd, 0x26, 0x61, 0x01, 0x10, 0x26, 0xc9, 0x24, 0xfe, 0xe1, 0x1b, 0xca, 0x4f,
+	0xe5, 0x51, 0x2b, 0xc6, 0x86, 0xa5, 0x59, 0xa0, 0xd4, 0x7a, 0x57, 0xbc, 0xab, 0x83, 0xc2, 0x4b,
+	0x09, 0x2a, 0x0e, 0x7e, 0x78, 0xcd, 0x01, 0x0f, 0xe9, 0xb4, 0xe5, 0x76, 0xe8, 0xfc, 0x40, 0x6e,
+	0x38, 0xec, 0x93, 0x02, 0x7c, 0x60, 0x13, 0x2a, 0x68, 0x4f, 0x7c, 0xe0, 0x74, 0x0e, 0xc0, 0x65,
+	0x59, 0x2a, 0xf1, 0xc9, 0x82, 0x2b, 0x29, 0x3e, 0x38, 0x73, 0xda, 0x44, 0xc9, 0x61, 0xf3, 0x11,
+	0x82, 0x82, 0x71, 0xef, 0xab, 0x80, 0x4e, 0x97, 0x2a, 0x92, 0xbd, 0xa4, 0x50, 0x33, 0xc0, 0x04,
+	0x85, 0x03, 0xe3, 0xbb, 0x69, 0x6e, 0xa9, 0xca, 0x1e, 0xd9, 0x97, 0x44, 0x9c, 0x9d, 0x26, 0xf5,
+	0xff, 0xfe, 0x19, 0x98, 0xd1, 0x6f, 0xa6, 0xf8, 0xa8, 0x7f, 0x2c, 0xcf, 0x97, 0xb9, 0x95, 0x93,
+	0x23, 0x04, 0xe3, 0xa7, 0x05, 0xb1, 0xa8, 0x87, 0xaf, 0x20, 0x3d, 0x99, 0xe2, 0xb6, 0xef, 0x80,
+	0x3d, 0x56, 0x3e, 0x16, 0x17, 0x6c, 0x2a, 0xbb, 0x04, 0xf4, 0xac, 0x72, 0xb9, 0xfb, 0xe6, 0xa8,
+	0x01, 0x26, 0x35, 0xa8, 0xc1, 0xc3, 0x45, 0x5c, 0x68, 0x61, 0x57, 0xa0, 0xf3, 0xa5, 0xaa, 0x2d,
+	0x66, 0xb2, 0x43, 0xf2, 0x70, 0x06, 0xd6, 0xbe, 0xf8, 0xed, 0x45, 0x7d, 0xbf, 0x14, 0xc0, 0x45,
+	0xd7, 0xc1, 0x4b, 0x12, 0xdc, 0x5e, 0xd2, 0xed, 0x31, 0x9e, 0xf7, 0x60, 0x04, 0xc8, 0x9c, 0x37,
+	0x18, 0xff, 0x51, 0xe0, 0x8d, 0x4c, 0x6f, 0xa0, 0xa8, 0xa2, 0x0d, 0xbd, 0x38, 0x2d, 0xe5, 0xac,
+	0x85, 0x7e, 0x10, 0x55, 0xd6, 0xc5, 0x78, 0x1b, 0x7f, 0xa8, 0xa5, 0x2e, 0x9b, 0xe7, 0x1e, 0x6a,
+	0x0e, 0x4e, 0x35, 0xb4, 0xfe, 0xaa, 0x2b, 0xe6, 0x07, 0x89, 0xfa, 0x3c, 0x7b, 0x41, 0x5f, 0x4b,
+	0x1c, 0xba, 0x0c, 0xc5, 0x1a, 0x44, 0x29, 0xb7, 0xe7, 0x5b, 0xb4, 0x4e, 0x15, 0xfd, 0xf0, 0xe6,
+	0x1e, 0x02, 0x9b, 0x2e, 0xee, 0x2b, 0x17, 0xc9, 0x54, 0xf0, 0xfb, 0xfd, 0x42, 0x7a, 0xe7, 0x8a,
+	0x53, 0x90, 0xe6, 0xfa, 0x33, 0xf4, 0xdd, 0x9f, 0x52, 0x94, 0x7e, 0x3a, 0x98, 0xa2, 0xa7, 0x35,
+	0x82, 0x61, 0x6a, 0x9d, 0x9b, 0x63, 0x84, 0xa1, 0x35, 0x65, 0x2e, 0x07, 0x71, 0x60, 0xcc, 0xae,
+	0x96, 0x7c, 0x5a, 0xf5, 0x2b, 0xa7, 0xde, 0xd4, 0x1f, 0xbc, 0xf1, 0x8b, 0x38, 0x3f, 0xb1, 0x84,
+	0x17, 0x60, 0x8f, 0xb1, 0x73, 0xd4, 0x8b, 0xb0, 0x1c, 0x58, 0x77, 0xed, 0x20, 0x82, 0x64, 0x12,
+	0x7d, 0x86, 0x2a, 0x20, 0xf1, 0x14, 0x4f, 0xc4, 0x78, 0x2f, 0x4a, 0xbf, 0x1e, 0x48, 0xf9, 0xcf,
+	0x1b, 0x6e, 0xee, 0x46, 0x5c, 0x1d, 0x1c, 0xe0, 0x72, 0x49, 0x8c, 0x51, 0x4f, 0x1e, 0x8f, 0xfa,
+	0xbc, 0x55, 0xf2, 0x14, 0x96, 0x0e, 0x05, 0x75, 0xe5, 0xda, 0x92, 0x5b, 0x45, 0xdb, 0x8e, 0xd7,
+	0xc9, 0xa0, 0x9f, 0x90, 0x7f, 0xa6, 0x69, 0x08, 0xde, 0xf3, 0x52, 0x6d, 0x89, 0xc8, 0xc6, 0x8c,
+	0xef, 0xf1, 0xfe, 0x0c, 0x4e, 0x93, 0x1a, 0xeb, 0xf9, 0xe6, 0xc9, 0x5e, 0xe1, 0x61, 0x9f, 0xf2,
+	0xf5, 0x14, 0xba, 0xf1, 0xc4, 0x80, 0xdd, 0x22, 0xdf, 0x95, 0x58, 0x2c, 0x07, 0x5d, 0xe1, 0xd3,
+	0x0c, 0x6a, 0xa1, 0x6f, 0x56, 0xa0, 0x89, 0x55, 0x0f, 0x9c, 0xd1, 0x62, 0xaa, 0xef, 0xe0, 0x81,
+	0xb3, 0xbe, 0x20, 0x6b, 0xbc, 0x85, 0x9c, 0x8c, 0x9a, 0x14, 0xd4, 0xf8, 0xa3, 0x82, 0xb8, 0x33,
+	0x6a, 0x8a, 0x6c, 0x9e, 0x36, 0x30, 0xd5, 0x47, 0x19, 0x23, 0xc7, 0xbd, 0x7c, 0xdf, 0x3c, 0x6b,
+	0x12, 0x93, 0x1f, 0xab, 0x2b, 0xa0, 0x65, 0xa3, 0x9d, 0x07, 0xc2, 0x69, 0xea, 0x55, 0xf7, 0x21,
+	0x8a, 0xba, 0x60, 0x00, 0x49, 0x6e, 0x82, 0x12, 0xff, 0xa5, 0xa0, 0x0e, 0x2e, 0xf8, 0x75, 0x08,
+	0x34, 0x1a, 0x3d, 0xf8, 0x79, 0x92, 0x16, 0x45, 0x81, 0xc1, 0xc9, 0x88, 0xda, 0xb4, 0xb5, 0x3c,
+	0x30, 0xcf, 0x18, 0x62, 0x72, 0x43, 0xf5, 0x87, 0x90, 0x46, 0xf1, 0xcf, 0x5c, 0x0e, 0x01, 0x83,
+	0xd1, 0x86, 0x62, 0xb9, 0x21, 0xa9, 0x0e, 0xe2, 0xf5, 0xa9, 0xb7, 0x01, 0x1e, 0x5d, 0xd2, 0x36,
+	0xa7, 0x57, 0xf2, 0x68, 0x1e, 0xba, 0xc2, 0xcc, 0xe9, 0x02, 0xa2, 0xc0, 0xb7, 0xe0, 0x0e, 0x38,
+	0x1e, 0x8e, 0x53, 0x1b, 0xe0, 0xf9, 0xb4, 0xcd, 0x7a, 0xba, 0x44, 0x90, 0x69, 0x0c, 0x22, 0xec,
+	0x83, 0x33, 0x38, 0x1e, 0x79, 0x7b, 0xf3, 0x0f, 0x8b, 0xc2, 0xe8, 0xf7, 0x83, 0x54, 0x3a, 0xae,
+	0x25, 0x97, 0x4d, 0xf9, 0x24, 0x2f, 0xf7, 0xae, 0x21, 0x5f, 0x7e, 0xee, 0xbb, 0x6b, 0x98, 0xd6,
+	0x11, 0x79, 0x61, 0x1f, 0xa7, 0x9e, 0x88, 0xcb, 0xfa, 0x0f, 0xcd, 0xb3, 0xdf, 0x66, 0xa6, 0xbe,
+	0x45, 0x29, 0xbf, 0xfe, 0x6a, 0x65, 0xb6, 0xfa, 0xf9, 0xe9, 0x1f, 0x09, 0x61, 0xa5, 0x3e, 0x48,
+	0x2f, 0xa2, 0xdb, 0x47, 0x1d, 0x3a, 0xcd, 0xb1, 0xba, 0xfa, 0xab, 0x1e, 0x2c, 0xff, 0xe1, 0xd9,
+	0x5c, 0x4c, 0xdf, 0xf5, 0xd0, 0xa4, 0x74, 0x0d, 0x82, 0xa8, 0xda, 0xf2, 0xc8, 0x49, 0x6f, 0x8a,
+	0x17, 0x51, 0xc5, 0x00, 0x24, 0xb9, 0x58, 0x34, 0x95, 0xe8, 0x9b, 0xf8, 0xda, 0xe3, 0xc7, 0x7d,
+	0x66, 0x50, 0x63, 0x8f, 0xda, 0x08, 0x60, 0x01, 0x76, 0xec, 0x87, 0x74, 0xd1, 0x8c, 0xbe, 0xba,
+	0xd1, 0x2d, 0x0a, 0xad, 0xb3, 0xbc, 0xff, 0x0b, 0x53, 0x52, 0x18, 0xea, 0x40, 0x56, 0xfc, 0x03,
+	0xd9, 0x06, 0xb3, 0xdd, 0xe3, 0xda, 0x38, 0x58, 0x7a, 0xff, 0xa1, 0xc0, 0x33, 0xfc, 0x2c, 0x83,
+	0x84, 0x62, 0x87, 0x27, 0xea, 0x3e, 0xe4, 0x1d, 0x33, 0x6f, 0xac, 0xb9, 0x96, 0xd0, 0x55, 0xde,
+	0x17, 0x93, 0x60, 0x4f, 0x78, 0x93, 0x53, 0x9d, 0xbe, 0x5c, 0x4d, 0x5c, 0x67, 0x42, 0x5f, 0x07,
+	0x82, 0x93, 0x6a, 0x24, 0x44, 0x66, 0xdc, 0x37, 0xc1, 0x08, 0x60, 0x18, 0x1e, 0x8a, 0x15, 0xf4,
+	0x65, 0xb1, 0xd3, 0x5f, 0x45, 0x3f, 0x1b, 0x34, 0xa6, 0xfa, 0x80, 0xe7, 0xe2, 0xa7, 0xe4, 0xb8,
+	0xa4, 0xc8, 0xf6, 0xc8, 0xf7, 0x55, 0x8a, 0xf0, 0x38, 0x0d, 0x39, 0xeb, 0xbb, 0xfd, 0xfb, 0x0f,
+	0x1e, 0x20, 0x8d, 0x9b, 0xf5, 0xef, 0xf7, 0x1c, 0x08, 0x9c, 0x17, 0x73, 0x8a, 0x28, 0xc6, 0x9f,
+	0x0d, 0xc5, 0xfa, 0x9c, 0xa1, 0x89, 0x9a, 0xbf, 0x10, 0x13, 0x92, 0x5a, 0xd4, 0x6a, 0xbe, 0x66,
+	0x9e, 0x7b, 0xac, 0x59, 0xc3, 0xa0, 0xc1, 0x6d, 0xd5, 0x57, 0x62, 0x26, 0xf3, 0x98, 0xab, 0x72,
+	0xf7, 0x93, 0x57, 0x15, 0x75, 0x3a, 0x35, 0x30, 0x35, 0x1e, 0xc1, 0x1b, 0x4f, 0xd9, 0x71, 0xf7,
+	0xb1, 0x00, 0x69, 0xd7, 0xbe, 0x03, 0xbe, 0x1b, 0x02, 0x7b, 0xfe, 0xa2, 0x3f, 0xe1, 0x3b, 0xae,
+	0xa3, 0x06, 0x25, 0xcb, 0xbd, 0x2b, 0xc6, 0x5b, 0xf0, 0xac, 0x57, 0x7b, 0x29, 0xd9, 0xf3, 0x0c,
+	0xb1, 0xf1, 0x3b, 0x7d, 0xfe, 0x1b, 0x67, 0x7b, 0x03, 0x7b, 0xe6, 0x87, 0x27, 0xdb, 0xa1, 0x54,
+	0x9a, 0x16, 0x55, 0xbe, 0x81, 0xf5, 0x25, 0x48, 0x19, 0x93, 0xb9, 0xde, 0x37, 0xcf, 0x1a, 0x03,
+	0x79, 0x07, 0x0e, 0xa8, 0x7e, 0x07, 0xf3, 0x0c, 0xfc, 0x35, 0x0a, 0x14, 0x10, 0x8c, 0xce, 0x22,
+	0x46, 0xd5, 0xc0, 0xd5, 0xfc, 0x31, 0xe3, 0x8f, 0x0b, 0xea, 0x26, 0x41, 0x2f, 0x0a, 0x9c, 0x96,
+	0xe3, 0xf7, 0xa2, 0x15, 0x78, 0xc3, 0x91, 0xae, 0x9c, 0x0e, 0x7f, 0x10, 0x38, 0x65, 0xab, 0x7e,
+	0x75, 0x6d, 0xe1, 0x92, 0x59, 0x1f, 0x1e, 0xbb, 0xfc, 0xe8, 0xd0, 0xca, 0x69, 0xb6, 0xde, 0xac,
+	0xd4, 0xac, 0xd7, 0x98, 0x52, 0x07, 0xae, 0x5c, 0xf7, 0x00, 0xf4, 0x78, 0xaa, 0x6e, 0x09, 0x31,
+	0x05, 0xdd, 0xeb, 0x13, 0xf2, 0x18, 0x0b, 0x99, 0x96, 0x25, 0xf2, 0xcc, 0x0b, 0x84, 0xdb, 0x53,
+	0x10, 0x7a, 0x73, 0xf8, 0x16, 0x34, 0x79, 0x7d, 0x2e, 0x85, 0x80, 0xc6, 0xdf, 0x3b, 0xa5, 0xdb,
+	0xca, 0x06, 0xce, 0x50, 0xfd, 0x56, 0xae, 0xe2, 0xdf, 0x0a, 0x7d, 0x87, 0xee, 0x2b, 0x51, 0x84,
+	0x07, 0x0c, 0xde, 0x6b, 0xc7, 0x73, 0x30, 0x75, 0xa2, 0x2b, 0x2a, 0xe0, 0x67, 0x30, 0xf9, 0x47,
+	0xe7, 0x95, 0x45, 0x7c, 0xf4, 0x81, 0x85, 0xba, 0x5a, 0x99, 0xfd, 0x0e, 0x73, 0x82, 0xca, 0xcd,
+	0x61, 0xcb, 0xf6, 0x6c, 0x0b, 0xc3, 0x64, 0xc8, 0x5e, 0x82, 0xd0, 0x87, 0xad, 0xe6, 0xb7, 0x8e,
+	0xd5, 0x67, 0x56, 0x74, 0x0f, 0x16, 0xb0, 0x60, 0x07, 0x9c, 0xa5, 0xc6, 0x73, 0xc9, 0x39, 0x38,
+	0x9e, 0x81, 0x86, 0x20, 0xfe, 0xcc, 0x4d, 0xfd, 0xe4, 0x0b, 0xb8, 0xa1, 0x3e, 0x0e, 0x75, 0x93,
+	0xfa, 0x8e, 0x43, 0x60, 0x5b, 0x4e, 0x64, 0xa9, 0x2b, 0x3e, 0x54, 0xdf, 0x98, 0x32, 0xd6, 0x07,
+	0x75, 0x13, 0x34, 0x7d, 0xdd, 0xc3, 0x7c, 0x90, 0x00, 0x02, 0xdd, 0x25, 0xba, 0x2f, 0xc6, 0x09,
+	0x5b, 0xa8, 0x6c, 0x78, 0xd2, 0xac, 0x53, 0xdf, 0xf2, 0x6c, 0xfd, 0x4d, 0x7d, 0xb3, 0x69, 0xad,
+	0xaf, 0xd1, 0x07, 0x19, 0x80, 0x74, 0xee, 0xf7, 0x43, 0xa4, 0x81, 0x79, 0xb6, 0x80, 0x37, 0x57,
+	0x6e, 0xaf, 0xa0, 0xf0, 0xfa, 0x97, 0xa7, 0xcd, 0xee, 0x2f, 0x0b, 0x83, 0x7b, 0xfa, 0x89, 0xe3,
+	0xba, 0x7c, 0x6b, 0x01, 0x3c, 0x2b, 0xca, 0xc5, 0xa1, 0x39, 0x07, 0xa0, 0xce, 0xc7, 0x90, 0x17,
+	0x6a, 0xa2, 0x1c, 0xb4, 0x33, 0x34, 0x91, 0x99, 0x3e, 0x9d, 0x54, 0x3f, 0x15, 0x33, 0x99, 0x47,
+	0x7c, 0x87, 0xaa, 0x61, 0x69, 0xd9, 0x27, 0xc0, 0x55, 0x15, 0xb0, 0xfa, 0xbf, 0xaa, 0x03, 0x0b,
+	0xc9, 0x94, 0x86, 0x18, 0x2c, 0xfe, 0xa8, 0xc4, 0x75, 0xfa, 0x0c, 0x0c, 0x4d, 0xcc, 0xf6, 0x94,
+	0xf2, 0xef, 0x70, 0x76, 0x87, 0x30, 0xd4, 0x0f, 0x43, 0xbc, 0xe9, 0xcc, 0xa9, 0xc9, 0x77, 0x20,
+	0x8c, 0xa6, 0x1e, 0xa0, 0x2f, 0xb6, 0x8f, 0x7e, 0x99, 0x99, 0x36, 0x54, 0x7f, 0x56, 0x10, 0x22,
+	0x7d, 0x4c, 0x9c, 0x01, 0x24, 0xd9, 0x29, 0x78, 0xc2, 0xcb, 0xf2, 0xfa, 0xb5, 0x09, 0xc2, 0xc0,
+	0xc6, 0x7d, 0x75, 0xbb, 0x00, 0x9b, 0x3e, 0x4b, 0x00, 0x0d, 0x7f, 0x1a, 0xb8, 0x74, 0x7e, 0x26,
+	0xcc, 0xba, 0xaa, 0x98, 0x5c, 0x3e, 0xb4, 0x54, 0x25, 0xc2, 0xc2, 0x22, 0xd7, 0x4b, 0xae, 0x47,
+	0x61, 0xad, 0x50, 0x95, 0xa6, 0xac, 0xb4, 0x02, 0x40, 0xa7, 0x8c, 0xc6, 0xb7, 0xc4, 0xa4, 0x1a,
+	0x0c, 0x54, 0xf9, 0xc3, 0xcb, 0x05, 0x50, 0xb0, 0x8b, 0x69, 0xd7, 0x1a, 0x18, 0x7d, 0xe8, 0x9f,
+	0x40, 0x47, 0x51, 0x9f, 0x9f, 0xa4, 0x6a, 0xb1, 0xe1, 0xb7, 0x0e, 0x6b, 0x07, 0x76, 0xd8, 0x6d,
+	0xa2, 0x59, 0x40, 0x0c, 0x3d, 0x8f, 0x0b, 0x35, 0xfe, 0xbb, 0x90, 0x9e, 0xc3, 0xd4, 0x36, 0x3f,
+	0x5b, 0x7a, 0xfc, 0xe4, 0x79, 0x0a, 0xa7, 0x77, 0xf1, 0x96, 0x09, 0x04, 0xc2, 0x8a, 0x76, 0x10,
+	0x54, 0xb1, 0xe8, 0x61, 0xab, 0xfa, 0x1e, 0xe3, 0xa1, 0x79, 0xfa, 0x60, 0x33, 0x33, 0x4f, 0x5d,
+	0x2c, 0x28, 0x7f, 0x92, 0x99, 0xa6, 0xf8, 0x65, 0xa7, 0xa9, 0x6e, 0xc0, 0xae, 0xa7, 0x93, 0x82,
+	0x23, 0x0d, 0xec, 0xf8, 0x40, 0x55, 0x55, 0xb0, 0x84, 0x61, 0xd3, 0x15, 0x70, 0xae, 0xd4, 0x94,
+	0xb8, 0x8e, 0xa3, 0x4f, 0xc7, 0x14, 0xd8, 0xe7, 0x4b, 0xb8, 0x25, 0xda, 0x85, 0x9f, 0xe9, 0x88,
+	0xc6, 0x1e, 0x92, 0x91, 0x98, 0xba, 0x3c, 0x74, 0x60, 0x83, 0xf1, 0x78, 0x9d, 0xfc, 0xab, 0x02,
+	0xdf, 0x16, 0xd3, 0xa9, 0xdf, 0x2a, 0x66, 0x2e, 0xc7, 0x9f, 0x36, 0x93, 0x99, 0xce, 0xf9, 0x2d,
+	0x74, 0xd6, 0xa1, 0x4f, 0x97, 0xc5, 0x4a, 0x5f, 0x7e, 0x78, 0xd6, 0xc0, 0xc6, 0x54, 0xaa, 0x3a,
+	0xdd, 0xd7, 0x3d, 0xe0, 0x58, 0xe8, 0xc3, 0x0d, 0x08, 0x1b, 0x78, 0x8d, 0x5d, 0x63, 0x6b, 0x23,
+	0xe2, 0x23, 0xa9, 0x6c, 0x64, 0x41, 0x96, 0xce, 0xb3, 0xfe, 0x8f, 0x30, 0x01, 0x45, 0x62, 0xbc,
+	0x33, 0xa3, 0xb6, 0x91, 0x8b, 0x8b, 0x35, 0xfa, 0x14, 0x70, 0xe4, 0x6c, 0xc6, 0x3f, 0x16, 0xf8,
+	0x9c, 0x26, 0x7d, 0xeb, 0x2b, 0xdf, 0xed, 0x2b, 0x2c, 0x7d, 0x43, 0x8c, 0x1f, 0x40, 0x93, 0xc6,
+	0x0f, 0x83, 0x80, 0x7f, 0x80, 0xdc, 0xc4, 0x67, 0x9d, 0x5f, 0x67, 0x17, 0x9e, 0xdc, 0xa5, 0xc0,
+	0xc9, 0x28, 0x2d, 0x2a, 0xe9, 0xb4, 0x88, 0x5a, 0x60, 0x3d, 0x8e, 0xfa, 0x1c, 0x0c, 0xb4, 0x6a,
+	0x26, 0x3b, 0xcd, 0x88, 0x5c, 0x4c, 0x29, 0xd0, 0x81, 0x74, 0xf5, 0xec, 0x98, 0x42, 0xaa, 0x7a,
+	0x13, 0xb5, 0xb2, 0x5c, 0x7f, 0x51, 0x61, 0x54, 0xde, 0xcb, 0x1d, 0x09, 0x39, 0x4d, 0x24, 0x53,
+	0x96, 0xf1, 0x4d, 0xf9, 0x18, 0xf5, 0x3c, 0xfc, 0x1b, 0x1d, 0xde, 0xb5, 0xd4, 0x41, 0xb1, 0xb2,
+	0xac, 0xea, 0xcf, 0x42, 0x6b, 0x07, 0x12, 0xbf, 0x8d, 0x87, 0x35, 0x50, 0x7d, 0x22, 0x73, 0x61,
+	0x96, 0xee, 0xa2, 0xd0, 0xf7, 0x58, 0x78, 0x21, 0x95, 0x43, 0x7a, 0xb6, 0x79, 0x49, 0x37, 0xf3,
+	0x32, 0x7e, 0xaf, 0xc0, 0x77, 0x40, 0xd5, 0x3a, 0xbe, 0x07, 0x06, 0xa7, 0xae, 0x65, 0x9a, 0x83,
+	0xe5, 0xa1, 0x9b, 0x66, 0x2e, 0xa1, 0x99, 0x5e, 0xeb, 0xef, 0x5f, 0x56, 0x75, 0xfb, 0xd4, 0x24,
+	0x0c, 0xe8, 0x95, 0xcf, 0x89, 0x52, 0xbf, 0x8d, 0x37, 0xec, 0x8e, 0x71, 0xea, 0xf4, 0x43, 0x00,
+	0x7e, 0xa4, 0x2d, 0x7c, 0xf8, 0x57, 0x05, 0x51, 0x1d, 0xfd, 0xef, 0x26, 0xd4, 0x91, 0xf5, 0xe8,
+	0x7f, 0x38, 0x51, 0x7e, 0x07, 0x3f, 0xb3, 0x1e, 0x49, 0xb2, 0xeb, 0x1d, 0x7a, 0x7c, 0xf6, 0xfd,
+	0x48, 0x3c, 0x18, 0x49, 0xf5, 0x1a, 0xf0, 0x4f, 0xfa, 0xa1, 0x65, 0xb9, 0x58, 0x59, 0x12, 0xe6,
+	0x48, 0xe2, 0xfa, 0x5b, 0xac, 0xa1, 0xaf, 0xda, 0xed, 0x4f, 0xfd, 0x68, 0x5d, 0xff, 0xeb, 0x88,
+	0x72, 0xe9, 0xe1, 0x9f, 0x17, 0xc5, 0x42, 0x5d, 0x1d, 0xf8, 0xaf, 0xec, 0xf5, 0x22, 0x49, 0xfc,
+	0xdf, 0x10, 0x8b, 0x30, 0xd3, 0x60, 0xb3, 0x66, 0xfd, 0xae, 0xb8, 0x9d, 0xd7, 0xbb, 0xee, 0x03,
+	0x3c, 0xc4, 0x8b, 0x61, 0xb1, 0x04, 0xce, 0x1f, 0x8a, 0xf7, 0xf2, 0x88, 0x40, 0x5f, 0x3c, 0xab,
+	0x89, 0x65, 0xa3, 0xad, 0x7d, 0xeb, 0x85, 0xed, 0xc4, 0x07, 0xc0, 0xf8, 0x7b, 0xc2, 0xc8, 0xa3,
+	0x5d, 0xb5, 0x3d, 0x78, 0x27, 0x5e, 0x45, 0x05, 0x88, 0x21, 0xcb, 0xa5, 0xca, 0x57, 0xc4, 0x07,
+	0xb9, 0x74, 0x78, 0x49, 0x36, 0x92, 0xf2, 0x10, 0xd0, 0x07, 0xfd, 0xc6, 0x8f, 0x70, 0xca, 0x63,
+	0x90, 0x92, 0x3e, 0xce, 0x23, 0x07, 0xa5, 0x01, 0xe1, 0x80, 0x96, 0xaf, 0xe0, 0xc7, 0x59, 0xae,
+	0xb5, 0xde, 0x0d, 0x42, 0x27, 0xf2, 0x3d, 0x3c, 0xfd, 0x29, 0x8f, 0x57, 0xbe, 0x2a, 0x1e, 0xe5,
+	0x8d, 0x6a, 0x1c, 0xd8, 0x6d, 0xff, 0x18, 0xc2, 0x62, 0xd7, 0xf7, 0x2c, 0x10, 0x7b, 0xd8, 0x0b,
+	0x50, 0xb2, 0xe5, 0x89, 0x87, 0xff, 0x59, 0x12, 0x57, 0xeb, 0xeb, 0x74, 0xc7, 0x8e, 0x92, 0x28,
+	0xbc, 0xc8, 0x0e, 0xca, 0x44, 0x82, 0xe4, 0x1b, 0x10, 0xf9, 0x9d, 0x5a, 0x9c, 0xbc, 0xaa, 0x11,
+	0x34, 0xbc, 0x6f, 0xce, 0x91, 0x5c, 0xa3, 0xdb, 0x3b, 0x20, 0xd8, 0xaf, 0x89, 0xa5, 0xd1, 0xe4,
+	0x3a, 0x43, 0xa8, 0xf1, 0x15, 0xe1, 0xed, 0x5e, 0xd8, 0x3a, 0x00, 0x77, 0x10, 0x81, 0x90, 0x9f,
+	0x8a, 0xaf, 0x9e, 0x7b, 0x9c, 0x7a, 0x19, 0x5e, 0x78, 0xbb, 0x3f, 0x7a, 0xd0, 0x86, 0x7f, 0xac,
+	0xd3, 0x93, 0xf2, 0x54, 0xe5, 0x81, 0xb8, 0x7b, 0x2a, 0xe9, 0x1a, 0x7d, 0x55, 0x52, 0x2e, 0x9f,
+	0xbe, 0xde, 0x57, 0xb0, 0xdd, 0xbb, 0x1e, 0x45, 0xcd, 0x97, 0xe0, 0x89, 0xca, 0x77, 0x94, 0x56,
+	0x8f, 0x20, 0x6f, 0x00, 0x4d, 0xd3, 0xf7, 0x5f, 0xf7, 0x5a, 0x07, 0x88, 0x65, 0xde, 0x60, 0xee,
+	0x5e, 0xfe, 0x2e, 0x8c, 0xf9, 0xca, 0xe8, 0x31, 0x48, 0x6f, 0x7b, 0x27, 0x58, 0xf5, 0x0e, 0x64,
+	0x1b, 0x87, 0x45, 0xe5, 0xcf, 0x0b, 0x20, 0x1f, 0xf3, 0x1c, 0xdb, 0xd0, 0xc4, 0x0b, 0x60, 0x6a,
+	0x29, 0x9f, 0x17, 0x1f, 0x7e, 0x51, 0x10, 0x17, 0x73, 0xb2, 0x35, 0xa5, 0x44, 0xe7, 0x4d, 0xe3,
+	0x60, 0x57, 0x3f, 0x14, 0xef, 0xe7, 0x0f, 0x18, 0x66, 0xa8, 0xdc, 0x56, 0x22, 0xcc, 0xa1, 0xc6,
+	0x26, 0xfa, 0xfe, 0x79, 0xd5, 0x8f, 0x5f, 0x00, 0x3e, 0x43, 0x72, 0xf9, 0xf0, 0xf3, 0x92, 0xb8,
+	0x94, 0xa1, 0x5e, 0xc5, 0x7f, 0x8a, 0x41, 0xea, 0x79, 0x5b, 0x5c, 0xef, 0x9b, 0x27, 0xe9, 0xd1,
+	0xba, 0xc9, 0x96, 0x99, 0x4f, 0x80, 0xfb, 0xd3, 0xc0, 0x8d, 0x02, 0xf6, 0x59, 0xcf, 0xf3, 0xe9,
+	0x58, 0xc2, 0xc5, 0x21, 0xa6, 0xb3, 0x34, 0xe8, 0xcc, 0x9d, 0x7d, 0x07, 0x32, 0xbd, 0x98, 0xc9,
+	0x4b, 0x4a, 0x9f, 0xf2, 0xc8, 0xd5, 0x06, 0xae, 0xfa, 0x7e, 0x8c, 0x3a, 0x3a, 0x7a, 0x11, 0x20,
+	0x84, 0x27, 0x65, 0x79, 0x3a, 0xc1, 0x52, 0x79, 0xff, 0x74, 0x82, 0xa7, 0xe5, 0xce, 0xe9, 0x04,
+	0xcf, 0xca, 0x07, 0xa7, 0x13, 0x3c, 0x2f, 0x3b, 0xab, 0xe3, 0xaf, 0x0a, 0x9f, 0x17, 0xde, 0xf9,
+	0x9f, 0x00, 0x00, 0x00, 0xff, 0xff, 0xe1, 0xce, 0x96, 0x02, 0xdd, 0x49, 0x00, 0x00,
 }
