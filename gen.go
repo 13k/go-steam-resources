@@ -32,10 +32,10 @@ var (
 		}},
 		&pbPackage{"protobuf", "steamclient", false, nil, []string{
 			"steammessages_base.proto",
+			"content_manifest.proto",
 			"encrypted_app_ticket.proto",
 			"steammessages_clientserver.proto",
 			"steammessages_clientserver_2.proto",
-			"content_manifest.proto",
 		}},
 		&pbPackage{"protobuf/unified", "steamclient", false, nil, []string{
 			"steammessages_unified_base.steamclient.proto",
@@ -47,6 +47,7 @@ var (
 			"steammessages_econ.steamclient.proto",
 			"steammessages_gamenotifications.steamclient.proto",
 			"steammessages_gameservers.steamclient.proto",
+			"steammessages_inventory.steamclient.proto",
 			"steammessages_linkfilter.steamclient.proto",
 			"steammessages_offline.steamclient.proto",
 			"steammessages_parental.steamclient.proto",
@@ -58,9 +59,7 @@ var (
 			"steammessages_video.steamclient.proto",
 		}},
 		&pbPackage{"protobuf/unified/steamworks", "dota", false, nil, []string{
-			"steammessages_cloud.steamworkssdk.proto",
 			"steammessages_oauth.steamworkssdk.proto",
-			"steammessages_publishedfile.steamworkssdk.proto",
 		}},
 		&pbPackage{"protobuf/gc", "dota", false, nil, []string{
 			"steammessages.proto",
