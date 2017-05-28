@@ -7,7 +7,14 @@ function help() {
 
 [[ -z "$1" ]] && help
 
-pushd SteamKit
+steamkit_dir="SteamKit"
+
+if [[ ! -d "$steamkit_dir" ]]; then
+	git submodules init
+	git submodules update
+fi
+
+pushd "$steamkit_dir"
 git fetch --tags
 git checkout -b "$1" "$1"
 popd
