@@ -13,13 +13,16 @@ import (
 )
 
 const (
-	packageNs               = "github.com/13k/go-steam-resources"
-	baseProtobufsInputPath  = "SteamKit/Resources/Protobufs"
-	baseProtobufsVendorPath = "protobuf/vendor"
+	packageNs                  = "github.com/13k/go-steam-resources"
+	baseProtobufsInputRelPath  = "SteamKit/Resources/Protobufs"
+	baseProtobufsVendorRelPath = "protobuf/vendor"
 )
 
 var (
+	basePath                string
+	baseProtobufsInputPath  string
 	baseProtobufsOutputPath string
+	baseProtobufsVendorPath string
 
 	pbPackagesByName = map[string]*pbPackage{}
 
@@ -84,11 +87,19 @@ var (
 )
 
 func init() {
-	if p, err := os.Getwd(); err != nil {
-		panic(err)
+	if len(os.Args) > 1 {
+		basePath = os.Args[1]
 	} else {
-		baseProtobufsOutputPath = p
+		if p, err := os.Getwd(); err != nil {
+			panic(err)
+		} else {
+			basePath = p
+		}
 	}
+
+	baseProtobufsInputPath = filepath.Join(basePath, baseProtobufsInputRelPath)
+	baseProtobufsOutputPath = basePath
+	baseProtobufsVendorPath = filepath.Join(baseProtobufsOutputPath, baseProtobufsVendorRelPath)
 
 	for _, pkg := range pbPackages {
 		pbPackagesByName[pkg.name] = pkg
@@ -128,15 +139,15 @@ func (p *pbPackage) Dependencies() []*pbPackage {
 }
 
 func (p *pbPackage) OutputDir() string {
-	var base string
+	var basePath string
 
 	if p.vendor {
-		base = baseProtobufsVendorPath
+		basePath = baseProtobufsVendorPath
 	} else {
-		base = ""
+		basePath = baseProtobufsOutputPath
 	}
 
-	return filepath.Join(baseProtobufsOutputPath, base, p.name)
+	return filepath.Join(basePath, p.name)
 }
 
 func (p *pbPackage) ProtobufsDir() string {
@@ -144,8 +155,7 @@ func (p *pbPackage) ProtobufsDir() string {
 }
 
 func (p *pbPackage) IncludeDir() string {
-	rel, _ := filepath.Rel(p.ProtobufsDir(), baseProtobufsInputPath)
-	return rel
+	return p.dir
 }
 
 func (p *pbPackage) Build() error {
