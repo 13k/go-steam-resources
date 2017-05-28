@@ -4,11 +4,11 @@
 [[projects]]
   name = "github.com/golang/protobuf"
   packages = ["proto","protoc-gen-go/descriptor"]
-  revision = "1f49d83d9aa00e6ce4fc8258c71cc7786aec968a"
+  revision = "9f174c986221c608fb5143bd623b6076a71feae3"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "86e32ea18c6a0c4f9108273a170baadd175d75172722b2aef9e252c14953091d"
+  inputs-digest = "2c7e6b32f1ad394b91a13231546e1d9de7894156f41a82f7745b89c094d0365f"
   solver-name = "gps-cdcl"
   solver-version = 1
