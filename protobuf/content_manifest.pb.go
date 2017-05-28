@@ -20,7 +20,7 @@ type ContentManifestPayload struct {
 func (m *ContentManifestPayload) Reset()                    { *m = ContentManifestPayload{} }
 func (m *ContentManifestPayload) String() string            { return proto.CompactTextString(m) }
 func (*ContentManifestPayload) ProtoMessage()               {}
-func (*ContentManifestPayload) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{0} }
+func (*ContentManifestPayload) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{0} }
 
 func (m *ContentManifestPayload) GetMappings() []*ContentManifestPayload_FileMapping {
 	if m != nil {
@@ -44,7 +44,7 @@ func (m *ContentManifestPayload_FileMapping) Reset()         { *m = ContentManif
 func (m *ContentManifestPayload_FileMapping) String() string { return proto.CompactTextString(m) }
 func (*ContentManifestPayload_FileMapping) ProtoMessage()    {}
 func (*ContentManifestPayload_FileMapping) Descriptor() ([]byte, []int) {
-	return fileDescriptor4, []int{0, 0}
+	return fileDescriptor1, []int{0, 0}
 }
 
 func (m *ContentManifestPayload_FileMapping) GetFilename() string {
@@ -113,7 +113,7 @@ func (m *ContentManifestPayload_FileMapping_ChunkData) String() string {
 }
 func (*ContentManifestPayload_FileMapping_ChunkData) ProtoMessage() {}
 func (*ContentManifestPayload_FileMapping_ChunkData) Descriptor() ([]byte, []int) {
-	return fileDescriptor4, []int{0, 0, 0}
+	return fileDescriptor1, []int{0, 0, 0}
 }
 
 func (m *ContentManifestPayload_FileMapping_ChunkData) GetSha() []byte {
@@ -167,7 +167,7 @@ type ContentManifestMetadata struct {
 func (m *ContentManifestMetadata) Reset()                    { *m = ContentManifestMetadata{} }
 func (m *ContentManifestMetadata) String() string            { return proto.CompactTextString(m) }
 func (*ContentManifestMetadata) ProtoMessage()               {}
-func (*ContentManifestMetadata) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{1} }
+func (*ContentManifestMetadata) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{1} }
 
 func (m *ContentManifestMetadata) GetDepotId() uint32 {
 	if m != nil && m.DepotId != nil {
@@ -240,7 +240,7 @@ type ContentManifestSignature struct {
 func (m *ContentManifestSignature) Reset()                    { *m = ContentManifestSignature{} }
 func (m *ContentManifestSignature) String() string            { return proto.CompactTextString(m) }
 func (*ContentManifestSignature) ProtoMessage()               {}
-func (*ContentManifestSignature) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{2} }
+func (*ContentManifestSignature) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{2} }
 
 func (m *ContentManifestSignature) GetSignature() []byte {
 	if m != nil {
@@ -257,9 +257,9 @@ func init() {
 	proto.RegisterType((*ContentManifestSignature)(nil), "ContentManifestSignature")
 }
 
-func init() { proto.RegisterFile("content_manifest.proto", fileDescriptor4) }
+func init() { proto.RegisterFile("content_manifest.proto", fileDescriptor1) }
 
-var fileDescriptor4 = []byte{
+var fileDescriptor1 = []byte{
 	// 518 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x92, 0xcf, 0x8e, 0xd3, 0x30,
 	0x10, 0xc6, 0xc9, 0xf6, 0x5f, 0x3a, 0x6d, 0x51, 0x65, 0x50, 0x09, 0x05, 0x41, 0xe9, 0x5e, 0x72,

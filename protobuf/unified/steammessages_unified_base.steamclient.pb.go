@@ -14,6 +14,7 @@ It is generated from these files:
 	steammessages_econ.steamclient.proto
 	steammessages_gamenotifications.steamclient.proto
 	steammessages_gameservers.steamclient.proto
+	steammessages_inventory.steamclient.proto
 	steammessages_linkfilter.steamclient.proto
 	steammessages_offline.steamclient.proto
 	steammessages_parental.steamclient.proto
@@ -94,6 +95,8 @@ It has these top-level messages:
 	CCredentials_ValidateEmailAddress_Response
 	CCredentials_SteamGuardPhishingReport_Request
 	CCredentials_SteamGuardPhishingReport_Response
+	CCredentials_AccountLockRequest_Request
+	CCredentials_AccountLockRequest_Response
 	CCredentials_LastCredentialChangeTime_Request
 	CCredentials_LastCredentialChangeTime_Response
 	CCredentials_GetAccountAuthSecret_Request
@@ -126,10 +129,6 @@ It has these top-level messages:
 	CDeviceAuth_AddAuthorizedBorrowers_Response
 	CDeviceAuth_RemoveAuthorizedBorrowers_Request
 	CDeviceAuth_RemoveAuthorizedBorrowers_Response
-	CDeviceAuth_GetAuthorizedAsBorrower_Request
-	CDeviceAuth_GetAuthorizedAsBorrower_Response
-	CDeviceAuth_GetExcludedGamesInLibrary_Request
-	CDeviceAuth_GetExcludedGamesInLibrary_Response
 	CEcon_ClientGetItemShopOverlayAuthURL_Request
 	CEcon_ClientGetItemShopOverlayAuthURL_Response
 	CGameNotifications_Variable
@@ -156,6 +155,17 @@ It has these top-level messages:
 	CGameServers_GetServerSteamIDsByIP_Request
 	CGameServers_IPsWithSteamIDs_Response
 	CGameServers_GetServerIPsBySteamID_Request
+	CInventory_GetInventory_Request
+	CInventory_Response
+	CInventory_ExchangeItem_Request
+	CInventory_AddItem_Request
+	CInventory_SafeModifyItem_Request
+	CInventory_ConsumePlaytime_Request
+	CInventory_GetItemDefs_Request
+	CInventory_ConsumeItem_Request
+	CInventory_DevSetNextDrop_Request
+	CInventory_SplitItemStack_Request
+	CInventory_CombineItemStacks_Request
 	CCommunity_GetLinkFilterHashPrefixes_Request
 	CCommunity_GetLinkFilterHashPrefixes_Response
 	CCommunity_GetLinkFilterHashes_Request
@@ -211,6 +221,9 @@ It has these top-level messages:
 	CPlayer_AcceptSSA_Request
 	CPlayer_AcceptSSA_Response
 	CPlayer_LastPlayedTimes_Notification
+	CPlayerClient_GetSystemInformation_Request
+	CClientSystemInfo
+	CPlayerClient_GetSystemInformation_Response
 	CPublishedFile_Subscribe_Request
 	CPublishedFile_Subscribe_Response
 	CPublishedFile_Unsubscribe_Request
@@ -236,18 +249,6 @@ It has these top-level messages:
 	CPublishedFile_RefreshVotingQueue_Response
 	CPublishedFile_QueryFiles_Request
 	CPublishedFile_QueryFiles_Response
-	CPublishedFile_StartPlaytimeTracking_Request
-	CPublishedFile_StartPlaytimeTracking_Response
-	CPublishedFile_StopPlaytimeTracking_Request
-	CPublishedFile_StopPlaytimeTracking_Response
-	CPublishedFile_StopPlaytimeTrackingForAllAppItems_Request
-	CPublishedFile_StopPlaytimeTrackingForAllAppItems_Response
-	CPublishedFile_SetPlaytimeForControllerConfigs_Request
-	CPublishedFile_SetPlaytimeForControllerConfigs_Response
-	CPublishedFile_AddChild_Request
-	CPublishedFile_AddChild_Response
-	CPublishedFile_RemoveChild_Request
-	CPublishedFile_RemoveChild_Response
 	CKeyEscrow_Request
 	CKeyEscrow_Ticket
 	CKeyEscrow_Response
