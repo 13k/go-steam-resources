@@ -1,0 +1,3 @@
+[[constraint]]
+  name = "github.com/golang/protobuf"
+	revision = "1f49d83d9aa00e6ce4fc8258c71cc7786aec968a"
