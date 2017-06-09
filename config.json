@@ -1,0 +1,98 @@
+{
+  "baseImportPath": "github.com/13k/go-steam-resources",
+  "inputRelPath": "SteamKit/Resources/Protobufs",
+  "packages": [
+    {
+      "name": "protobuf",
+      "directory": "steamclient",
+      "dependencies": [],
+      "files": [
+    		"steammessages_base.proto",
+    		"content_manifest.proto",
+    		"encrypted_app_ticket.proto",
+    		"steammessages_clientserver.proto",
+    		"steammessages_clientserver_2.proto"
+      ]
+    },
+    {
+      "name": "protobuf/unified",
+      "directory": "steamclient",
+      "dependencies": [],
+      "files": [
+    		"steammessages_unified_base.steamclient.proto",
+    		"steammessages_broadcast.steamclient.proto",
+    		"steammessages_cloud.steamclient.proto",
+    		"steammessages_credentials.steamclient.proto",
+    		"steammessages_depotbuilder.steamclient.proto",
+    		"steammessages_deviceauth.steamclient.proto",
+    		"steammessages_econ.steamclient.proto",
+    		"steammessages_gamenotifications.steamclient.proto",
+    		"steammessages_gameservers.steamclient.proto",
+    		"steammessages_inventory.steamclient.proto",
+    		"steammessages_linkfilter.steamclient.proto",
+    		"steammessages_offline.steamclient.proto",
+    		"steammessages_parental.steamclient.proto",
+    		"steammessages_partnerapps.steamclient.proto",
+    		"steammessages_player.steamclient.proto",
+    		"steammessages_publishedfile.steamclient.proto",
+    		"steammessages_secrets.steamclient.proto",
+    		"steammessages_twofactor.steamclient.proto",
+    		"steammessages_video.steamclient.proto"
+      ]
+    },
+    {
+      "name": "protobuf/unified/steamworks",
+      "directory": "dota",
+      "dependencies": [],
+      "files": [
+        "steammessages_unified_base.steamworkssdk.proto",
+    		"steammessages_oauth.steamworkssdk.proto"
+      ]
+    },
+    {
+      "name": "protobuf/gc",
+      "directory": "dota",
+      "dependencies": [],
+      "files": [
+    		"steammessages.proto",
+    		"gcsystemmsgs.proto",
+    		"base_gcmessages.proto",
+    		"gcsdk_gcmessages.proto",
+    		"econ_gcmessages.proto"
+      ]
+    },
+    {
+      "name": "protobuf/gc/csgo",
+      "directory": "csgo",
+      "dependencies": [],
+      "files": [
+        "steammessages.proto",
+    		"cstrike15_gcmessages.proto"
+      ]
+    },
+    {
+      "name": "protobuf/gc/dota",
+      "directory": "dota",
+      "dependencies": [
+        "protobuf/gc"
+      ],
+      "files": [
+    		"network_connection.proto",
+    		"dota_gcmessages_common.proto",
+    		"dota_gcmessages_client.proto",
+    		"dota_gcmessages_client_fantasy.proto",
+    		"dota_gcmessages_server.proto"
+      ]
+    },
+    {
+      "name": "protobuf/gc/tf2",
+      "directory": "tf",
+      "dependencies": [],
+      "files": [
+        "steammessages.proto",
+    		"base_gcmessages.proto",
+    		"tf_gcmessages.proto"
+      ]
+    }
+  ]
+}
