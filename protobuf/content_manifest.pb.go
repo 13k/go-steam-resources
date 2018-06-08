@@ -12,15 +12,42 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the proto package it is being compiled against.
+// A compilation error at this line likely means your copy of the
+// proto package needs to be updated.
+const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+
 type ContentManifestPayload struct {
-	Mappings         []*ContentManifestPayload_FileMapping `protobuf:"bytes,1,rep,name=mappings" json:"mappings,omitempty"`
-	XXX_unrecognized []byte                                `json:"-"`
+	Mappings             []*ContentManifestPayload_FileMapping `protobuf:"bytes,1,rep,name=mappings" json:"mappings,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                              `json:"-"`
+	XXX_unrecognized     []byte                                `json:"-"`
+	XXX_sizecache        int32                                 `json:"-"`
 }
 
-func (m *ContentManifestPayload) Reset()                    { *m = ContentManifestPayload{} }
-func (m *ContentManifestPayload) String() string            { return proto.CompactTextString(m) }
-func (*ContentManifestPayload) ProtoMessage()               {}
-func (*ContentManifestPayload) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{0} }
+func (m *ContentManifestPayload) Reset()         { *m = ContentManifestPayload{} }
+func (m *ContentManifestPayload) String() string { return proto.CompactTextString(m) }
+func (*ContentManifestPayload) ProtoMessage()    {}
+func (*ContentManifestPayload) Descriptor() ([]byte, []int) {
+	return fileDescriptor_content_manifest_7dacac74566c89a6, []int{0}
+}
+func (m *ContentManifestPayload) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ContentManifestPayload.Unmarshal(m, b)
+}
+func (m *ContentManifestPayload) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ContentManifestPayload.Marshal(b, m, deterministic)
+}
+func (dst *ContentManifestPayload) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ContentManifestPayload.Merge(dst, src)
+}
+func (m *ContentManifestPayload) XXX_Size() int {
+	return xxx_messageInfo_ContentManifestPayload.Size(m)
+}
+func (m *ContentManifestPayload) XXX_DiscardUnknown() {
+	xxx_messageInfo_ContentManifestPayload.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ContentManifestPayload proto.InternalMessageInfo
 
 func (m *ContentManifestPayload) GetMappings() []*ContentManifestPayload_FileMapping {
 	if m != nil {
@@ -30,22 +57,41 @@ func (m *ContentManifestPayload) GetMappings() []*ContentManifestPayload_FileMap
 }
 
 type ContentManifestPayload_FileMapping struct {
-	Filename         *string                                         `protobuf:"bytes,1,opt,name=filename" json:"filename,omitempty"`
-	Size             *uint64                                         `protobuf:"varint,2,opt,name=size" json:"size,omitempty"`
-	Flags            *uint32                                         `protobuf:"varint,3,opt,name=flags" json:"flags,omitempty"`
-	ShaFilename      []byte                                          `protobuf:"bytes,4,opt,name=sha_filename,json=shaFilename" json:"sha_filename,omitempty"`
-	ShaContent       []byte                                          `protobuf:"bytes,5,opt,name=sha_content,json=shaContent" json:"sha_content,omitempty"`
-	Chunks           []*ContentManifestPayload_FileMapping_ChunkData `protobuf:"bytes,6,rep,name=chunks" json:"chunks,omitempty"`
-	Linktarget       *string                                         `protobuf:"bytes,7,opt,name=linktarget" json:"linktarget,omitempty"`
-	XXX_unrecognized []byte                                          `json:"-"`
+	Filename             *string                                         `protobuf:"bytes,1,opt,name=filename" json:"filename,omitempty"`
+	Size                 *uint64                                         `protobuf:"varint,2,opt,name=size" json:"size,omitempty"`
+	Flags                *uint32                                         `protobuf:"varint,3,opt,name=flags" json:"flags,omitempty"`
+	ShaFilename          []byte                                          `protobuf:"bytes,4,opt,name=sha_filename,json=shaFilename" json:"sha_filename,omitempty"`
+	ShaContent           []byte                                          `protobuf:"bytes,5,opt,name=sha_content,json=shaContent" json:"sha_content,omitempty"`
+	Chunks               []*ContentManifestPayload_FileMapping_ChunkData `protobuf:"bytes,6,rep,name=chunks" json:"chunks,omitempty"`
+	Linktarget           *string                                         `protobuf:"bytes,7,opt,name=linktarget" json:"linktarget,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                                        `json:"-"`
+	XXX_unrecognized     []byte                                          `json:"-"`
+	XXX_sizecache        int32                                           `json:"-"`
 }
 
 func (m *ContentManifestPayload_FileMapping) Reset()         { *m = ContentManifestPayload_FileMapping{} }
 func (m *ContentManifestPayload_FileMapping) String() string { return proto.CompactTextString(m) }
 func (*ContentManifestPayload_FileMapping) ProtoMessage()    {}
 func (*ContentManifestPayload_FileMapping) Descriptor() ([]byte, []int) {
-	return fileDescriptor1, []int{0, 0}
+	return fileDescriptor_content_manifest_7dacac74566c89a6, []int{0, 0}
 }
+func (m *ContentManifestPayload_FileMapping) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ContentManifestPayload_FileMapping.Unmarshal(m, b)
+}
+func (m *ContentManifestPayload_FileMapping) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ContentManifestPayload_FileMapping.Marshal(b, m, deterministic)
+}
+func (dst *ContentManifestPayload_FileMapping) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ContentManifestPayload_FileMapping.Merge(dst, src)
+}
+func (m *ContentManifestPayload_FileMapping) XXX_Size() int {
+	return xxx_messageInfo_ContentManifestPayload_FileMapping.Size(m)
+}
+func (m *ContentManifestPayload_FileMapping) XXX_DiscardUnknown() {
+	xxx_messageInfo_ContentManifestPayload_FileMapping.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ContentManifestPayload_FileMapping proto.InternalMessageInfo
 
 func (m *ContentManifestPayload_FileMapping) GetFilename() string {
 	if m != nil && m.Filename != nil {
@@ -97,12 +143,14 @@ func (m *ContentManifestPayload_FileMapping) GetLinktarget() string {
 }
 
 type ContentManifestPayload_FileMapping_ChunkData struct {
-	Sha              []byte  `protobuf:"bytes,1,opt,name=sha" json:"sha,omitempty"`
-	Crc              *uint32 `protobuf:"fixed32,2,opt,name=crc" json:"crc,omitempty"`
-	Offset           *uint64 `protobuf:"varint,3,opt,name=offset" json:"offset,omitempty"`
-	CbOriginal       *uint32 `protobuf:"varint,4,opt,name=cb_original,json=cbOriginal" json:"cb_original,omitempty"`
-	CbCompressed     *uint32 `protobuf:"varint,5,opt,name=cb_compressed,json=cbCompressed" json:"cb_compressed,omitempty"`
-	XXX_unrecognized []byte  `json:"-"`
+	Sha                  []byte   `protobuf:"bytes,1,opt,name=sha" json:"sha,omitempty"`
+	Crc                  *uint32  `protobuf:"fixed32,2,opt,name=crc" json:"crc,omitempty"`
+	Offset               *uint64  `protobuf:"varint,3,opt,name=offset" json:"offset,omitempty"`
+	CbOriginal           *uint32  `protobuf:"varint,4,opt,name=cb_original,json=cbOriginal" json:"cb_original,omitempty"`
+	CbCompressed         *uint32  `protobuf:"varint,5,opt,name=cb_compressed,json=cbCompressed" json:"cb_compressed,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *ContentManifestPayload_FileMapping_ChunkData) Reset() {
@@ -113,8 +161,25 @@ func (m *ContentManifestPayload_FileMapping_ChunkData) String() string {
 }
 func (*ContentManifestPayload_FileMapping_ChunkData) ProtoMessage() {}
 func (*ContentManifestPayload_FileMapping_ChunkData) Descriptor() ([]byte, []int) {
-	return fileDescriptor1, []int{0, 0, 0}
+	return fileDescriptor_content_manifest_7dacac74566c89a6, []int{0, 0, 0}
 }
+func (m *ContentManifestPayload_FileMapping_ChunkData) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ContentManifestPayload_FileMapping_ChunkData.Unmarshal(m, b)
+}
+func (m *ContentManifestPayload_FileMapping_ChunkData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ContentManifestPayload_FileMapping_ChunkData.Marshal(b, m, deterministic)
+}
+func (dst *ContentManifestPayload_FileMapping_ChunkData) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ContentManifestPayload_FileMapping_ChunkData.Merge(dst, src)
+}
+func (m *ContentManifestPayload_FileMapping_ChunkData) XXX_Size() int {
+	return xxx_messageInfo_ContentManifestPayload_FileMapping_ChunkData.Size(m)
+}
+func (m *ContentManifestPayload_FileMapping_ChunkData) XXX_DiscardUnknown() {
+	xxx_messageInfo_ContentManifestPayload_FileMapping_ChunkData.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ContentManifestPayload_FileMapping_ChunkData proto.InternalMessageInfo
 
 func (m *ContentManifestPayload_FileMapping_ChunkData) GetSha() []byte {
 	if m != nil {
@@ -152,22 +217,43 @@ func (m *ContentManifestPayload_FileMapping_ChunkData) GetCbCompressed() uint32 
 }
 
 type ContentManifestMetadata struct {
-	DepotId            *uint32 `protobuf:"varint,1,opt,name=depot_id,json=depotId" json:"depot_id,omitempty"`
-	GidManifest        *uint64 `protobuf:"varint,2,opt,name=gid_manifest,json=gidManifest" json:"gid_manifest,omitempty"`
-	CreationTime       *uint32 `protobuf:"varint,3,opt,name=creation_time,json=creationTime" json:"creation_time,omitempty"`
-	FilenamesEncrypted *bool   `protobuf:"varint,4,opt,name=filenames_encrypted,json=filenamesEncrypted" json:"filenames_encrypted,omitempty"`
-	CbDiskOriginal     *uint64 `protobuf:"varint,5,opt,name=cb_disk_original,json=cbDiskOriginal" json:"cb_disk_original,omitempty"`
-	CbDiskCompressed   *uint64 `protobuf:"varint,6,opt,name=cb_disk_compressed,json=cbDiskCompressed" json:"cb_disk_compressed,omitempty"`
-	UniqueChunks       *uint32 `protobuf:"varint,7,opt,name=unique_chunks,json=uniqueChunks" json:"unique_chunks,omitempty"`
-	CrcEncrypted       *uint32 `protobuf:"varint,8,opt,name=crc_encrypted,json=crcEncrypted" json:"crc_encrypted,omitempty"`
-	CrcClear           *uint32 `protobuf:"varint,9,opt,name=crc_clear,json=crcClear" json:"crc_clear,omitempty"`
-	XXX_unrecognized   []byte  `json:"-"`
+	DepotId              *uint32  `protobuf:"varint,1,opt,name=depot_id,json=depotId" json:"depot_id,omitempty"`
+	GidManifest          *uint64  `protobuf:"varint,2,opt,name=gid_manifest,json=gidManifest" json:"gid_manifest,omitempty"`
+	CreationTime         *uint32  `protobuf:"varint,3,opt,name=creation_time,json=creationTime" json:"creation_time,omitempty"`
+	FilenamesEncrypted   *bool    `protobuf:"varint,4,opt,name=filenames_encrypted,json=filenamesEncrypted" json:"filenames_encrypted,omitempty"`
+	CbDiskOriginal       *uint64  `protobuf:"varint,5,opt,name=cb_disk_original,json=cbDiskOriginal" json:"cb_disk_original,omitempty"`
+	CbDiskCompressed     *uint64  `protobuf:"varint,6,opt,name=cb_disk_compressed,json=cbDiskCompressed" json:"cb_disk_compressed,omitempty"`
+	UniqueChunks         *uint32  `protobuf:"varint,7,opt,name=unique_chunks,json=uniqueChunks" json:"unique_chunks,omitempty"`
+	CrcEncrypted         *uint32  `protobuf:"varint,8,opt,name=crc_encrypted,json=crcEncrypted" json:"crc_encrypted,omitempty"`
+	CrcClear             *uint32  `protobuf:"varint,9,opt,name=crc_clear,json=crcClear" json:"crc_clear,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ContentManifestMetadata) Reset()                    { *m = ContentManifestMetadata{} }
-func (m *ContentManifestMetadata) String() string            { return proto.CompactTextString(m) }
-func (*ContentManifestMetadata) ProtoMessage()               {}
-func (*ContentManifestMetadata) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{1} }
+func (m *ContentManifestMetadata) Reset()         { *m = ContentManifestMetadata{} }
+func (m *ContentManifestMetadata) String() string { return proto.CompactTextString(m) }
+func (*ContentManifestMetadata) ProtoMessage()    {}
+func (*ContentManifestMetadata) Descriptor() ([]byte, []int) {
+	return fileDescriptor_content_manifest_7dacac74566c89a6, []int{1}
+}
+func (m *ContentManifestMetadata) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ContentManifestMetadata.Unmarshal(m, b)
+}
+func (m *ContentManifestMetadata) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ContentManifestMetadata.Marshal(b, m, deterministic)
+}
+func (dst *ContentManifestMetadata) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ContentManifestMetadata.Merge(dst, src)
+}
+func (m *ContentManifestMetadata) XXX_Size() int {
+	return xxx_messageInfo_ContentManifestMetadata.Size(m)
+}
+func (m *ContentManifestMetadata) XXX_DiscardUnknown() {
+	xxx_messageInfo_ContentManifestMetadata.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ContentManifestMetadata proto.InternalMessageInfo
 
 func (m *ContentManifestMetadata) GetDepotId() uint32 {
 	if m != nil && m.DepotId != nil {
@@ -233,14 +319,35 @@ func (m *ContentManifestMetadata) GetCrcClear() uint32 {
 }
 
 type ContentManifestSignature struct {
-	Signature        []byte `protobuf:"bytes,1,opt,name=signature" json:"signature,omitempty"`
-	XXX_unrecognized []byte `json:"-"`
+	Signature            []byte   `protobuf:"bytes,1,opt,name=signature" json:"signature,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ContentManifestSignature) Reset()                    { *m = ContentManifestSignature{} }
-func (m *ContentManifestSignature) String() string            { return proto.CompactTextString(m) }
-func (*ContentManifestSignature) ProtoMessage()               {}
-func (*ContentManifestSignature) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{2} }
+func (m *ContentManifestSignature) Reset()         { *m = ContentManifestSignature{} }
+func (m *ContentManifestSignature) String() string { return proto.CompactTextString(m) }
+func (*ContentManifestSignature) ProtoMessage()    {}
+func (*ContentManifestSignature) Descriptor() ([]byte, []int) {
+	return fileDescriptor_content_manifest_7dacac74566c89a6, []int{2}
+}
+func (m *ContentManifestSignature) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ContentManifestSignature.Unmarshal(m, b)
+}
+func (m *ContentManifestSignature) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ContentManifestSignature.Marshal(b, m, deterministic)
+}
+func (dst *ContentManifestSignature) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ContentManifestSignature.Merge(dst, src)
+}
+func (m *ContentManifestSignature) XXX_Size() int {
+	return xxx_messageInfo_ContentManifestSignature.Size(m)
+}
+func (m *ContentManifestSignature) XXX_DiscardUnknown() {
+	xxx_messageInfo_ContentManifestSignature.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ContentManifestSignature proto.InternalMessageInfo
 
 func (m *ContentManifestSignature) GetSignature() []byte {
 	if m != nil {
@@ -257,9 +364,11 @@ func init() {
 	proto.RegisterType((*ContentManifestSignature)(nil), "ContentManifestSignature")
 }
 
-func init() { proto.RegisterFile("content_manifest.proto", fileDescriptor1) }
+func init() {
+	proto.RegisterFile("content_manifest.proto", fileDescriptor_content_manifest_7dacac74566c89a6)
+}
 
-var fileDescriptor1 = []byte{
+var fileDescriptor_content_manifest_7dacac74566c89a6 = []byte{
 	// 518 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x92, 0xcf, 0x8e, 0xd3, 0x30,
 	0x10, 0xc6, 0xc9, 0xf6, 0x5f, 0x3a, 0x6d, 0x51, 0x65, 0x50, 0x09, 0x05, 0x41, 0xe9, 0x5e, 0x72,

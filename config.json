@@ -58,6 +58,8 @@
     		"gcsystemmsgs.proto",
     		"base_gcmessages.proto",
     		"gcsdk_gcmessages.proto",
+        "econ_shared_enums.proto",
+        "dota_shared_enums.proto",
     		"econ_gcmessages.proto"
       ]
     },
@@ -67,6 +69,8 @@
       "dependencies": [],
       "files": [
         "steammessages.proto",
+        "gcsdk_gcmessages.proto",
+        "engine_gcmessages.proto",
     		"cstrike15_gcmessages.proto"
       ]
     },
@@ -79,6 +83,7 @@
       "files": [
     		"network_connection.proto",
     		"dota_gcmessages_common.proto",
+        "dota_gcmessages_common_match_management.proto",
     		"dota_gcmessages_client.proto",
     		"dota_gcmessages_client_fantasy.proto",
     		"dota_gcmessages_server.proto"

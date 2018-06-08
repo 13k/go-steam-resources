@@ -6,24 +6,48 @@ package unified
 import proto "github.com/golang/protobuf/proto"
 import fmt "fmt"
 import math "math"
-import _ "github.com/golang/protobuf/protoc-gen-go/descriptor"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the proto package it is being compiled against.
+// A compilation error at this line likely means your copy of the
+// proto package needs to be updated.
+const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+
 type CPlayer_GetGameBadgeLevels_Request struct {
-	Appid            *uint32 `protobuf:"varint,1,opt,name=appid" json:"appid,omitempty"`
-	XXX_unrecognized []byte  `json:"-"`
+	Appid                *uint32  `protobuf:"varint,1,opt,name=appid" json:"appid,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *CPlayer_GetGameBadgeLevels_Request) Reset()         { *m = CPlayer_GetGameBadgeLevels_Request{} }
 func (m *CPlayer_GetGameBadgeLevels_Request) String() string { return proto.CompactTextString(m) }
 func (*CPlayer_GetGameBadgeLevels_Request) ProtoMessage()    {}
 func (*CPlayer_GetGameBadgeLevels_Request) Descriptor() ([]byte, []int) {
-	return fileDescriptor14, []int{0}
+	return fileDescriptor_steammessages_player_steamclient_ff99e41a8f6fddb4, []int{0}
 }
+func (m *CPlayer_GetGameBadgeLevels_Request) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CPlayer_GetGameBadgeLevels_Request.Unmarshal(m, b)
+}
+func (m *CPlayer_GetGameBadgeLevels_Request) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CPlayer_GetGameBadgeLevels_Request.Marshal(b, m, deterministic)
+}
+func (dst *CPlayer_GetGameBadgeLevels_Request) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CPlayer_GetGameBadgeLevels_Request.Merge(dst, src)
+}
+func (m *CPlayer_GetGameBadgeLevels_Request) XXX_Size() int {
+	return xxx_messageInfo_CPlayer_GetGameBadgeLevels_Request.Size(m)
+}
+func (m *CPlayer_GetGameBadgeLevels_Request) XXX_DiscardUnknown() {
+	xxx_messageInfo_CPlayer_GetGameBadgeLevels_Request.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CPlayer_GetGameBadgeLevels_Request proto.InternalMessageInfo
 
 func (m *CPlayer_GetGameBadgeLevels_Request) GetAppid() uint32 {
 	if m != nil && m.Appid != nil {
@@ -33,17 +57,36 @@ func (m *CPlayer_GetGameBadgeLevels_Request) GetAppid() uint32 {
 }
 
 type CPlayer_GetGameBadgeLevels_Response struct {
-	PlayerLevel      *uint32                                      `protobuf:"varint,1,opt,name=player_level,json=playerLevel" json:"player_level,omitempty"`
-	Badges           []*CPlayer_GetGameBadgeLevels_Response_Badge `protobuf:"bytes,2,rep,name=badges" json:"badges,omitempty"`
-	XXX_unrecognized []byte                                       `json:"-"`
+	PlayerLevel          *uint32                                      `protobuf:"varint,1,opt,name=player_level,json=playerLevel" json:"player_level,omitempty"`
+	Badges               []*CPlayer_GetGameBadgeLevels_Response_Badge `protobuf:"bytes,2,rep,name=badges" json:"badges,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                                     `json:"-"`
+	XXX_unrecognized     []byte                                       `json:"-"`
+	XXX_sizecache        int32                                        `json:"-"`
 }
 
 func (m *CPlayer_GetGameBadgeLevels_Response) Reset()         { *m = CPlayer_GetGameBadgeLevels_Response{} }
 func (m *CPlayer_GetGameBadgeLevels_Response) String() string { return proto.CompactTextString(m) }
 func (*CPlayer_GetGameBadgeLevels_Response) ProtoMessage()    {}
 func (*CPlayer_GetGameBadgeLevels_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor14, []int{1}
+	return fileDescriptor_steammessages_player_steamclient_ff99e41a8f6fddb4, []int{1}
 }
+func (m *CPlayer_GetGameBadgeLevels_Response) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CPlayer_GetGameBadgeLevels_Response.Unmarshal(m, b)
+}
+func (m *CPlayer_GetGameBadgeLevels_Response) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CPlayer_GetGameBadgeLevels_Response.Marshal(b, m, deterministic)
+}
+func (dst *CPlayer_GetGameBadgeLevels_Response) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CPlayer_GetGameBadgeLevels_Response.Merge(dst, src)
+}
+func (m *CPlayer_GetGameBadgeLevels_Response) XXX_Size() int {
+	return xxx_messageInfo_CPlayer_GetGameBadgeLevels_Response.Size(m)
+}
+func (m *CPlayer_GetGameBadgeLevels_Response) XXX_DiscardUnknown() {
+	xxx_messageInfo_CPlayer_GetGameBadgeLevels_Response.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CPlayer_GetGameBadgeLevels_Response proto.InternalMessageInfo
 
 func (m *CPlayer_GetGameBadgeLevels_Response) GetPlayerLevel() uint32 {
 	if m != nil && m.PlayerLevel != nil {
@@ -60,10 +103,12 @@ func (m *CPlayer_GetGameBadgeLevels_Response) GetBadges() []*CPlayer_GetGameBadg
 }
 
 type CPlayer_GetGameBadgeLevels_Response_Badge struct {
-	Level            *int32  `protobuf:"varint,1,opt,name=level" json:"level,omitempty"`
-	Series           *int32  `protobuf:"varint,2,opt,name=series" json:"series,omitempty"`
-	BorderColor      *uint32 `protobuf:"varint,3,opt,name=border_color,json=borderColor" json:"border_color,omitempty"`
-	XXX_unrecognized []byte  `json:"-"`
+	Level                *int32   `protobuf:"varint,1,opt,name=level" json:"level,omitempty"`
+	Series               *int32   `protobuf:"varint,2,opt,name=series" json:"series,omitempty"`
+	BorderColor          *uint32  `protobuf:"varint,3,opt,name=border_color,json=borderColor" json:"border_color,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *CPlayer_GetGameBadgeLevels_Response_Badge) Reset() {
@@ -72,8 +117,25 @@ func (m *CPlayer_GetGameBadgeLevels_Response_Badge) Reset() {
 func (m *CPlayer_GetGameBadgeLevels_Response_Badge) String() string { return proto.CompactTextString(m) }
 func (*CPlayer_GetGameBadgeLevels_Response_Badge) ProtoMessage()    {}
 func (*CPlayer_GetGameBadgeLevels_Response_Badge) Descriptor() ([]byte, []int) {
-	return fileDescriptor14, []int{1, 0}
+	return fileDescriptor_steammessages_player_steamclient_ff99e41a8f6fddb4, []int{1, 0}
 }
+func (m *CPlayer_GetGameBadgeLevels_Response_Badge) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CPlayer_GetGameBadgeLevels_Response_Badge.Unmarshal(m, b)
+}
+func (m *CPlayer_GetGameBadgeLevels_Response_Badge) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CPlayer_GetGameBadgeLevels_Response_Badge.Marshal(b, m, deterministic)
+}
+func (dst *CPlayer_GetGameBadgeLevels_Response_Badge) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CPlayer_GetGameBadgeLevels_Response_Badge.Merge(dst, src)
+}
+func (m *CPlayer_GetGameBadgeLevels_Response_Badge) XXX_Size() int {
+	return xxx_messageInfo_CPlayer_GetGameBadgeLevels_Response_Badge.Size(m)
+}
+func (m *CPlayer_GetGameBadgeLevels_Response_Badge) XXX_DiscardUnknown() {
+	xxx_messageInfo_CPlayer_GetGameBadgeLevels_Response_Badge.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CPlayer_GetGameBadgeLevels_Response_Badge proto.InternalMessageInfo
 
 func (m *CPlayer_GetGameBadgeLevels_Response_Badge) GetLevel() int32 {
 	if m != nil && m.Level != nil {
@@ -97,16 +159,35 @@ func (m *CPlayer_GetGameBadgeLevels_Response_Badge) GetBorderColor() uint32 {
 }
 
 type CPlayer_GetLastPlayedTimes_Request struct {
-	MinLastPlayed    *uint32 `protobuf:"varint,1,opt,name=min_last_played,json=minLastPlayed" json:"min_last_played,omitempty"`
-	XXX_unrecognized []byte  `json:"-"`
+	MinLastPlayed        *uint32  `protobuf:"varint,1,opt,name=min_last_played,json=minLastPlayed" json:"min_last_played,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *CPlayer_GetLastPlayedTimes_Request) Reset()         { *m = CPlayer_GetLastPlayedTimes_Request{} }
 func (m *CPlayer_GetLastPlayedTimes_Request) String() string { return proto.CompactTextString(m) }
 func (*CPlayer_GetLastPlayedTimes_Request) ProtoMessage()    {}
 func (*CPlayer_GetLastPlayedTimes_Request) Descriptor() ([]byte, []int) {
-	return fileDescriptor14, []int{2}
+	return fileDescriptor_steammessages_player_steamclient_ff99e41a8f6fddb4, []int{2}
 }
+func (m *CPlayer_GetLastPlayedTimes_Request) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CPlayer_GetLastPlayedTimes_Request.Unmarshal(m, b)
+}
+func (m *CPlayer_GetLastPlayedTimes_Request) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CPlayer_GetLastPlayedTimes_Request.Marshal(b, m, deterministic)
+}
+func (dst *CPlayer_GetLastPlayedTimes_Request) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CPlayer_GetLastPlayedTimes_Request.Merge(dst, src)
+}
+func (m *CPlayer_GetLastPlayedTimes_Request) XXX_Size() int {
+	return xxx_messageInfo_CPlayer_GetLastPlayedTimes_Request.Size(m)
+}
+func (m *CPlayer_GetLastPlayedTimes_Request) XXX_DiscardUnknown() {
+	xxx_messageInfo_CPlayer_GetLastPlayedTimes_Request.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CPlayer_GetLastPlayedTimes_Request proto.InternalMessageInfo
 
 func (m *CPlayer_GetLastPlayedTimes_Request) GetMinLastPlayed() uint32 {
 	if m != nil && m.MinLastPlayed != nil {
@@ -116,16 +197,35 @@ func (m *CPlayer_GetLastPlayedTimes_Request) GetMinLastPlayed() uint32 {
 }
 
 type CPlayer_GetLastPlayedTimes_Response struct {
-	Games            []*CPlayer_GetLastPlayedTimes_Response_Game `protobuf:"bytes,1,rep,name=games" json:"games,omitempty"`
-	XXX_unrecognized []byte                                      `json:"-"`
+	Games                []*CPlayer_GetLastPlayedTimes_Response_Game `protobuf:"bytes,1,rep,name=games" json:"games,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                                    `json:"-"`
+	XXX_unrecognized     []byte                                      `json:"-"`
+	XXX_sizecache        int32                                       `json:"-"`
 }
 
 func (m *CPlayer_GetLastPlayedTimes_Response) Reset()         { *m = CPlayer_GetLastPlayedTimes_Response{} }
 func (m *CPlayer_GetLastPlayedTimes_Response) String() string { return proto.CompactTextString(m) }
 func (*CPlayer_GetLastPlayedTimes_Response) ProtoMessage()    {}
 func (*CPlayer_GetLastPlayedTimes_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor14, []int{3}
+	return fileDescriptor_steammessages_player_steamclient_ff99e41a8f6fddb4, []int{3}
 }
+func (m *CPlayer_GetLastPlayedTimes_Response) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CPlayer_GetLastPlayedTimes_Response.Unmarshal(m, b)
+}
+func (m *CPlayer_GetLastPlayedTimes_Response) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CPlayer_GetLastPlayedTimes_Response.Marshal(b, m, deterministic)
+}
+func (dst *CPlayer_GetLastPlayedTimes_Response) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CPlayer_GetLastPlayedTimes_Response.Merge(dst, src)
+}
+func (m *CPlayer_GetLastPlayedTimes_Response) XXX_Size() int {
+	return xxx_messageInfo_CPlayer_GetLastPlayedTimes_Response.Size(m)
+}
+func (m *CPlayer_GetLastPlayedTimes_Response) XXX_DiscardUnknown() {
+	xxx_messageInfo_CPlayer_GetLastPlayedTimes_Response.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CPlayer_GetLastPlayedTimes_Response proto.InternalMessageInfo
 
 func (m *CPlayer_GetLastPlayedTimes_Response) GetGames() []*CPlayer_GetLastPlayedTimes_Response_Game {
 	if m != nil {
@@ -135,11 +235,13 @@ func (m *CPlayer_GetLastPlayedTimes_Response) GetGames() []*CPlayer_GetLastPlaye
 }
 
 type CPlayer_GetLastPlayedTimes_Response_Game struct {
-	Appid            *int32  `protobuf:"varint,1,opt,name=appid" json:"appid,omitempty"`
-	LastPlaytime     *uint32 `protobuf:"varint,2,opt,name=last_playtime,json=lastPlaytime" json:"last_playtime,omitempty"`
-	Playtime_2Weeks  *int32  `protobuf:"varint,3,opt,name=playtime_2weeks,json=playtime2weeks" json:"playtime_2weeks,omitempty"`
-	PlaytimeForever  *int32  `protobuf:"varint,4,opt,name=playtime_forever,json=playtimeForever" json:"playtime_forever,omitempty"`
-	XXX_unrecognized []byte  `json:"-"`
+	Appid                *int32   `protobuf:"varint,1,opt,name=appid" json:"appid,omitempty"`
+	LastPlaytime         *uint32  `protobuf:"varint,2,opt,name=last_playtime,json=lastPlaytime" json:"last_playtime,omitempty"`
+	Playtime_2Weeks      *int32   `protobuf:"varint,3,opt,name=playtime_2weeks,json=playtime2weeks" json:"playtime_2weeks,omitempty"`
+	PlaytimeForever      *int32   `protobuf:"varint,4,opt,name=playtime_forever,json=playtimeForever" json:"playtime_forever,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *CPlayer_GetLastPlayedTimes_Response_Game) Reset() {
@@ -148,8 +250,25 @@ func (m *CPlayer_GetLastPlayedTimes_Response_Game) Reset() {
 func (m *CPlayer_GetLastPlayedTimes_Response_Game) String() string { return proto.CompactTextString(m) }
 func (*CPlayer_GetLastPlayedTimes_Response_Game) ProtoMessage()    {}
 func (*CPlayer_GetLastPlayedTimes_Response_Game) Descriptor() ([]byte, []int) {
-	return fileDescriptor14, []int{3, 0}
+	return fileDescriptor_steammessages_player_steamclient_ff99e41a8f6fddb4, []int{3, 0}
 }
+func (m *CPlayer_GetLastPlayedTimes_Response_Game) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CPlayer_GetLastPlayedTimes_Response_Game.Unmarshal(m, b)
+}
+func (m *CPlayer_GetLastPlayedTimes_Response_Game) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CPlayer_GetLastPlayedTimes_Response_Game.Marshal(b, m, deterministic)
+}
+func (dst *CPlayer_GetLastPlayedTimes_Response_Game) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CPlayer_GetLastPlayedTimes_Response_Game.Merge(dst, src)
+}
+func (m *CPlayer_GetLastPlayedTimes_Response_Game) XXX_Size() int {
+	return xxx_messageInfo_CPlayer_GetLastPlayedTimes_Response_Game.Size(m)
+}
+func (m *CPlayer_GetLastPlayedTimes_Response_Game) XXX_DiscardUnknown() {
+	xxx_messageInfo_CPlayer_GetLastPlayedTimes_Response_Game.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CPlayer_GetLastPlayedTimes_Response_Game proto.InternalMessageInfo
 
 func (m *CPlayer_GetLastPlayedTimes_Response_Game) GetAppid() int32 {
 	if m != nil && m.Appid != nil {
@@ -180,34 +299,213 @@ func (m *CPlayer_GetLastPlayedTimes_Response_Game) GetPlaytimeForever() int32 {
 }
 
 type CPlayer_AcceptSSA_Request struct {
-	XXX_unrecognized []byte `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *CPlayer_AcceptSSA_Request) Reset()                    { *m = CPlayer_AcceptSSA_Request{} }
-func (m *CPlayer_AcceptSSA_Request) String() string            { return proto.CompactTextString(m) }
-func (*CPlayer_AcceptSSA_Request) ProtoMessage()               {}
-func (*CPlayer_AcceptSSA_Request) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{4} }
+func (m *CPlayer_AcceptSSA_Request) Reset()         { *m = CPlayer_AcceptSSA_Request{} }
+func (m *CPlayer_AcceptSSA_Request) String() string { return proto.CompactTextString(m) }
+func (*CPlayer_AcceptSSA_Request) ProtoMessage()    {}
+func (*CPlayer_AcceptSSA_Request) Descriptor() ([]byte, []int) {
+	return fileDescriptor_steammessages_player_steamclient_ff99e41a8f6fddb4, []int{4}
+}
+func (m *CPlayer_AcceptSSA_Request) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CPlayer_AcceptSSA_Request.Unmarshal(m, b)
+}
+func (m *CPlayer_AcceptSSA_Request) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CPlayer_AcceptSSA_Request.Marshal(b, m, deterministic)
+}
+func (dst *CPlayer_AcceptSSA_Request) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CPlayer_AcceptSSA_Request.Merge(dst, src)
+}
+func (m *CPlayer_AcceptSSA_Request) XXX_Size() int {
+	return xxx_messageInfo_CPlayer_AcceptSSA_Request.Size(m)
+}
+func (m *CPlayer_AcceptSSA_Request) XXX_DiscardUnknown() {
+	xxx_messageInfo_CPlayer_AcceptSSA_Request.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CPlayer_AcceptSSA_Request proto.InternalMessageInfo
 
 type CPlayer_AcceptSSA_Response struct {
-	XXX_unrecognized []byte `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *CPlayer_AcceptSSA_Response) Reset()                    { *m = CPlayer_AcceptSSA_Response{} }
-func (m *CPlayer_AcceptSSA_Response) String() string            { return proto.CompactTextString(m) }
-func (*CPlayer_AcceptSSA_Response) ProtoMessage()               {}
-func (*CPlayer_AcceptSSA_Response) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{5} }
+func (m *CPlayer_AcceptSSA_Response) Reset()         { *m = CPlayer_AcceptSSA_Response{} }
+func (m *CPlayer_AcceptSSA_Response) String() string { return proto.CompactTextString(m) }
+func (*CPlayer_AcceptSSA_Response) ProtoMessage()    {}
+func (*CPlayer_AcceptSSA_Response) Descriptor() ([]byte, []int) {
+	return fileDescriptor_steammessages_player_steamclient_ff99e41a8f6fddb4, []int{5}
+}
+func (m *CPlayer_AcceptSSA_Response) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CPlayer_AcceptSSA_Response.Unmarshal(m, b)
+}
+func (m *CPlayer_AcceptSSA_Response) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CPlayer_AcceptSSA_Response.Marshal(b, m, deterministic)
+}
+func (dst *CPlayer_AcceptSSA_Response) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CPlayer_AcceptSSA_Response.Merge(dst, src)
+}
+func (m *CPlayer_AcceptSSA_Response) XXX_Size() int {
+	return xxx_messageInfo_CPlayer_AcceptSSA_Response.Size(m)
+}
+func (m *CPlayer_AcceptSSA_Response) XXX_DiscardUnknown() {
+	xxx_messageInfo_CPlayer_AcceptSSA_Response.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CPlayer_AcceptSSA_Response proto.InternalMessageInfo
+
+type CPlayer_GetNicknameList_Request struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CPlayer_GetNicknameList_Request) Reset()         { *m = CPlayer_GetNicknameList_Request{} }
+func (m *CPlayer_GetNicknameList_Request) String() string { return proto.CompactTextString(m) }
+func (*CPlayer_GetNicknameList_Request) ProtoMessage()    {}
+func (*CPlayer_GetNicknameList_Request) Descriptor() ([]byte, []int) {
+	return fileDescriptor_steammessages_player_steamclient_ff99e41a8f6fddb4, []int{6}
+}
+func (m *CPlayer_GetNicknameList_Request) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CPlayer_GetNicknameList_Request.Unmarshal(m, b)
+}
+func (m *CPlayer_GetNicknameList_Request) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CPlayer_GetNicknameList_Request.Marshal(b, m, deterministic)
+}
+func (dst *CPlayer_GetNicknameList_Request) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CPlayer_GetNicknameList_Request.Merge(dst, src)
+}
+func (m *CPlayer_GetNicknameList_Request) XXX_Size() int {
+	return xxx_messageInfo_CPlayer_GetNicknameList_Request.Size(m)
+}
+func (m *CPlayer_GetNicknameList_Request) XXX_DiscardUnknown() {
+	xxx_messageInfo_CPlayer_GetNicknameList_Request.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CPlayer_GetNicknameList_Request proto.InternalMessageInfo
+
+type CPlayer_GetNicknameList_Response struct {
+	Nicknames            []*CPlayer_GetNicknameList_Response_PlayerNickname `protobuf:"bytes,1,rep,name=nicknames" json:"nicknames,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                                           `json:"-"`
+	XXX_unrecognized     []byte                                             `json:"-"`
+	XXX_sizecache        int32                                              `json:"-"`
+}
+
+func (m *CPlayer_GetNicknameList_Response) Reset()         { *m = CPlayer_GetNicknameList_Response{} }
+func (m *CPlayer_GetNicknameList_Response) String() string { return proto.CompactTextString(m) }
+func (*CPlayer_GetNicknameList_Response) ProtoMessage()    {}
+func (*CPlayer_GetNicknameList_Response) Descriptor() ([]byte, []int) {
+	return fileDescriptor_steammessages_player_steamclient_ff99e41a8f6fddb4, []int{7}
+}
+func (m *CPlayer_GetNicknameList_Response) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CPlayer_GetNicknameList_Response.Unmarshal(m, b)
+}
+func (m *CPlayer_GetNicknameList_Response) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CPlayer_GetNicknameList_Response.Marshal(b, m, deterministic)
+}
+func (dst *CPlayer_GetNicknameList_Response) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CPlayer_GetNicknameList_Response.Merge(dst, src)
+}
+func (m *CPlayer_GetNicknameList_Response) XXX_Size() int {
+	return xxx_messageInfo_CPlayer_GetNicknameList_Response.Size(m)
+}
+func (m *CPlayer_GetNicknameList_Response) XXX_DiscardUnknown() {
+	xxx_messageInfo_CPlayer_GetNicknameList_Response.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CPlayer_GetNicknameList_Response proto.InternalMessageInfo
+
+func (m *CPlayer_GetNicknameList_Response) GetNicknames() []*CPlayer_GetNicknameList_Response_PlayerNickname {
+	if m != nil {
+		return m.Nicknames
+	}
+	return nil
+}
+
+type CPlayer_GetNicknameList_Response_PlayerNickname struct {
+	Accountid            *uint32  `protobuf:"fixed32,1,opt,name=accountid" json:"accountid,omitempty"`
+	Nickname             *string  `protobuf:"bytes,2,opt,name=nickname" json:"nickname,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CPlayer_GetNicknameList_Response_PlayerNickname) Reset() {
+	*m = CPlayer_GetNicknameList_Response_PlayerNickname{}
+}
+func (m *CPlayer_GetNicknameList_Response_PlayerNickname) String() string {
+	return proto.CompactTextString(m)
+}
+func (*CPlayer_GetNicknameList_Response_PlayerNickname) ProtoMessage() {}
+func (*CPlayer_GetNicknameList_Response_PlayerNickname) Descriptor() ([]byte, []int) {
+	return fileDescriptor_steammessages_player_steamclient_ff99e41a8f6fddb4, []int{7, 0}
+}
+func (m *CPlayer_GetNicknameList_Response_PlayerNickname) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CPlayer_GetNicknameList_Response_PlayerNickname.Unmarshal(m, b)
+}
+func (m *CPlayer_GetNicknameList_Response_PlayerNickname) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CPlayer_GetNicknameList_Response_PlayerNickname.Marshal(b, m, deterministic)
+}
+func (dst *CPlayer_GetNicknameList_Response_PlayerNickname) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CPlayer_GetNicknameList_Response_PlayerNickname.Merge(dst, src)
+}
+func (m *CPlayer_GetNicknameList_Response_PlayerNickname) XXX_Size() int {
+	return xxx_messageInfo_CPlayer_GetNicknameList_Response_PlayerNickname.Size(m)
+}
+func (m *CPlayer_GetNicknameList_Response_PlayerNickname) XXX_DiscardUnknown() {
+	xxx_messageInfo_CPlayer_GetNicknameList_Response_PlayerNickname.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CPlayer_GetNicknameList_Response_PlayerNickname proto.InternalMessageInfo
+
+func (m *CPlayer_GetNicknameList_Response_PlayerNickname) GetAccountid() uint32 {
+	if m != nil && m.Accountid != nil {
+		return *m.Accountid
+	}
+	return 0
+}
+
+func (m *CPlayer_GetNicknameList_Response_PlayerNickname) GetNickname() string {
+	if m != nil && m.Nickname != nil {
+		return *m.Nickname
+	}
+	return ""
+}
 
 type CPlayer_LastPlayedTimes_Notification struct {
-	Games            []*CPlayer_GetLastPlayedTimes_Response_Game `protobuf:"bytes,1,rep,name=games" json:"games,omitempty"`
-	XXX_unrecognized []byte                                      `json:"-"`
+	Games                []*CPlayer_GetLastPlayedTimes_Response_Game `protobuf:"bytes,1,rep,name=games" json:"games,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                                    `json:"-"`
+	XXX_unrecognized     []byte                                      `json:"-"`
+	XXX_sizecache        int32                                       `json:"-"`
 }
 
 func (m *CPlayer_LastPlayedTimes_Notification) Reset()         { *m = CPlayer_LastPlayedTimes_Notification{} }
 func (m *CPlayer_LastPlayedTimes_Notification) String() string { return proto.CompactTextString(m) }
 func (*CPlayer_LastPlayedTimes_Notification) ProtoMessage()    {}
 func (*CPlayer_LastPlayedTimes_Notification) Descriptor() ([]byte, []int) {
-	return fileDescriptor14, []int{6}
+	return fileDescriptor_steammessages_player_steamclient_ff99e41a8f6fddb4, []int{8}
 }
+func (m *CPlayer_LastPlayedTimes_Notification) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CPlayer_LastPlayedTimes_Notification.Unmarshal(m, b)
+}
+func (m *CPlayer_LastPlayedTimes_Notification) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CPlayer_LastPlayedTimes_Notification.Marshal(b, m, deterministic)
+}
+func (dst *CPlayer_LastPlayedTimes_Notification) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CPlayer_LastPlayedTimes_Notification.Merge(dst, src)
+}
+func (m *CPlayer_LastPlayedTimes_Notification) XXX_Size() int {
+	return xxx_messageInfo_CPlayer_LastPlayedTimes_Notification.Size(m)
+}
+func (m *CPlayer_LastPlayedTimes_Notification) XXX_DiscardUnknown() {
+	xxx_messageInfo_CPlayer_LastPlayedTimes_Notification.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CPlayer_LastPlayedTimes_Notification proto.InternalMessageInfo
 
 func (m *CPlayer_LastPlayedTimes_Notification) GetGames() []*CPlayer_GetLastPlayedTimes_Response_Game {
 	if m != nil {
@@ -216,285 +514,54 @@ func (m *CPlayer_LastPlayedTimes_Notification) GetGames() []*CPlayer_GetLastPlay
 	return nil
 }
 
-type CPlayerClient_GetSystemInformation_Request struct {
-	XXX_unrecognized []byte `json:"-"`
+type CPlayer_FriendNicknameChanged_Notification struct {
+	Accountid            *uint32  `protobuf:"fixed32,1,opt,name=accountid" json:"accountid,omitempty"`
+	Nickname             *string  `protobuf:"bytes,2,opt,name=nickname" json:"nickname,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *CPlayerClient_GetSystemInformation_Request) Reset() {
-	*m = CPlayerClient_GetSystemInformation_Request{}
+func (m *CPlayer_FriendNicknameChanged_Notification) Reset() {
+	*m = CPlayer_FriendNicknameChanged_Notification{}
 }
-func (m *CPlayerClient_GetSystemInformation_Request) String() string {
+func (m *CPlayer_FriendNicknameChanged_Notification) String() string {
 	return proto.CompactTextString(m)
 }
-func (*CPlayerClient_GetSystemInformation_Request) ProtoMessage() {}
-func (*CPlayerClient_GetSystemInformation_Request) Descriptor() ([]byte, []int) {
-	return fileDescriptor14, []int{7}
+func (*CPlayer_FriendNicknameChanged_Notification) ProtoMessage() {}
+func (*CPlayer_FriendNicknameChanged_Notification) Descriptor() ([]byte, []int) {
+	return fileDescriptor_steammessages_player_steamclient_ff99e41a8f6fddb4, []int{9}
+}
+func (m *CPlayer_FriendNicknameChanged_Notification) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CPlayer_FriendNicknameChanged_Notification.Unmarshal(m, b)
+}
+func (m *CPlayer_FriendNicknameChanged_Notification) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CPlayer_FriendNicknameChanged_Notification.Marshal(b, m, deterministic)
+}
+func (dst *CPlayer_FriendNicknameChanged_Notification) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CPlayer_FriendNicknameChanged_Notification.Merge(dst, src)
+}
+func (m *CPlayer_FriendNicknameChanged_Notification) XXX_Size() int {
+	return xxx_messageInfo_CPlayer_FriendNicknameChanged_Notification.Size(m)
+}
+func (m *CPlayer_FriendNicknameChanged_Notification) XXX_DiscardUnknown() {
+	xxx_messageInfo_CPlayer_FriendNicknameChanged_Notification.DiscardUnknown(m)
 }
 
-type CClientSystemInfo struct {
-	Cpu                *CClientSystemInfo_CPU       `protobuf:"bytes,1,opt,name=cpu" json:"cpu,omitempty"`
-	VideoCard          *CClientSystemInfo_VideoCard `protobuf:"bytes,2,opt,name=video_card,json=videoCard" json:"video_card,omitempty"`
-	OperatingSystem    *string                      `protobuf:"bytes,3,opt,name=operating_system,json=operatingSystem" json:"operating_system,omitempty"`
-	Os_64Bit           *bool                        `protobuf:"varint,4,opt,name=os_64bit,json=os64bit" json:"os_64bit,omitempty"`
-	SystemRamMb        *int32                       `protobuf:"varint,5,opt,name=system_ram_mb,json=systemRamMb" json:"system_ram_mb,omitempty"`
-	AudioDevice        *string                      `protobuf:"bytes,6,opt,name=audio_device,json=audioDevice" json:"audio_device,omitempty"`
-	AudioDriverVersion *string                      `protobuf:"bytes,7,opt,name=audio_driver_version,json=audioDriverVersion" json:"audio_driver_version,omitempty"`
-	XXX_unrecognized   []byte                       `json:"-"`
-}
+var xxx_messageInfo_CPlayer_FriendNicknameChanged_Notification proto.InternalMessageInfo
 
-func (m *CClientSystemInfo) Reset()                    { *m = CClientSystemInfo{} }
-func (m *CClientSystemInfo) String() string            { return proto.CompactTextString(m) }
-func (*CClientSystemInfo) ProtoMessage()               {}
-func (*CClientSystemInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{8} }
-
-func (m *CClientSystemInfo) GetCpu() *CClientSystemInfo_CPU {
-	if m != nil {
-		return m.Cpu
-	}
-	return nil
-}
-
-func (m *CClientSystemInfo) GetVideoCard() *CClientSystemInfo_VideoCard {
-	if m != nil {
-		return m.VideoCard
-	}
-	return nil
-}
-
-func (m *CClientSystemInfo) GetOperatingSystem() string {
-	if m != nil && m.OperatingSystem != nil {
-		return *m.OperatingSystem
-	}
-	return ""
-}
-
-func (m *CClientSystemInfo) GetOs_64Bit() bool {
-	if m != nil && m.Os_64Bit != nil {
-		return *m.Os_64Bit
-	}
-	return false
-}
-
-func (m *CClientSystemInfo) GetSystemRamMb() int32 {
-	if m != nil && m.SystemRamMb != nil {
-		return *m.SystemRamMb
+func (m *CPlayer_FriendNicknameChanged_Notification) GetAccountid() uint32 {
+	if m != nil && m.Accountid != nil {
+		return *m.Accountid
 	}
 	return 0
 }
 
-func (m *CClientSystemInfo) GetAudioDevice() string {
-	if m != nil && m.AudioDevice != nil {
-		return *m.AudioDevice
+func (m *CPlayer_FriendNicknameChanged_Notification) GetNickname() string {
+	if m != nil && m.Nickname != nil {
+		return *m.Nickname
 	}
 	return ""
-}
-
-func (m *CClientSystemInfo) GetAudioDriverVersion() string {
-	if m != nil && m.AudioDriverVersion != nil {
-		return *m.AudioDriverVersion
-	}
-	return ""
-}
-
-type CClientSystemInfo_CPU struct {
-	SpeedMhz           *int32  `protobuf:"varint,1,opt,name=speed_mhz,json=speedMhz" json:"speed_mhz,omitempty"`
-	Vendor             *string `protobuf:"bytes,2,opt,name=vendor" json:"vendor,omitempty"`
-	LogicalProcessors  *int32  `protobuf:"varint,3,opt,name=logical_processors,json=logicalProcessors" json:"logical_processors,omitempty"`
-	PhysicalProcessors *int32  `protobuf:"varint,4,opt,name=physical_processors,json=physicalProcessors" json:"physical_processors,omitempty"`
-	Hyperthreading     *bool   `protobuf:"varint,5,opt,name=hyperthreading" json:"hyperthreading,omitempty"`
-	Fcmov              *bool   `protobuf:"varint,6,opt,name=fcmov" json:"fcmov,omitempty"`
-	Sse2               *bool   `protobuf:"varint,7,opt,name=sse2" json:"sse2,omitempty"`
-	Sse3               *bool   `protobuf:"varint,8,opt,name=sse3" json:"sse3,omitempty"`
-	Ssse3              *bool   `protobuf:"varint,9,opt,name=ssse3" json:"ssse3,omitempty"`
-	Sse4A              *bool   `protobuf:"varint,10,opt,name=sse4a" json:"sse4a,omitempty"`
-	Sse41              *bool   `protobuf:"varint,11,opt,name=sse41" json:"sse41,omitempty"`
-	Sse42              *bool   `protobuf:"varint,12,opt,name=sse42" json:"sse42,omitempty"`
-	XXX_unrecognized   []byte  `json:"-"`
-}
-
-func (m *CClientSystemInfo_CPU) Reset()                    { *m = CClientSystemInfo_CPU{} }
-func (m *CClientSystemInfo_CPU) String() string            { return proto.CompactTextString(m) }
-func (*CClientSystemInfo_CPU) ProtoMessage()               {}
-func (*CClientSystemInfo_CPU) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{8, 0} }
-
-func (m *CClientSystemInfo_CPU) GetSpeedMhz() int32 {
-	if m != nil && m.SpeedMhz != nil {
-		return *m.SpeedMhz
-	}
-	return 0
-}
-
-func (m *CClientSystemInfo_CPU) GetVendor() string {
-	if m != nil && m.Vendor != nil {
-		return *m.Vendor
-	}
-	return ""
-}
-
-func (m *CClientSystemInfo_CPU) GetLogicalProcessors() int32 {
-	if m != nil && m.LogicalProcessors != nil {
-		return *m.LogicalProcessors
-	}
-	return 0
-}
-
-func (m *CClientSystemInfo_CPU) GetPhysicalProcessors() int32 {
-	if m != nil && m.PhysicalProcessors != nil {
-		return *m.PhysicalProcessors
-	}
-	return 0
-}
-
-func (m *CClientSystemInfo_CPU) GetHyperthreading() bool {
-	if m != nil && m.Hyperthreading != nil {
-		return *m.Hyperthreading
-	}
-	return false
-}
-
-func (m *CClientSystemInfo_CPU) GetFcmov() bool {
-	if m != nil && m.Fcmov != nil {
-		return *m.Fcmov
-	}
-	return false
-}
-
-func (m *CClientSystemInfo_CPU) GetSse2() bool {
-	if m != nil && m.Sse2 != nil {
-		return *m.Sse2
-	}
-	return false
-}
-
-func (m *CClientSystemInfo_CPU) GetSse3() bool {
-	if m != nil && m.Sse3 != nil {
-		return *m.Sse3
-	}
-	return false
-}
-
-func (m *CClientSystemInfo_CPU) GetSsse3() bool {
-	if m != nil && m.Ssse3 != nil {
-		return *m.Ssse3
-	}
-	return false
-}
-
-func (m *CClientSystemInfo_CPU) GetSse4A() bool {
-	if m != nil && m.Sse4A != nil {
-		return *m.Sse4A
-	}
-	return false
-}
-
-func (m *CClientSystemInfo_CPU) GetSse41() bool {
-	if m != nil && m.Sse41 != nil {
-		return *m.Sse41
-	}
-	return false
-}
-
-func (m *CClientSystemInfo_CPU) GetSse42() bool {
-	if m != nil && m.Sse42 != nil {
-		return *m.Sse42
-	}
-	return false
-}
-
-type CClientSystemInfo_VideoCard struct {
-	Driver           *string `protobuf:"bytes,1,opt,name=driver" json:"driver,omitempty"`
-	DriverVersion    *string `protobuf:"bytes,2,opt,name=driver_version,json=driverVersion" json:"driver_version,omitempty"`
-	DriverDate       *uint32 `protobuf:"varint,3,opt,name=driver_date,json=driverDate" json:"driver_date,omitempty"`
-	DirectxVersion   *string `protobuf:"bytes,4,opt,name=directx_version,json=directxVersion" json:"directx_version,omitempty"`
-	OpenglVersion    *string `protobuf:"bytes,5,opt,name=opengl_version,json=openglVersion" json:"opengl_version,omitempty"`
-	Vendorid         *int32  `protobuf:"varint,6,opt,name=vendorid" json:"vendorid,omitempty"`
-	Deviceid         *int32  `protobuf:"varint,7,opt,name=deviceid" json:"deviceid,omitempty"`
-	VramMb           *int32  `protobuf:"varint,8,opt,name=vram_mb,json=vramMb" json:"vram_mb,omitempty"`
-	XXX_unrecognized []byte  `json:"-"`
-}
-
-func (m *CClientSystemInfo_VideoCard) Reset()                    { *m = CClientSystemInfo_VideoCard{} }
-func (m *CClientSystemInfo_VideoCard) String() string            { return proto.CompactTextString(m) }
-func (*CClientSystemInfo_VideoCard) ProtoMessage()               {}
-func (*CClientSystemInfo_VideoCard) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{8, 1} }
-
-func (m *CClientSystemInfo_VideoCard) GetDriver() string {
-	if m != nil && m.Driver != nil {
-		return *m.Driver
-	}
-	return ""
-}
-
-func (m *CClientSystemInfo_VideoCard) GetDriverVersion() string {
-	if m != nil && m.DriverVersion != nil {
-		return *m.DriverVersion
-	}
-	return ""
-}
-
-func (m *CClientSystemInfo_VideoCard) GetDriverDate() uint32 {
-	if m != nil && m.DriverDate != nil {
-		return *m.DriverDate
-	}
-	return 0
-}
-
-func (m *CClientSystemInfo_VideoCard) GetDirectxVersion() string {
-	if m != nil && m.DirectxVersion != nil {
-		return *m.DirectxVersion
-	}
-	return ""
-}
-
-func (m *CClientSystemInfo_VideoCard) GetOpenglVersion() string {
-	if m != nil && m.OpenglVersion != nil {
-		return *m.OpenglVersion
-	}
-	return ""
-}
-
-func (m *CClientSystemInfo_VideoCard) GetVendorid() int32 {
-	if m != nil && m.Vendorid != nil {
-		return *m.Vendorid
-	}
-	return 0
-}
-
-func (m *CClientSystemInfo_VideoCard) GetDeviceid() int32 {
-	if m != nil && m.Deviceid != nil {
-		return *m.Deviceid
-	}
-	return 0
-}
-
-func (m *CClientSystemInfo_VideoCard) GetVramMb() int32 {
-	if m != nil && m.VramMb != nil {
-		return *m.VramMb
-	}
-	return 0
-}
-
-type CPlayerClient_GetSystemInformation_Response struct {
-	SystemInfo       *CClientSystemInfo `protobuf:"bytes,1,opt,name=system_info,json=systemInfo" json:"system_info,omitempty"`
-	XXX_unrecognized []byte             `json:"-"`
-}
-
-func (m *CPlayerClient_GetSystemInformation_Response) Reset() {
-	*m = CPlayerClient_GetSystemInformation_Response{}
-}
-func (m *CPlayerClient_GetSystemInformation_Response) String() string {
-	return proto.CompactTextString(m)
-}
-func (*CPlayerClient_GetSystemInformation_Response) ProtoMessage() {}
-func (*CPlayerClient_GetSystemInformation_Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor14, []int{9}
-}
-
-func (m *CPlayerClient_GetSystemInformation_Response) GetSystemInfo() *CClientSystemInfo {
-	if m != nil {
-		return m.SystemInfo
-	}
-	return nil
 }
 
 func init() {
@@ -506,95 +573,74 @@ func init() {
 	proto.RegisterType((*CPlayer_GetLastPlayedTimes_Response_Game)(nil), "CPlayer_GetLastPlayedTimes_Response.Game")
 	proto.RegisterType((*CPlayer_AcceptSSA_Request)(nil), "CPlayer_AcceptSSA_Request")
 	proto.RegisterType((*CPlayer_AcceptSSA_Response)(nil), "CPlayer_AcceptSSA_Response")
+	proto.RegisterType((*CPlayer_GetNicknameList_Request)(nil), "CPlayer_GetNicknameList_Request")
+	proto.RegisterType((*CPlayer_GetNicknameList_Response)(nil), "CPlayer_GetNicknameList_Response")
+	proto.RegisterType((*CPlayer_GetNicknameList_Response_PlayerNickname)(nil), "CPlayer_GetNicknameList_Response.PlayerNickname")
 	proto.RegisterType((*CPlayer_LastPlayedTimes_Notification)(nil), "CPlayer_LastPlayedTimes_Notification")
-	proto.RegisterType((*CPlayerClient_GetSystemInformation_Request)(nil), "CPlayerClient_GetSystemInformation_Request")
-	proto.RegisterType((*CClientSystemInfo)(nil), "CClientSystemInfo")
-	proto.RegisterType((*CClientSystemInfo_CPU)(nil), "CClientSystemInfo.CPU")
-	proto.RegisterType((*CClientSystemInfo_VideoCard)(nil), "CClientSystemInfo.VideoCard")
-	proto.RegisterType((*CPlayerClient_GetSystemInformation_Response)(nil), "CPlayerClient_GetSystemInformation_Response")
+	proto.RegisterType((*CPlayer_FriendNicknameChanged_Notification)(nil), "CPlayer_FriendNicknameChanged_Notification")
 }
 
-func init() { proto.RegisterFile("steammessages_player.steamclient.proto", fileDescriptor14) }
+func init() {
+	proto.RegisterFile("steammessages_player.steamclient.proto", fileDescriptor_steammessages_player_steamclient_ff99e41a8f6fddb4)
+}
 
-var fileDescriptor14 = []byte{
-	// 1260 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x56, 0xcd, 0x8e, 0xdb, 0x36,
-	0x10, 0x86, 0x77, 0xd7, 0xbb, 0x36, 0xbd, 0xbb, 0x69, 0xd8, 0x34, 0x55, 0x94, 0x14, 0x65, 0x95,
-	0xff, 0x64, 0xa3, 0x34, 0x4e, 0xd0, 0x43, 0x73, 0x08, 0x36, 0x0e, 0x1a, 0x14, 0x48, 0x82, 0xad,
-	0x36, 0x1b, 0xf4, 0x26, 0xd0, 0xd2, 0xc8, 0x26, 0x22, 0x89, 0x2a, 0x49, 0x3b, 0xdd, 0x1c, 0x7d,
-	0xce, 0xa5, 0x28, 0xf2, 0x04, 0x7d, 0x06, 0xf7, 0x5c, 0xa0, 0x2f, 0xd1, 0x27, 0xe8, 0xad, 0xaf,
-	0x50, 0x14, 0x24, 0x25, 0x79, 0x6d, 0x27, 0xa9, 0x8b, 0xde, 0x34, 0x1f, 0xbf, 0x19, 0x0e, 0xbf,
-	0x19, 0x72, 0x84, 0xae, 0x48, 0x05, 0x34, 0xcb, 0x40, 0x4a, 0x3a, 0x00, 0x19, 0x16, 0x29, 0x3d,
-	0x06, 0xe1, 0x1b, 0x30, 0x4a, 0x19, 0xe4, 0xca, 0x2f, 0x04, 0x57, 0xdc, 0x25, 0x03, 0xce, 0x07,
-	0x29, 0xdc, 0x36, 0x56, 0x7f, 0x94, 0xdc, 0x8e, 0x41, 0x46, 0x82, 0x15, 0x8a, 0x8b, 0x92, 0xb1,
-	0x37, 0x1f, 0x69, 0x94, 0xb3, 0x84, 0x41, 0x1c, 0xf6, 0xa9, 0x84, 0xe5, 0x78, 0xde, 0xd7, 0xc8,
-	0xeb, 0x1d, 0x98, 0xcd, 0xc2, 0xc7, 0xa0, 0x1e, 0xd3, 0x0c, 0x1e, 0xd2, 0x78, 0x00, 0x4f, 0x60,
-	0x0c, 0xa9, 0x0c, 0x03, 0xf8, 0x61, 0x04, 0x52, 0xe1, 0x33, 0xa8, 0x49, 0x8b, 0x82, 0xc5, 0x4e,
-	0x83, 0x34, 0xae, 0xed, 0x04, 0xd6, 0xf0, 0xfe, 0x6c, 0xa0, 0x8b, 0x1f, 0x74, 0x96, 0x05, 0xcf,
-	0x25, 0xe0, 0x2f, 0xd0, 0xb6, 0x3d, 0x4f, 0x98, 0xea, 0x95, 0x32, 0x48, 0xc7, 0x62, 0x86, 0x8c,
-	0x1f, 0xa2, 0xcd, 0xbe, 0x76, 0x95, 0xce, 0x1a, 0x59, 0xbf, 0xd6, 0xe9, 0xde, 0xf0, 0x57, 0x08,
-	0xec, 0x1b, 0x30, 0x28, 0x3d, 0xdd, 0xef, 0x51, 0xd3, 0x00, 0x3a, 0xdb, 0xd9, 0x46, 0xcd, 0xc0,
-	0x1a, 0xf8, 0x2c, 0xda, 0x94, 0x20, 0x98, 0xd9, 0x42, 0xc3, 0xa5, 0xa5, 0xb3, 0xeb, 0x73, 0x11,
-	0x83, 0x08, 0x23, 0x9e, 0x72, 0xe1, 0xac, 0xdb, 0xec, 0x2c, 0xd6, 0xd3, 0x90, 0xf7, 0x53, 0x63,
-	0x4e, 0xa5, 0x27, 0x54, 0x2a, 0x63, 0xc5, 0xcf, 0x59, 0x06, 0x33, 0x95, 0x5e, 0xa2, 0x53, 0x19,
-	0xcb, 0xc3, 0x94, 0x4a, 0x65, 0x0b, 0x58, 0xea, 0xf5, 0xb0, 0x37, 0x99, 0x3a, 0x0f, 0x9e, 0x0f,
-	0x81, 0x64, 0x5c, 0x2a, 0x22, 0x20, 0x82, 0x5c, 0x11, 0x4d, 0xbb, 0x65, 0x69, 0x44, 0xb1, 0x0c,
-	0x88, 0x1a, 0x02, 0xb1, 0xb5, 0x21, 0x34, 0x15, 0x40, 0xe3, 0x63, 0xf2, 0x32, 0xe7, 0xaf, 0x24,
-	0xa1, 0x7d, 0x3e, 0x52, 0xc1, 0x4e, 0xc6, 0xf2, 0xd9, 0xce, 0xde, 0xdf, 0xf3, 0xe2, 0x2f, 0xe7,
-	0x54, 0x8a, 0xff, 0x00, 0x35, 0x07, 0x34, 0x03, 0xe9, 0x34, 0x8c, 0xb0, 0xd7, 0xfd, 0x15, 0x9c,
-	0x7c, 0xad, 0x78, 0x60, 0xfd, 0xdc, 0xb7, 0x0d, 0xb4, 0xa1, 0xed, 0xf9, 0x26, 0x68, 0x96, 0x4d,
-	0x80, 0x2f, 0xa2, 0x9d, 0xfa, 0xc0, 0xfa, 0x18, 0x46, 0xdd, 0x9d, 0x60, 0x3b, 0x2d, 0x63, 0x6b,
-	0x0c, 0x5f, 0x45, 0xa7, 0xaa, 0xf5, 0xb0, 0xfb, 0x0a, 0xe0, 0xa5, 0x34, 0x32, 0x37, 0x83, 0xdd,
-	0x0a, 0xb6, 0x28, 0xbe, 0x8e, 0x3e, 0xaa, 0x89, 0x09, 0x17, 0x30, 0x06, 0xe1, 0x6c, 0x18, 0x66,
-	0x1d, 0xe0, 0x1b, 0x0b, 0x7b, 0xe7, 0xd1, 0xb9, 0xea, 0x28, 0xfb, 0x51, 0x04, 0x85, 0x3a, 0x3c,
-	0xdc, 0xaf, 0x4a, 0xe1, 0x5d, 0x40, 0xee, 0xbb, 0x16, 0xed, 0xf1, 0xbc, 0x01, 0xba, 0x54, 0xad,
-	0x2e, 0x4a, 0xf0, 0x8c, 0x2b, 0x96, 0xb0, 0x88, 0x2a, 0xc6, 0xf3, 0xff, 0xad, 0x9d, 0xb7, 0x87,
-	0x6e, 0x94, 0x2e, 0x3d, 0x53, 0x58, 0xed, 0x78, 0x78, 0x2c, 0x15, 0x64, 0xdf, 0xe6, 0x09, 0x17,
-	0x99, 0xd9, 0xa6, 0x4e, 0xfa, 0x97, 0x2d, 0x74, 0xba, 0x67, 0x89, 0x33, 0x12, 0xbe, 0x86, 0xd6,
-	0xa3, 0x62, 0x64, 0x44, 0xef, 0x74, 0xcf, 0xfa, 0x4b, 0x04, 0xbf, 0x77, 0x70, 0x14, 0x68, 0x0a,
-	0xbe, 0x8f, 0xd0, 0x98, 0xc5, 0xc0, 0xc3, 0x88, 0x8a, 0xd8, 0xd4, 0xa1, 0xd3, 0xbd, 0xf0, 0x0e,
-	0x87, 0x17, 0x9a, 0xd4, 0xa3, 0x22, 0x0e, 0xda, 0xe3, 0xea, 0x53, 0x2b, 0xcf, 0x0b, 0x10, 0x54,
-	0xb1, 0x7c, 0x10, 0x4a, 0x43, 0x36, 0x35, 0x6a, 0x07, 0xa7, 0x6a, 0xdc, 0xc6, 0xc0, 0xe7, 0x50,
-	0x8b, 0xcb, 0xf0, 0xab, 0x7b, 0x7d, 0xa6, 0x4c, 0x71, 0x5a, 0xc1, 0x16, 0x97, 0xc6, 0xc4, 0x1e,
-	0xda, 0xb1, 0xbe, 0xa1, 0xa0, 0x59, 0x98, 0xf5, 0x9d, 0xa6, 0x29, 0x5e, 0xc7, 0x82, 0x01, 0xcd,
-	0x9e, 0xf6, 0xf5, 0x85, 0xa3, 0xa3, 0x98, 0xf1, 0x30, 0x86, 0x31, 0x8b, 0xc0, 0xd9, 0x34, 0xbb,
-	0x74, 0x0c, 0xf6, 0xc8, 0x40, 0xf8, 0x4b, 0x74, 0xa6, 0xa4, 0x08, 0x36, 0x06, 0x11, 0x8e, 0x41,
-	0x48, 0xc6, 0x73, 0x67, 0xcb, 0x50, 0xb1, 0xa5, 0x9a, 0xa5, 0x17, 0x76, 0xc5, 0xfd, 0x63, 0x0d,
-	0xad, 0xf7, 0x0e, 0x8e, 0xf0, 0x79, 0xd4, 0x96, 0x05, 0x40, 0x1c, 0x66, 0xc3, 0xd7, 0x65, 0xa3,
-	0xb6, 0x0c, 0xf0, 0x74, 0xf8, 0x5a, 0x3f, 0x01, 0x63, 0xc8, 0x63, 0x2e, 0x8c, 0x38, 0xed, 0xa0,
-	0xb4, 0xf0, 0x2d, 0x84, 0x53, 0x3e, 0x60, 0x11, 0x4d, 0xc3, 0x42, 0xf0, 0x08, 0xa4, 0xe4, 0xa2,
-	0xea, 0xd0, 0xd3, 0xe5, 0xca, 0x41, 0xbd, 0x80, 0x6f, 0xa3, 0x8f, 0x8b, 0xe1, 0xb1, 0x5c, 0xe4,
-	0xdb, 0x3e, 0xc5, 0xd5, 0xd2, 0x09, 0x87, 0x2b, 0x68, 0x77, 0x78, 0x5c, 0x80, 0x50, 0x43, 0x7d,
-	0xad, 0x59, 0x3e, 0x30, 0xb2, 0xb4, 0x82, 0x05, 0x54, 0xdf, 0xb0, 0x24, 0xca, 0xf8, 0xd8, 0x48,
-	0xd2, 0x0a, 0xac, 0x81, 0x31, 0xda, 0x90, 0x12, 0xba, 0xe6, 0xf0, 0xad, 0xc0, 0x7c, 0x97, 0xd8,
-	0x5d, 0xa7, 0x55, 0x63, 0x77, 0xb5, 0xb7, 0x34, 0x60, 0xdb, 0x7a, 0xcb, 0x19, 0x0a, 0xf7, 0xa8,
-	0x83, 0x2a, 0x14, 0xee, 0xd1, 0x0a, 0xbd, 0xe3, 0x74, 0x66, 0xe8, 0x9d, 0x0a, 0xed, 0x3a, 0xdb,
-	0x33, 0xb4, 0xeb, 0xbe, 0x59, 0x43, 0xed, 0xba, 0x65, 0xb4, 0x86, 0xb6, 0x28, 0x46, 0xdd, 0x76,
-	0x50, 0x5a, 0xf8, 0x32, 0xda, 0x5d, 0x28, 0x96, 0xd5, 0x78, 0x27, 0x3e, 0x59, 0x27, 0xfc, 0x39,
-	0xea, 0x94, 0xb4, 0x98, 0x2a, 0x28, 0x1f, 0x5b, 0x64, 0xa1, 0x47, 0x54, 0x99, 0xa7, 0x22, 0x66,
-	0x02, 0x22, 0xf5, 0x63, 0x1d, 0x68, 0xc3, 0x04, 0xda, 0x2d, 0xe1, 0x2a, 0xd2, 0x65, 0xb4, 0xcb,
-	0x0b, 0xc8, 0x07, 0x69, 0xcd, 0x6b, 0xda, 0x0d, 0x2d, 0x5a, 0xd1, 0x5c, 0xd4, 0xb2, 0x55, 0x66,
-	0xb1, 0x91, 0xb5, 0x19, 0xd4, 0xb6, 0x5e, 0xb3, 0x3d, 0xc8, 0x62, 0xa3, 0x6e, 0x33, 0xa8, 0x6d,
-	0xfc, 0x29, 0xda, 0x1a, 0x97, 0x3d, 0xdc, 0xb2, 0xf3, 0x42, 0x9b, 0x4f, 0xfb, 0x5e, 0x1f, 0xdd,
-	0x5c, 0xe9, 0x4e, 0x97, 0xef, 0xef, 0x5d, 0x54, 0x36, 0x7f, 0xc8, 0xf2, 0x84, 0x97, 0xd7, 0x18,
-	0x2f, 0xdf, 0xca, 0x00, 0xc9, 0xfa, 0xbb, 0xfb, 0xd7, 0x3a, 0xda, 0xb4, 0x7b, 0xe0, 0x5f, 0x1b,
-	0x08, 0x2f, 0xcf, 0x40, 0x7c, 0xd1, 0xff, 0xf7, 0xb1, 0xed, 0x5e, 0x5a, 0x65, 0x8a, 0x7a, 0x47,
-	0x93, 0xa9, 0xf3, 0x5d, 0x00, 0x6a, 0x24, 0x72, 0x69, 0x86, 0xd0, 0xa1, 0xfe, 0x4b, 0x20, 0x86,
-	0x46, 0x78, 0x42, 0x28, 0x19, 0x49, 0x10, 0x7b, 0x66, 0xc9, 0x04, 0x20, 0x66, 0xa0, 0x92, 0x84,
-	0x0b, 0x83, 0xe9, 0xa7, 0x6e, 0x8f, 0xd0, 0x3c, 0x26, 0x2c, 0x21, 0x4c, 0x5d, 0x95, 0x24, 0xe1,
-	0x2c, 0xc5, 0x6f, 0x1b, 0xc8, 0xb1, 0x87, 0x5c, 0x7e, 0x2d, 0xe7, 0xd3, 0x7f, 0xcf, 0x3c, 0x9d,
-	0x4f, 0xff, 0x7d, 0xef, 0xad, 0xe7, 0x4f, 0xa6, 0xce, 0x8d, 0xc7, 0xa0, 0x6c, 0xee, 0x8b, 0x53,
-	0x55, 0xd6, 0x69, 0xd2, 0x28, 0xe2, 0xa3, 0x5c, 0xe1, 0x08, 0xb5, 0xeb, 0x91, 0x80, 0x5d, 0xff,
-	0xbd, 0x33, 0xc4, 0x3d, 0xef, 0x7f, 0x60, 0x84, 0x7c, 0x36, 0x99, 0x3a, 0xe7, 0x8e, 0x24, 0x08,
-	0xc2, 0xa4, 0x0e, 0x0d, 0x85, 0x7e, 0x20, 0xad, 0x7c, 0x87, 0xfb, 0xee, 0xad, 0xc9, 0xd4, 0xb9,
-	0xbe, 0x4f, 0x24, 0x08, 0xdd, 0x4e, 0x26, 0x07, 0x4d, 0x92, 0x52, 0x93, 0xac, 0xbe, 0xf6, 0xf7,
-	0x87, 0xc4, 0x54, 0xd1, 0xee, 0xcf, 0xeb, 0x68, 0xfb, 0x64, 0x4f, 0xe1, 0x37, 0x0d, 0xf4, 0x89,
-	0x19, 0x45, 0xc7, 0x8b, 0xca, 0x5d, 0xf6, 0x57, 0x19, 0x5d, 0x6e, 0xc7, 0x7f, 0xc6, 0xeb, 0x64,
-	0x1f, 0x4c, 0xa6, 0xce, 0xfd, 0x93, 0xcb, 0x24, 0x11, 0x3c, 0x33, 0xd9, 0x81, 0x20, 0x8a, 0x57,
-	0xbf, 0x1d, 0x3c, 0x21, 0x19, 0x17, 0x50, 0xfd, 0xa1, 0xe8, 0x0c, 0x8d, 0x88, 0xf8, 0xf7, 0x06,
-	0x3a, 0xf3, 0xae, 0x36, 0xc7, 0x37, 0xfd, 0xd5, 0xe7, 0x9b, 0xbb, 0xe7, 0xff, 0x87, 0x8b, 0xe3,
-	0x1d, 0x4c, 0xa6, 0xce, 0x93, 0xd2, 0xd5, 0xe6, 0xab, 0xc5, 0x9d, 0xe5, 0x7c, 0xe2, 0x77, 0x49,
-	0xcb, 0xcb, 0x66, 0x31, 0xec, 0x0f, 0x93, 0x21, 0xe8, 0xce, 0x95, 0xc4, 0xde, 0x2c, 0x57, 0x77,
-	0xca, 0x95, 0x25, 0xf1, 0xab, 0x20, 0xf9, 0x09, 0x7d, 0xe4, 0x6f, 0x53, 0x67, 0xed, 0x9f, 0x00,
-	0x00, 0x00, 0xff, 0xff, 0x9e, 0xa5, 0xa1, 0x46, 0x94, 0x0b, 0x00, 0x00,
+var fileDescriptor_steammessages_player_steamclient_ff99e41a8f6fddb4 = []byte{
+	// 905 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x55, 0x4f, 0x6f, 0xe4, 0x34,
+	0x14, 0x57, 0xda, 0x9d, 0x42, 0xdd, 0x76, 0x8b, 0x2c, 0x40, 0xd9, 0x74, 0x11, 0x6e, 0xba, 0x6c,
+	0xb7, 0xa5, 0x1b, 0xa1, 0x9e, 0x10, 0x20, 0x55, 0xed, 0x48, 0x5b, 0x09, 0xaa, 0x0a, 0xd2, 0x5d,
+	0x89, 0xdb, 0xc8, 0x4d, 0x5e, 0x66, 0xac, 0x26, 0xf6, 0x60, 0x7b, 0xba, 0xea, 0x0d, 0x45, 0x1c,
+	0xb9, 0x20, 0xb1, 0xdf, 0x80, 0xaf, 0x10, 0x8e, 0x88, 0x4f, 0xc3, 0x27, 0xe0, 0x8c, 0x90, 0xed,
+	0x24, 0xd3, 0x74, 0xb6, 0xed, 0x08, 0x8e, 0xfe, 0xbd, 0x3f, 0xfe, 0xbd, 0xdf, 0xf3, 0x7b, 0x46,
+	0x4f, 0x95, 0x06, 0x5a, 0x14, 0xa0, 0x14, 0x1d, 0x82, 0x1a, 0x8c, 0x73, 0x7a, 0x05, 0x32, 0xb2,
+	0x60, 0x92, 0x33, 0xe0, 0x3a, 0x1a, 0x4b, 0xa1, 0x45, 0xb0, 0xd7, 0xf5, 0x9b, 0x70, 0x96, 0x31,
+	0x48, 0x07, 0xe7, 0x54, 0xc1, 0xac, 0x77, 0xf8, 0x05, 0x0a, 0xfb, 0xdf, 0xda, 0x54, 0x83, 0x63,
+	0xd0, 0xc7, 0xb4, 0x80, 0x23, 0x9a, 0x0e, 0xe1, 0x04, 0x2e, 0x21, 0x57, 0x83, 0x18, 0x7e, 0x98,
+	0x80, 0xd2, 0xf8, 0x7d, 0xd4, 0xa3, 0xe3, 0x31, 0x4b, 0x7d, 0x8f, 0x78, 0xcf, 0xd6, 0x62, 0x77,
+	0x08, 0xff, 0xf2, 0xd0, 0xd6, 0x9d, 0xc1, 0x6a, 0x2c, 0xb8, 0x02, 0xbc, 0x89, 0x56, 0x1d, 0xdb,
+	0x41, 0x6e, 0x2c, 0x75, 0x92, 0x15, 0x87, 0x59, 0x67, 0x7c, 0x84, 0x96, 0xce, 0x4d, 0xa8, 0xf2,
+	0x17, 0xc8, 0xe2, 0xb3, 0x95, 0xfd, 0xdd, 0x68, 0x8e, 0xc4, 0x91, 0x05, 0xe3, 0x3a, 0x32, 0xf8,
+	0x1e, 0xf5, 0x2c, 0x60, 0xd8, 0x4e, 0x2f, 0xea, 0xc5, 0xee, 0x80, 0x3f, 0x44, 0x4b, 0x0a, 0x24,
+	0xb3, 0x57, 0x18, 0xb8, 0x3e, 0x19, 0x76, 0xe7, 0x42, 0xa6, 0x20, 0x07, 0x89, 0xc8, 0x85, 0xf4,
+	0x17, 0x1d, 0x3b, 0x87, 0xf5, 0x0d, 0x14, 0xfe, 0xe2, 0x75, 0x54, 0x3a, 0xa1, 0x4a, 0xdb, 0x53,
+	0xfa, 0x92, 0x15, 0x30, 0x55, 0xe9, 0x02, 0xad, 0x17, 0x8c, 0x0f, 0x72, 0xaa, 0xb4, 0x6b, 0x4f,
+	0xad, 0xd7, 0x51, 0xbf, 0xac, 0xfc, 0x83, 0x97, 0x23, 0x20, 0x85, 0x50, 0x9a, 0x48, 0x48, 0x80,
+	0x6b, 0x62, 0xdc, 0x9e, 0x3b, 0x37, 0xa2, 0x59, 0x01, 0x44, 0x8f, 0x80, 0xb8, 0xde, 0x10, 0x9a,
+	0x4b, 0xa0, 0xe9, 0x15, 0xb9, 0xe0, 0xe2, 0xb5, 0x22, 0xf4, 0x5c, 0x4c, 0x74, 0xbc, 0x56, 0x30,
+	0x3e, 0xbd, 0x39, 0xfc, 0xa7, 0x2b, 0xfe, 0x2c, 0xa7, 0x5a, 0xfc, 0x03, 0xd4, 0x1b, 0xd2, 0x02,
+	0x94, 0xef, 0x59, 0x61, 0x77, 0xa2, 0x39, 0x82, 0x22, 0xa3, 0x78, 0xec, 0xe2, 0x82, 0x37, 0x1e,
+	0x7a, 0x60, 0xce, 0xdd, 0x47, 0xd0, 0xab, 0x1f, 0x01, 0xde, 0x42, 0x6b, 0x6d, 0xc1, 0xa6, 0x0c,
+	0xab, 0xee, 0x5a, 0xbc, 0x9a, 0xd7, 0xb9, 0x0d, 0x86, 0xb7, 0xd1, 0x7a, 0x63, 0x1f, 0xec, 0xbf,
+	0x06, 0xb8, 0x50, 0x56, 0xe6, 0x5e, 0xfc, 0xb0, 0x81, 0x1d, 0x8a, 0x77, 0xd0, 0x7b, 0xad, 0x63,
+	0x26, 0x24, 0x5c, 0x82, 0xf4, 0x1f, 0x58, 0xcf, 0x36, 0xc1, 0x0b, 0x07, 0x87, 0x1b, 0xe8, 0x51,
+	0x53, 0xca, 0x61, 0x92, 0xc0, 0x58, 0x9f, 0x9d, 0x1d, 0x36, 0xad, 0x08, 0x1f, 0xa3, 0xe0, 0x6d,
+	0x46, 0x57, 0x5e, 0xb8, 0x89, 0x3e, 0xbe, 0xa6, 0xc2, 0x29, 0x4b, 0x2e, 0x38, 0x2d, 0xe0, 0x84,
+	0x29, 0xdd, 0x26, 0xf8, 0xc3, 0x43, 0xe4, 0x76, 0x9f, 0x5a, 0xdb, 0x53, 0xb4, 0xcc, 0x6b, 0x43,
+	0xa3, 0xef, 0x67, 0xd1, 0x7d, 0x51, 0x91, 0xb3, 0x37, 0xb6, 0x78, 0x9a, 0x22, 0xf8, 0x1a, 0x3d,
+	0xec, 0x1a, 0xf1, 0x63, 0xb4, 0x4c, 0x93, 0x44, 0x4c, 0xb8, 0xae, 0x75, 0x7f, 0x27, 0x9e, 0x02,
+	0x38, 0x40, 0xef, 0x36, 0xc1, 0x56, 0xf6, 0xe5, 0xb8, 0x3d, 0x87, 0x43, 0xf4, 0xa4, 0x61, 0x72,
+	0xb3, 0xcd, 0xa7, 0x42, 0xb3, 0x8c, 0x25, 0x54, 0x33, 0xc1, 0xff, 0xf7, 0xfb, 0x08, 0x33, 0xb4,
+	0xdb, 0x84, 0xbc, 0x90, 0x0c, 0x78, 0xda, 0x90, 0xef, 0x8f, 0x28, 0x1f, 0x42, 0xda, 0xbd, 0xee,
+	0x3f, 0x17, 0xb4, 0xff, 0x53, 0x0f, 0x2d, 0xb9, 0x7b, 0xf0, 0xef, 0x1e, 0xc2, 0xb3, 0x7b, 0x01,
+	0x6f, 0x45, 0xf7, 0xaf, 0xb2, 0xe0, 0xc9, 0x3c, 0x9b, 0x25, 0x7c, 0x55, 0x56, 0xfe, 0x77, 0x31,
+	0xe8, 0x89, 0xe4, 0xca, 0x0e, 0xe6, 0x99, 0xd9, 0x9c, 0xc4, 0xba, 0x11, 0x91, 0x11, 0x4a, 0x26,
+	0x0a, 0xe4, 0x9e, 0x35, 0xd9, 0x04, 0xc4, 0x2e, 0x19, 0x92, 0x09, 0x69, 0x31, 0x23, 0xcd, 0x1e,
+	0xa1, 0x3c, 0x25, 0x2c, 0x23, 0x4c, 0x6f, 0x2b, 0x92, 0x09, 0x96, 0xe3, 0x37, 0x1e, 0xf2, 0xfb,
+	0x76, 0xc4, 0x67, 0xd5, 0xed, 0xd2, 0xbf, 0x65, 0xc7, 0x74, 0xe9, 0xdf, 0xd6, 0x9f, 0x30, 0x2a,
+	0x2b, 0x7f, 0xf7, 0x18, 0xb4, 0xe3, 0x7e, 0x73, 0xd3, 0xa8, 0x96, 0x66, 0xad, 0x3c, 0x4e, 0xd0,
+	0x72, 0x3b, 0x26, 0x38, 0x88, 0x6e, 0x9d, 0xab, 0x60, 0x23, 0xba, 0x63, 0xac, 0x3e, 0x2a, 0x2b,
+	0xff, 0xd1, 0x2b, 0x05, 0x92, 0x30, 0x65, 0x52, 0xc3, 0x58, 0x33, 0x3e, 0x74, 0xf2, 0x9d, 0x1d,
+	0xe2, 0x5f, 0x3d, 0xb4, 0x7e, 0x63, 0x28, 0x30, 0x89, 0xee, 0x19, 0xc4, 0x60, 0xf3, 0xde, 0x81,
+	0x0a, 0xbf, 0x2a, 0x2b, 0xff, 0xf3, 0x69, 0xb5, 0x4c, 0x69, 0xd3, 0xa2, 0x76, 0xac, 0x88, 0x1e,
+	0x31, 0x65, 0xfb, 0x45, 0x46, 0xd4, 0xd5, 0x2e, 0xf4, 0x08, 0xa4, 0x85, 0x54, 0xf0, 0xbc, 0xac,
+	0xfc, 0x9d, 0x43, 0xa2, 0x40, 0x5e, 0xb2, 0x04, 0xac, 0xd9, 0x70, 0x57, 0xca, 0x70, 0x77, 0x6d,
+	0x77, 0x3f, 0x15, 0x49, 0xa9, 0xa6, 0xfb, 0x7f, 0x2f, 0xa0, 0x55, 0x47, 0xc8, 0x35, 0x12, 0xff,
+	0xec, 0xa1, 0x0f, 0xec, 0x13, 0xbf, 0xba, 0xd9, 0xd0, 0x4f, 0xa2, 0x79, 0x26, 0x30, 0x58, 0x89,
+	0x4e, 0x45, 0x5b, 0xcb, 0x41, 0x59, 0xf9, 0x5f, 0x5e, 0x37, 0x93, 0x4c, 0x8a, 0xc2, 0xb2, 0x03,
+	0x49, 0xb4, 0x68, 0x7e, 0x08, 0x91, 0x91, 0x42, 0x48, 0x68, 0x3e, 0x13, 0xc3, 0xd0, 0xf6, 0x16,
+	0xff, 0xe6, 0xa1, 0x0d, 0x47, 0xe7, 0xad, 0xd3, 0x88, 0x3f, 0x8d, 0xe6, 0x9f, 0xd6, 0x2e, 0xb5,
+	0x6f, 0xca, 0xca, 0x3f, 0x9e, 0x83, 0x9a, 0x1e, 0x51, 0x4d, 0x28, 0xc9, 0x6c, 0xfa, 0x6d, 0xd5,
+	0x36, 0xc2, 0xaa, 0x9f, 0xb8, 0x6b, 0x02, 0xf3, 0x42, 0x9f, 0xce, 0xa8, 0xdb, 0xa4, 0xe0, 0xd7,
+	0x6e, 0x51, 0x7f, 0x56, 0xfe, 0xc2, 0xd1, 0xe2, 0x8f, 0x9e, 0xf7, 0x6f, 0x00, 0x00, 0x00, 0xff,
+	0xff, 0xee, 0x53, 0xee, 0x90, 0x03, 0x09, 0x00, 0x00,
 }
