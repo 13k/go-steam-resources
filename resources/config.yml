@@ -1,0 +1,36 @@
+---
+base_import_path: "github.com/13k/go-steam-resources"
+input_rel_path: "SteamDatabase/Protobufs"
+packages:
+  - name: "protobuf/steam"
+    directory: "steam"
+    files:
+      - "*.proto"
+    exclude_files:
+      - "*.steamclient.proto"
+  - name: "protobuf/steam/client"
+    directory: "steam"
+    files:
+      - "*.steamclient.proto"
+  - name: "protobuf/steam/steamworks"
+    directory: "dota2"
+    files:
+      - "*.steamworkssdk.proto"
+  - name: "protobuf/dota2"
+    directory: "dota2"
+    files:
+      - "*.proto"
+    exclude_files:
+      - "*.steamworkssdk.proto"
+      - "steammessages_base.proto"
+      - "steamdatagram_messages_auth.proto"
+      - "steamnetworkingsockets_*.proto"
+      - "steamdatagram_messages_sdr.proto"
+  - name: "protobuf/csgo"
+    directory: "csgo"
+    files:
+      - "*.proto"
+  - name: "protobuf/tf2"
+    directory: "tf2"
+    files:
+      - "*.proto"

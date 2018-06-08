@@ -1,0 +1,10 @@
+diff --git tf2/base_gcmessages.proto tf2/base_gcmessages.proto
+index 16b19d5..6d22bdb 100644
+--- tf2/base_gcmessages.proto
++++ tf2/base_gcmessages.proto
+@@ -1,4 +1,5 @@
+ import "steammessages.proto";
++import "tf_proto_def_messages.proto";
+ 
+ option optimize_for = SPEED;
+ option cc_generic_services = false;
