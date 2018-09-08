@@ -8,9 +8,11 @@ require 'yaml'
 PARALLEL = ENV.fetch('PARALLEL', '1') == '1'
 
 ROOT_PATH = Pathname.new(__dir__)
+PROTOBUF_PKG_PATH = ROOT_PATH.join('protobuf')
 
 BUILD_PATH = ROOT_PATH.join('build')
 PATCHED_PROTO_PATH = BUILD_PATH.join('protobufs')
+GENERATED_GO_PATH = BUILD_PATH.join('go')
 
 RESOURCES_PATH = ROOT_PATH.join('resources')
 CONFIG_PATH = RESOURCES_PATH.join('config.yml')
@@ -296,28 +298,35 @@ proto_path = ROOT_PATH.join(config[:input_rel_path])
 
 tasklist = Hash.new { |h, k| h[k] = [] }
 config[:packages].each_with_object(tasklist) do |package, tasks|
-  pkg_input_path = proto_path.join(package[:directory])
+  pkg_rel_path = Pathname.new(package[:name])
   pkg_import_path = File.join(config[:base_import_path], package[:name])
-  excludes = package.fetch(:exclude_files, [])
-    .map { |patt| pkg_input_path.join(patt).to_s }
+  pkg_patches_path = PATCHES_PATH.join(pkg_rel_path)
+  pkg_patched_path = PATCHED_PROTO_PATH.join(pkg_rel_path)
+  pkg_output_path = PROTOBUF_PKG_PATH.join(pkg_rel_path)
+
+  excludes = package
+    .fetch(:exclude_files, [])
+    .map { |pattern| proto_path.join(pattern).to_s }
 
   package[:files].flat_map do |pattern|
-    pkg_input_path
+    proto_path
       .glob(pattern)
       .reject { |file| excludes.any? { |excl_pattern| file.fnmatch?(excl_pattern) } }
       .map do |input_file|
-        input_rel_path = input_file.relative_path_from(proto_path)
-        transformed_file = PATCHED_PROTO_PATH.join(input_rel_path)
+        transformed_file = pkg_patched_path.join(input_file.basename)
+
         transform_task = transform_protobuf(transformed_file => input_file) do |task|
-          task.patches_path = PATCHES_PATH.join(package[:directory])
+          task.patches_path = pkg_patches_path
           task.go_package = pkg_import_path
         end
+
         tasks[:transform] << transform_task
 
-        output_file = ROOT_PATH.join(package[:name], input_file.basename.sub_ext('.pb.go'))
+        output_file = pkg_output_path.join(input_file.basename.sub_ext('.pb.go'))
+
         tasks[:generate] << generate_protobuf(output_file => transform_task) do |task|
           task.import_path = pkg_import_path
-          task.output_path = BUILD_PATH.join('go')
+          task.output_path = GENERATED_GO_PATH
         end
       end
   end
