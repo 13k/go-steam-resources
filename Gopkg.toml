@@ -1,6 +1,0 @@
-required = [
-  "github.com/golang/protobuf/protoc-gen-go"
-]
-
-[metadata]
-package = "github.com/13k/go-steam-resources"
