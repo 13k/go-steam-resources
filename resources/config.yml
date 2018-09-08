@@ -8,6 +8,8 @@ packages:
       - "*.proto"
     exclude_files:
       - "*.steamclient.proto"
+      - "steamdatagram_messages_auth.proto"
+      - "steamnetworkingsockets_*.proto"
   - name: "protobuf/steam/client"
     directory: "steam"
     files:
@@ -21,15 +23,22 @@ packages:
     files:
       - "*.proto"
     exclude_files:
-      - "*.steamworkssdk.proto"
-      - "steammessages_base.proto"
       - "steamdatagram_messages_auth.proto"
-      - "steamnetworkingsockets_*.proto"
       - "steamdatagram_messages_sdr.proto"
+      - "steammessages_base.proto"
+      - "steamnetworkingsockets_*.proto"
+      - "*.steamworkssdk.proto"
   - name: "protobuf/csgo"
     directory: "csgo"
     files:
       - "*.proto"
+    exclude_files:
+      - "steamdatagram_auth_messages.proto"
+      - "steamdatagram_messages_auth.proto"
+      - "steamdatagram_messages.proto"
+      - "steamdatagram_messages_sdr.proto"
+      - "steamdatagram_messages_udp.proto"
+      - "steammessages_base.proto"
   - name: "protobuf/tf2"
     directory: "tf2"
     files:
