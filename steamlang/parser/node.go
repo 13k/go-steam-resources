@@ -16,16 +16,16 @@ const (
 )
 
 var globals = []*Node{
-	&Node{Type: Type, Value: "byte"},
-	&Node{Type: Type, Value: "short"},
-	&Node{Type: Type, Value: "ushort"},
-	&Node{Type: Type, Value: "int"},
-	&Node{Type: Type, Value: "uint"},
-	&Node{Type: Type, Value: "long"},
-	&Node{Type: Type, Value: "ulong"},
-	&Node{Type: Literal, Value: "ulong.MaxValue"},
-	&Node{Type: Literal, Value: "SteamKit2.GC.Internal.CMsgProtoBufHeader"},
-	&Node{Type: Literal, Value: "SteamKit2.Internal.CMsgProtoBufHeader"},
+	{Type: Type, Value: "byte"},
+	{Type: Type, Value: "short"},
+	{Type: Type, Value: "ushort"},
+	{Type: Type, Value: "int"},
+	{Type: Type, Value: "uint"},
+	{Type: Type, Value: "long"},
+	{Type: Type, Value: "ulong"},
+	{Type: Literal, Value: "ulong.MaxValue"},
+	{Type: Literal, Value: "SteamKit2.GC.Internal.CMsgProtoBufHeader"},
+	{Type: Literal, Value: "SteamKit2.Internal.CMsgProtoBufHeader"},
 }
 
 // NodeType represents node types
