@@ -11,9 +11,9 @@ function help() {
 	usage="$(
 		cat <<-EOF
 			Usage: %s [options]
-			
+
 			Options:
-			
+
 			  -g    Also generate go files.
 			  -h    Show this help.
 		EOF
@@ -85,8 +85,7 @@ fi
 
 (
 	cd "$STEAMKIT_DIR" &&
-		release="$(git_latest_release_tag)" &&
-		git_checkout_rev "SteamKit" "$release"
+		git_checkout_rev "SteamKit" "origin/master"
 ) || exit $?
 
 [[ "$generate" -eq 0 ]] && exit 0
