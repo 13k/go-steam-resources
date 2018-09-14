@@ -2,26 +2,36 @@
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
-PKG_REL_DIR="protobuf"
+PROTOBUF_PKG_REL_DIR="protobuf"
+STEAMLANG_PKG_REL_DIR="steamlang"
 
 readonly green="\\e[032m"
 readonly reset="\\e[0m"
 
 function step_msg() {
-  echo -e "${green} * ${reset}$*..."
+	echo -e "${green} * ${reset}$*..."
 }
 
-pushd "$ROOT_DIR" > /dev/null || exit $?
+pushd "$ROOT_DIR" >/dev/null || exit $?
 
 step_msg "Cleaning"
-rake -s distclean || exit $?
+rake -s clean || exit $?
 
 step_msg "Generating protobuf packages"
-rake -s || exit $?
+rake -s generate:protobuf || exit $?
 
 step_msg "Building protobuf packages"
-go build "./${PKG_REL_DIR:?}/..." || exit $?
+go build "./${PROTOBUF_PKG_REL_DIR}/..." || exit $?
+
+step_msg "Generating steamlang package"
+rake -s generate:steamlang || exit $?
+
+step_msg "Building steamlang package"
+go build "./${STEAMLANG_PKG_REL_DIR}" || exit $?
+
+step_msg "Running tests"
+go test "./..." || exit $?
 
 step_msg "Done!"
 
-popd > /dev/null || exit $?
+popd >/dev/null || exit $?
