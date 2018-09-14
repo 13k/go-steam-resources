@@ -8,15 +8,24 @@ require 'yaml'
 PARALLEL = ENV.fetch('PARALLEL', '1') == '1'
 
 ROOT_PATH = Pathname.new(__dir__)
-PROTOBUF_PKG_PATH = ROOT_PATH.join('protobuf')
-
+GO_MODULE_FILE = ROOT_PATH.join('go.mod')
 BUILD_PATH = ROOT_PATH.join('build')
+RESOURCES_PATH = ROOT_PATH.join('resources')
+CONFIG_FILE = RESOURCES_PATH.join('config.yml')
+
+PROTOBUF_PKG_BASE_NAME = 'protobuf'
+PROTOBUF_PKG_PATH = ROOT_PATH.join(PROTOBUF_PKG_BASE_NAME)
 PATCHED_PROTO_PATH = BUILD_PATH.join('protobufs')
 GENERATED_GO_PATH = BUILD_PATH.join('go')
-
-RESOURCES_PATH = ROOT_PATH.join('resources')
-CONFIG_PATH = RESOURCES_PATH.join('config.yml')
 PATCHES_PATH = RESOURCES_PATH.join('patches')
+
+STEAMLANG_PKG_NAME = 'steamlang'
+STEAMLANG_PKG_PATH = ROOT_PATH.join('steamlang')
+STEAMLANG_GEN_GO_CMD_PATH = STEAMLANG_PKG_PATH.join('cmd', 'gen_go')
+STEAMLANG_GEN_GO_CMD_FILE = STEAMLANG_GEN_GO_CMD_PATH.join('gen.go')
+STEAMLANG_PATH = RESOURCES_PATH.join('SteamKit', 'Resources', 'SteamLanguage')
+STEAMLANG_ENTRYPOINT_FILE = STEAMLANG_PATH.join('steammsg.steamd')
+STEAMLANG_OUTPUT_FILE = STEAMLANG_PKG_PATH.join('steammsg.go')
 
 LOG_M = Mutex.new
 COLORS = {
@@ -81,12 +90,29 @@ def symbolize_keys(value)
   end
 end
 
-class ProtobufTask < Rake::FileTask
+class GenerateFileTask < Rake::FileTask
   include Rake::FileUtilsExt
+
+  def self.define_task(*args, &block)
+    task = super
+    task.enhance { |t, _args| t.call }
+  end
 
   def initialize(*args, &block)
     super
     @executed = false
+  end
+
+  def call
+    return if executed?
+
+    run
+  ensure
+    executed!
+  end
+
+  def run
+    raise NotImplementedError, "Subclasses must override this method"
   end
 
   def executed?
@@ -133,7 +159,7 @@ class ProtobufTask < Rake::FileTask
   end
 end
 
-class GenerateProtobufTask < ProtobufTask
+class GenerateProtobufTask < GenerateFileTask
   attr_accessor :include_paths, :paths, :plugins, :imports, :import_path, :output_path
 
   def initialize(*args, &block)
@@ -144,11 +170,8 @@ class GenerateProtobufTask < ProtobufTask
     @imports = {}
   end
 
-  def generate
-    return if executed?
-
-    executed!
-    say_status(:generate, output_file_from_root, :green)
+  def run
+    say_status(:protobuf, output_file_from_root, :green)
     compile_file
     install_file
   end
@@ -205,13 +228,10 @@ class GenerateProtobufTask < ProtobufTask
   end
 end
 
-class TransformProtobufTask < ProtobufTask
+class TransformProtobufTask < GenerateFileTask
   attr_accessor :go_package
 
-  def transform
-    return if executed?
-
-    executed!
+  def run
     mkdir_p(output_dir)
     transformed = apply_patches(input_file)
     transformed = inject_fixes(transformed)
@@ -283,23 +303,53 @@ class TransformProtobufTask < ProtobufTask
   end
 end
 
-def generate_protobuf(*args, &block)
-  task = GenerateProtobufTask.define_task(*args, &block)
-  task.enhance { |t, _args| t.generate }
+class GenerateSteamLangTask < GenerateFileTask
+  attr_accessor :gen_go_file, :go_package, :protobuf_package
+
+  def run
+    say_status(:steamlang, output_file_from_root, :green)
+    generate_file
+  end
+
+  protected
+
+  def input_file
+    @input_file ||= input_files.first
+  end
+
+  def gen_go_options
+    [
+      '-pkg', @go_package,
+      '-protopkg', @protobuf_package,
+      '-o', output_file.to_s,
+    ]
+  end
+
+  def generate_file
+    mkdir_p(output_dir)
+    sh('go', 'run', @gen_go_file.to_s, *gen_go_options, input_file.to_s)
+  end
 end
 
-def transform_protobuf(*args, &block)
-  task = TransformProtobufTask.define_task(*args, &block)
-  task.enhance { |t, _args| t.transform }
+def go_module
+  @go_module ||= GO_MODULE_FILE
+    .readlines(chomp: true)
+    .grep(/^module/)
+    .first
+    .sub(/^module\s*/, '')
 end
 
-config = symbolize_keys(YAML.load_file(CONFIG_PATH))
+def protobuf_pkg_base_import_path
+  @protobuf_pkg_base_import_path ||= File.join(go_module, PROTOBUF_PKG_BASE_NAME)
+end
+
+config = symbolize_keys(YAML.load_file(CONFIG_FILE))
 proto_path = ROOT_PATH.join(config[:input_rel_path])
 
 tasklist = Hash.new { |h, k| h[k] = [] }
 config[:packages].each_with_object(tasklist) do |package, tasks|
   pkg_rel_path = Pathname.new(package[:name])
-  pkg_import_path = File.join(config[:base_import_path], package[:name])
+  pkg_import_path = File.join(protobuf_pkg_base_import_path, package[:name])
   pkg_patches_path = PATCHES_PATH.join(pkg_rel_path)
   pkg_patched_path = PATCHED_PROTO_PATH.join(pkg_rel_path)
   pkg_output_path = PROTOBUF_PKG_PATH.join(pkg_rel_path)
@@ -315,16 +365,14 @@ config[:packages].each_with_object(tasklist) do |package, tasks|
       .map do |input_file|
         transformed_file = pkg_patched_path.join(input_file.basename)
 
-        transform_task = transform_protobuf(transformed_file => input_file) do |task|
+        transform_task = TransformProtobufTask.define_task(transformed_file => input_file) do |task|
           task.patches_path = pkg_patches_path
           task.go_package = pkg_import_path
         end
 
-        tasks[:transform] << transform_task
-
         output_file = pkg_output_path.join(input_file.basename.sub_ext('.pb.go'))
 
-        tasks[:generate] << generate_protobuf(output_file => transform_task) do |task|
+        tasks[:protobuf] << GenerateProtobufTask.define_task(output_file => transform_task) do |task|
           task.import_path = pkg_import_path
           task.output_path = GENERATED_GO_PATH
         end
@@ -332,18 +380,22 @@ config[:packages].each_with_object(tasklist) do |package, tasks|
   end
 end
 
-task_def_method = PARALLEL ? :multitask : :task
-send(task_def_method, transform: tasklist[:transform])
-send(task_def_method, generate: tasklist[:generate])
+steamlang_task = GenerateSteamLangTask.define_task(STEAMLANG_OUTPUT_FILE => STEAMLANG_ENTRYPOINT_FILE) do |task|
+  task.gen_go_file = STEAMLANG_GEN_GO_CMD_FILE
+  task.go_package = STEAMLANG_PKG_NAME
+  task.protobuf_package = protobuf_pkg_base_import_path
+end
 
-task default: %i[transform generate]
+task_def_method = PARALLEL ? :multitask : :task
 
 task :clean do
   rm_rf BUILD_PATH
 end
 
-task :clean_proto do
-  rm_rf ROOT_PATH.join('protobuf')
+namespace :generate do
+  send(task_def_method, protobuf: tasklist[:protobuf])
+  task steamlang: steamlang_task
 end
 
-task distclean: %i[clean clean_proto]
+task generate: ['generate:protobuf', 'generate:steamlang']
+task default: :generate

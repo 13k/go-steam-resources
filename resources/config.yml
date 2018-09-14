@@ -1,5 +1,4 @@
 ---
-base_import_path: "github.com/13k/go-steam-resources/protobuf"
 input_rel_path: "resources/SteamDatabase/Protobufs"
 packages:
   - name: "steam"
