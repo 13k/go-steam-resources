@@ -3,7 +3,7 @@ Package parser implements a parser for SteamKit's SteamLanguage.
 
 Grammar (EBNF)
 
-The grammar was infered from SteamKit's source code and is not official.
+The grammar was inferred from SteamKit's source code and is not official.
 
 	letter = ? unicode-letter ? ;
 	digit = ? unicode-digit ? ;
