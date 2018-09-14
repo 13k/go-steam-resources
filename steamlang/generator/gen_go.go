@@ -1,9 +1,12 @@
 package generator
 
 import (
-	"bufio"
 	"bytes"
 	"fmt"
+	"go/ast"
+	goparser "go/parser"
+	"go/printer"
+	"go/token"
 	"io"
 	"path"
 	"strconv"
@@ -55,7 +58,32 @@ func (g *GenGo) Generate(w io.Writer, root *parser.Node) error {
 		}
 	}
 
-	return g.flush()
+	// backup body
+	body := g.Buffer
+	// reset generator buffer
+	g.Buffer = new(bytes.Buffer)
+
+	// write header to generator buffer
+	if err := g.writeHeader(); err != nil {
+		return err
+	}
+
+	// copy body to g
+	if _, err := g.Write(body.Bytes()); err != nil {
+		return err
+	}
+
+	// validate and format generated code
+	if err := g.validateAndFormat(); err != nil {
+		return err
+	}
+
+	// copy generator buffer to output
+	if _, err := io.Copy(g.output, g); err != nil {
+		return err
+	}
+
+	return nil
 }
 
 // does NOT reset includes because they must be unique per package
@@ -65,69 +93,59 @@ func (g *GenGo) init(w io.Writer) {
 	g.output = w
 }
 
-func (g *GenGo) flush() error {
-	// dump everything to a buffer
+func (g *GenGo) validateAndFormat() error {
+	// original := g.Bytes()
+	fset := token.NewFileSet()
+	f, err := goparser.ParseFile(fset, "", g.Bytes(), goparser.ParseComments)
 
-	buf := new(bytes.Buffer)
-
-	if err := g.writeHeader(buf); err != nil {
-		return err
+	if err != nil {
+		return fmt.Errorf("bad Go source code was generated: %s", err)
 	}
 
-	if _, err := io.Copy(buf, g); err != nil {
-		return err
-	}
+	ast.SortImports(fset, f)
 
-	// TODO: parse and format the code
+	g.Reset()
+	printer := &printer.Config{Mode: printer.TabIndent | printer.UseSpaces, Tabwidth: 8}
 
-	// write to output
-
-	if _, err := io.Copy(g.output, buf); err != nil {
-		return err
+	if err := printer.Fprint(g, fset, f); err != nil {
+		return fmt.Errorf("generated Go source code could not be reformatted: %s", err)
 	}
 
 	return nil
 }
 
-func (g *GenGo) writeHeader(w io.Writer) error {
-	b := bufio.NewWriter(w)
-	b.WriteString("// Generated code. DO NOT EDIT\n")
+func (g *GenGo) writeHeader() error {
+	g.sn("// Generated code. DO NOT EDIT")
 	// package {{Package}}
-	b.WriteString("package ")
-	b.WriteString(g.Package)
-	b.WriteString("\n\n")
+	g.s("package ").sn(g.Package)
+	g.n()
 
 	if len(g.imports) > 0 {
 		// import ( ... )
-		b.WriteString("import (\n")
+		g.sn("import (")
 
 		for pkg, alias := range g.imports {
-			// {{Ident}}{{ImportAlias}} {{ImportPathString}}
-			b.WriteByte('\t')
+			// {{ImportAlias}} {{ImportPathString}}
+			g.t()
 
 			if alias != "" {
-				b.WriteString(alias)
-				b.WriteByte(' ')
+				g.s(alias).b(' ')
 			}
 
-			b.WriteString(strconv.Quote(pkg))
-			b.WriteByte('\n')
+			g.sn(strconv.Quote(pkg))
 		}
 
-		b.WriteString(")\n\n")
+		g.sn(")")
+		g.n()
 	}
 
 	if g.includes != nil {
-		for name, snippet := range g.includes.get(g.Package) {
-			b.WriteString("// Code included from snippet ")
-			b.WriteString(strconv.Quote(name))
-			b.WriteByte('\n')
-			b.WriteString(snippet)
-			b.WriteString("\n// ---\n\n")
+		for _, snippet := range g.includes.get(g.Package) {
+			g.sn(snippet)
 		}
 	}
 
-	return b.Flush()
+	return nil
 }
 
 func (g *GenGo) writeNode(node *parser.Node) error {

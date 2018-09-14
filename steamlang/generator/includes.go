@@ -2,6 +2,7 @@ package generator
 
 import (
 	"fmt"
+	"sort"
 )
 
 var (
@@ -27,8 +28,8 @@ func IsProto(e uint32) bool {
 	}
 )
 
-// map of generatedPackage => (map of snippetName => bool)
-// the values are maps only to avoid duplicates
+// map of packageName => (map of snippetName => bool)
+// the values are maps to avoid duplicates
 type genIncludes map[string]map[string]bool
 
 func (i genIncludes) add(pkg, name string) {
@@ -43,20 +44,19 @@ func (i genIncludes) add(pkg, name string) {
 	i[pkg][name] = true
 }
 
-func (i genIncludes) get(pkg string) (snippets map[string]string) {
+func (i genIncludes) get(pkg string) (snippets []string) {
 	names, ok := i[pkg]
 
 	if !ok {
 		return
 	}
 
-	snippets = make(map[string]string)
-
 	for name := range names {
 		if snippet, ok := includesSnippets[name]; ok {
-			snippets[name] = snippet
+			snippets = append(snippets, snippet)
 		}
 	}
 
+	sort.Strings(snippets)
 	return
 }
