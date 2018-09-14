@@ -170,27 +170,8 @@ func (node *Node) addDefault(token *Token) error {
 	return nil
 }
 
+// String ...
 func (node *Node) String() string {
-	return node.toString(0)
-}
-
-// QualifiedShortString ...
-func (node *Node) QualifiedShortString() string {
-	var path []string
-
-	for n := node; n != nil; n = n.Parent {
-		if n.IsRoot() {
-			break
-		}
-
-		path = append([]string{n.ShortString()}, path...)
-	}
-
-	return strings.Join(path, "::")
-}
-
-// ShortString ...
-func (node *Node) ShortString() string {
 	var b strings.Builder
 	b.WriteString(node.Type.String())
 	b.WriteString("<")
@@ -199,21 +180,41 @@ func (node *Node) ShortString() string {
 	return b.String()
 }
 
-func mapNodesToShortString(nodes []*Node) []string {
+// QualifiedString ...
+func (node *Node) QualifiedString() string {
+	var path []string
+
+	for n := node; n != nil; n = n.Parent {
+		if n.IsRoot() {
+			break
+		}
+
+		path = append([]string{n.String()}, path...)
+	}
+
+	return strings.Join(path, "::")
+}
+
+// AstString ...
+func (node *Node) AstString() string {
+	return node.astString(0)
+}
+
+func mapNodesToQString(nodes []*Node) []string {
 	result := make([]string, len(nodes))
 	for i, n := range nodes {
-		result[i] = n.QualifiedShortString()
+		result[i] = n.QualifiedString()
 	}
 	return result
 }
 
-func (node *Node) toString(level int) string {
+func (node *Node) astString(level int) string {
 	var b strings.Builder
 	indent := strings.Repeat(" ", level)
 	var detailsSlice []string
 
 	if node.Ref != nil {
-		detailsSlice = append(detailsSlice, node.Ref.QualifiedShortString())
+		detailsSlice = append(detailsSlice, node.Ref.QualifiedString())
 	}
 
 	if node.Qualifier != "" {
@@ -234,12 +235,12 @@ func (node *Node) toString(level int) string {
 
 	if node.Default != nil {
 		b.WriteString(" = ")
-		b.WriteString(strings.Join(mapNodesToShortString(node.Default), "|"))
+		b.WriteString(strings.Join(mapNodesToQString(node.Default), "|"))
 	}
 
 	for _, child := range node.Children {
 		b.WriteString("\n")
-		b.WriteString(child.toString(level + 1))
+		b.WriteString(child.astString(level + 1))
 	}
 
 	if len(node.Children) > 0 {

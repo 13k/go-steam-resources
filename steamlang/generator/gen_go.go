@@ -44,7 +44,7 @@ type GenGo struct {
 // same file and package, things will break.
 func (g *GenGo) Generate(w io.Writer, root *parser.Node) error {
 	if !root.IsRoot() {
-		return fmt.Errorf("Given node must be a root node, received %s", root.ShortString())
+		return fmt.Errorf("Given node must be a root node, received %s", root)
 	}
 
 	g.init(w)
@@ -138,7 +138,7 @@ func (g *GenGo) writeNode(node *parser.Node) error {
 		return g.writeEnum(node)
 	}
 
-	return fmt.Errorf("Unknown node %s", node.ShortString())
+	return fmt.Errorf("Unknown node %s", node)
 }
 
 func (g *GenGo) writeEnum(enum *parser.Node) error {
@@ -373,7 +373,7 @@ func (g *GenGo) writeClassSerializer(class *parser.Node, props propSlice) error 
 		case "proto":
 			lenField := prop.ProtoLengthField()
 			if lenField == nil {
-				return fmt.Errorf("Expected %s to have a proto length field", prop.QualifiedShortString())
+				return fmt.Errorf("Expected %s to have a proto length field", prop.QualifiedString())
 			}
 
 			// var dataN []byte
@@ -421,7 +421,7 @@ func (g *GenGo) writeClassDeserializer(class *parser.Node, props propSlice) erro
 		case "proto":
 			lenField := prop.ProtoLengthField()
 			if lenField == nil {
-				return fmt.Errorf("Expected %s to have a proto length field", prop.QualifiedShortString())
+				return fmt.Errorf("Expected %s to have a proto length field", prop.QualifiedString())
 			}
 
 			// dataN := make([]byte, m.ProtoLengthField, m.ProtoLengthField)

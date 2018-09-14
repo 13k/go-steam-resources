@@ -346,7 +346,7 @@ func (p *prop) EvalEnumValue() int64 {
 			case node.IsProperty():
 				parsed = newProp(node).EvalEnumValue()
 			default:
-				panic(fmt.Errorf("Cannot infer enum value for node %s", node.QualifiedShortString()))
+				panic(fmt.Errorf("Cannot infer enum value for node %s", node.QualifiedString()))
 			}
 
 			result |= parsed
