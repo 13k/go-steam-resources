@@ -265,7 +265,7 @@ func (g *GenGo) writeClass(node *parser.Node) error {
 	noConstProps := props.NoConstants()
 	propsWithCtor := props.WithConstructor()
 
-	if err := g.writeClassConstants(node, constProps); err != nil {
+	if err := g.writeClassConstants(constProps); err != nil {
 		return err
 	}
 
@@ -292,7 +292,7 @@ func (g *GenGo) writeClass(node *parser.Node) error {
 	return nil
 }
 
-func (g *GenGo) writeClassConstants(class *parser.Node, props propSlice) error {
+func (g *GenGo) writeClassConstants(props propSlice) error {
 	if len(props) > 0 {
 		g.sn("const (")
 
@@ -511,11 +511,6 @@ func (g *GenGo) include(name string) *GenGo {
 func (g *GenGo) b(b byte) *GenGo {
 	g.WriteByte(b)
 	return g
-}
-
-func (g *GenGo) bn(b byte) *GenGo {
-	g.b(b)
-	return g.n()
 }
 
 func (g *GenGo) n() *GenGo {

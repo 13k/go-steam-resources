@@ -33,9 +33,9 @@ func errf(msg string, args ...interface{}) error {
 	return fmt.Errorf(msg, args...)
 }
 
-func abort(err error, code int) {
+func abort(err error) {
 	warn("%s\n", err)
-	os.Exit(code)
+	os.Exit(1)
 }
 
 func init() {
@@ -49,7 +49,7 @@ func init() {
 	flag.Parse()
 
 	if len(flag.Args()) < 1 {
-		abort(errf("Usage: %s [options] <input>\n", os.Args[0]), 1)
+		abort(errf("Usage: %s [options] <input>\n", os.Args[0]))
 	}
 }
 
@@ -57,7 +57,7 @@ func main() {
 	root, err := parser.ParseFile(flag.Arg(0))
 
 	if err != nil {
-		abort(err, 1)
+		abort(err)
 	}
 
 	var output io.Writer
@@ -68,7 +68,7 @@ func main() {
 		f, fErr := os.Create(optOutput)
 
 		if fErr != nil {
-			abort(fErr, 1)
+			abort(fErr)
 		}
 
 		defer f.Close()
@@ -83,7 +83,7 @@ func main() {
 	err = g.Generate(output, root)
 
 	if err != nil {
-		abort(err, 1)
+		abort(err)
 	}
 
 	if optOutput != "-" {

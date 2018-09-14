@@ -136,8 +136,8 @@ func (node *Node) add(child *Node) error {
 
 // Lookup ...
 func (node *Node) Lookup(sym string) *Node {
-	if node := node.symbols.lookupString(sym); node != nil {
-		return node
+	if n := node.symbols.lookupString(sym); n != nil {
+		return n
 	}
 
 	if node.Parent != nil {
@@ -148,8 +148,8 @@ func (node *Node) Lookup(sym string) *Node {
 }
 
 func (node *Node) lookup(token *Token) (*Node, error) {
-	if node := node.symbols.lookup(token); node != nil {
-		return node, nil
+	if n := node.symbols.lookup(token); n != nil {
+		return n, nil
 	}
 
 	if node.Parent != nil {

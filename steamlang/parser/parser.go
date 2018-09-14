@@ -238,8 +238,8 @@ func (p *Parser) optionalTypeParamToken() (*Token, error) {
 			return token, err
 		}
 
-		if t, err := p.requireTokenValue(TokenTypeParam, ">"); err != nil {
-			return t, err
+		if t, tErr := p.requireTokenValue(TokenTypeParam, ">"); tErr != nil {
+			return t, tErr
 		}
 	}
 
@@ -363,8 +363,8 @@ func (p *Parser) parseInnerScope(node *Node) (*Token, error) {
 	scopeEnd, err := p.optionalTokenValue(TokenScope, "}")
 
 	for err == nil && scopeEnd == nil {
-		if t, err := p.parseScopeProperty(node); err != nil {
-			return t, err
+		if t, tErr := p.parseProperty(node); tErr != nil {
+			return t, tErr
 		}
 
 		scopeEnd, err = p.optionalTokenValue(TokenScope, "}")
@@ -377,7 +377,7 @@ func (p *Parser) parseInnerScope(node *Node) (*Token, error) {
 	return p.requireToken(TokenTerminator)
 }
 
-func (p *Parser) parseScopeProperty(parent *Node) (*Token, error) {
+func (p *Parser) parseProperty(parent *Node) (*Token, error) {
 	def1, err := p.requireToken(TokenIdent)
 
 	if err != nil {
@@ -449,22 +449,20 @@ func (p *Parser) parseScopeProperty(parent *Node) (*Token, error) {
 
 	if assign != nil {
 		for {
-			defValue, err := p.scanner.Scan()
+			defValue, dErr := p.scanner.Scan()
 
-			if err != nil {
-				return defValue, err
+			if dErr != nil {
+				return defValue, dErr
 			}
 
-			err = node.addDefault(defValue)
-
-			if err != nil {
-				return defValue, err
+			if addErr := node.addDefault(defValue); addErr != nil {
+				return defValue, addErr
 			}
 
-			union, err := p.optionalTokenValue(TokenOperator, "|")
+			union, uErr := p.optionalTokenValue(TokenOperator, "|")
 
-			if err != nil {
-				return union, err
+			if uErr != nil {
+				return union, uErr
 			}
 
 			if union == nil {
