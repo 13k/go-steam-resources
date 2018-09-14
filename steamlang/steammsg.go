@@ -11,17 +11,11 @@ import (
 	"strings"
 )
 
-// Code included from snippet "emsgmask"
-
 const EMsgMask uint32 = ^uint32(0x80000000)
 
 func MakeEMsg(e uint32) EMsg {
 	return EMsg(e & EMsgMask)
 }
-
-// ---
-
-// Code included from snippet "protomask"
 
 const ProtoMask uint32 = 0x80000000
 
@@ -32,8 +26,6 @@ func MaskProto(e uint32) uint32 {
 func IsProto(e uint32) bool {
 	return e&ProtoMask > 0
 }
-
-// ---
 
 type EMsg int32
 
