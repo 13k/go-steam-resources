@@ -1,38 +1,51 @@
 ---
-input_rel_path: "resources/SteamDatabase/Protobufs"
-packages:
-  - name: "steam"
-    files:
-      - "steam/*.proto"
-      - "dota2/steamnetworkingsockets_*.proto"
-    exclude_files:
-      - "steam/*.steamclient.proto"
-      - "steam/steamdatagram_*.proto"
-      - "steam/steamnetworkingsockets_*.proto"
-  - name: "steam/client"
-    files:
-      - "steam/*.steamclient.proto"
-  - name: "steam/steamworks"
-    files:
-      - "dota2/*.steamworkssdk.proto"
-  - name: "dota2"
-    files:
-      - "dota2/*.proto"
-    exclude_files:
-      - "dota2/steamdatagram_*.proto"
-      - "dota2/steammessages_base.proto"
-      - "dota2/steamnetworkingsockets_*.proto"
-      - "dota2/*.steamworkssdk.proto"
-  - name: "csgo"
-    files:
-      - "csgo/*.proto"
-    exclude_files:
-      - "csgo/steamdatagram_*.proto"
-      - "csgo/steammessages_base.proto"
-      - "csgo/steamnetworkingsockets_*.proto"
-  - name: "tf2"
-    files:
-      - "tf2/*.proto"
-    exclude_files:
-      - "tf2/steamdatagram_*.proto"
-      - "tf2/steamnetworkingsockets_*.proto"
+build_path: build
+
+protobuf:
+  base_package_name: "protobuf"
+  input_path: "resources/SteamDatabase/Protobufs"
+  patches_path: "resources/patches/protobuf"
+  output_path: "."
+  packages:
+    - name: "steam"
+      files:
+        - "steam/*.proto"
+        - "dota2/steamnetworkingsockets_*.proto"
+      exclude_files:
+        - "steam/*.steamclient.proto"
+        - "steam/steamdatagram_*.proto"
+        - "steam/steamnetworkingsockets_*.proto"
+    - name: "steam/client"
+      files:
+        - "steam/*.steamclient.proto"
+    - name: "steam/steamworks"
+      files:
+        - "dota2/*.steamworkssdk.proto"
+    - name: "dota2"
+      files:
+        - "dota2/*.proto"
+      exclude_files:
+        - "dota2/steamdatagram_*.proto"
+        - "dota2/steammessages_base.proto"
+        - "dota2/steamnetworkingsockets_*.proto"
+        - "dota2/*.steamworkssdk.proto"
+    - name: "csgo"
+      files:
+        - "csgo/*.proto"
+      exclude_files:
+        - "csgo/steamdatagram_*.proto"
+        - "csgo/steammessages_base.proto"
+        - "csgo/steamnetworkingsockets_*.proto"
+    - name: "tf2"
+      files:
+        - "tf2/*.proto"
+      exclude_files:
+        - "tf2/steamdatagram_*.proto"
+        - "tf2/steamnetworkingsockets_*.proto"
+steamlang:
+  package_name: "steamlang"
+  input_path: "resources/SteamKit/Resources/SteamLanguage"
+  output_path: "."
+  gen_go_file: "steamlang/cmd/steamlang-gen-go/main.go"
+  files:
+    - steammsg.steamd
