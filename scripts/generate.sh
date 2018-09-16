@@ -15,16 +15,16 @@ function step_msg() {
 pushd "$ROOT_DIR" >/dev/null || exit $?
 
 step_msg "Cleaning"
-rake -s clean || exit $?
+rake clean || exit $?
 
 step_msg "Generating protobuf packages"
-rake -s generate:protobuf || exit $?
+rake generate:protobuf || exit $?
 
 step_msg "Building protobuf packages"
 go build "./${PROTOBUF_PKG_REL_DIR}/..." || exit $?
 
 step_msg "Generating steamlang package"
-rake -s generate:steamlang || exit $?
+rake generate:steamlang || exit $?
 
 step_msg "Building steamlang package"
 go build "./${STEAMLANG_PKG_REL_DIR}" || exit $?
