@@ -59,9 +59,9 @@ type Node struct {
 	Ref               *Node    // type-param (Ident) | type-param (Type) | type (Type)
 	RefParam          *Node    // nil                | nil               | type-param (FlagsOpt)
 	Default           []*Node  // nil                | nil               | default-value (Default)
-	Qualifier         string   // nil                | nil               | type-qualifier (Flags)
+	Qualifier         string   // ""                 | ""                | type-qualifier (Flags)
 	Annotation        string   // "removed"          | "flags"           | "obsolete"|"removed" (Obsolete)
-	AnnotationComment string   // nil                | nil               | reason<String> (Obsolete)
+	AnnotationComment string   // ""                 | ""                | reason<String> (Obsolete)
 
 	symbols SymbolTable
 }

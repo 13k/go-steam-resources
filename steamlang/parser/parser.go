@@ -1,81 +1,75 @@
 package parser
 
 import (
-	"bytes"
 	"fmt"
 	"io"
 	"os"
 	"path/filepath"
-	"strings"
 )
 
-// ParseBytes ...
-func ParseBytes(buf []byte, filename string) (*Node, error) {
-	return Parse(bytes.NewBuffer(buf), filename)
-}
+type FileSet map[string]io.Reader
 
-// ParseString ...
-func ParseString(str, filename string) (*Node, error) {
-	return Parse(strings.NewReader(str), filename)
-}
+func (s FileSet) importFile(base, filename string) (io.Reader, string, error) {
+	if r, ok := s[filename]; ok {
+		return r, filename, nil
+	}
 
-// ParseFile ...
-func ParseFile(filename string) (*Node, error) {
+	if !filepath.IsAbs(filename) {
+		filename = filepath.Join(filepath.Dir(base), filename)
+	}
+
 	f, err := os.Open(filename)
 
 	if err != nil {
-		return nil, err
+		return nil, filename, err
 	}
 
-	defer f.Close()
-	return Parse(f, filename)
+	s[filename] = f
+	return f, filename, nil
 }
 
-// Parse ...
-func Parse(r io.Reader, filename string) (*Node, error) {
-	parser, err := NewParser(r, filename)
+func ParseFile(fset FileSet, filename string) (*Node, error) {
+	p, err := newParser(fset, filename)
 
 	if err != nil {
 		return nil, err
 	}
 
-	return parser.Parse()
+	return p.parse()
 }
 
-// Parser ...
-type Parser struct {
-	scanner   *Scanner
-	root      *Node
-	filename  string
-	directory string
+type parser struct {
+	fset    FileSet
+	base    string
+	root    *Node
+	scanner Scanner
 }
 
-// NewParser ...
-func NewParser(r io.Reader, filename string) (*Parser, error) {
-	filename, err := filepath.Abs(filename)
+func newParser(fset FileSet, filename string) (*parser, error) {
+	reader, ok := fset[filename]
 
-	if err != nil {
-		return nil, err
+	if !ok {
+		return nil, fmt.Errorf("File %q not found in FileSet", filename)
 	}
 
+	scanner := NewScanner(reader, filename)
 	root, err := makeRoot()
 
 	if err != nil {
 		return nil, err
 	}
 
-	parser := &Parser{
-		scanner:   NewScanner(r, filename),
-		root:      root,
-		filename:  filename,
-		directory: filepath.Dir(filename),
+	p := &parser{
+		fset:    fset,
+		base:    filename,
+		root:    root,
+		scanner: scanner,
 	}
 
-	return parser, nil
+	return p, nil
 }
 
-// Parse ...
-func (p *Parser) Parse() (*Node, error) {
+func (p *parser) parse() (*Node, error) {
 	var (
 		token *Token
 		err   error
@@ -86,13 +80,13 @@ func (p *Parser) Parse() (*Node, error) {
 	for err == nil {
 		switch token.Type {
 		case TokenPreprocess:
-			token, err = p.handlePreprocess(token)
+			token, err = p.handlePreprocess(p.root, token)
 		case TokenIdent:
 			switch token.Value {
 			case "class":
-				token, err = p.handleClass()
+				token, err = p.handleClass(p.root)
 			case "enum":
-				token, err = p.handleEnum()
+				token, err = p.handleEnum(p.root)
 			default:
 				err = fmt.Errorf("Unknown declaration %s", token)
 			}
@@ -116,7 +110,7 @@ func (p *Parser) Parse() (*Node, error) {
 	return p.root, nil
 }
 
-func (p *Parser) requireToken(typ TokenType) (t *Token, err error) {
+func (p *parser) requireToken(typ TokenType) (t *Token, err error) {
 	defer func() {
 		debug("requireToken(%q) : t=%v, e=%v\n", typ, t, err)
 	}()
@@ -134,7 +128,7 @@ func (p *Parser) requireToken(typ TokenType) (t *Token, err error) {
 	return
 }
 
-func (p *Parser) requireAnyToken(types ...TokenType) (t *Token, err error) {
+func (p *parser) requireAnyToken(types ...TokenType) (t *Token, err error) {
 	defer func() {
 		debug("requireAnyToken(%q) : t=%v, e=%v\n", types, t, err)
 	}()
@@ -152,7 +146,7 @@ func (p *Parser) requireAnyToken(types ...TokenType) (t *Token, err error) {
 	return
 }
 
-func (p *Parser) requireTokenValue(typ TokenType, value string) (t *Token, err error) {
+func (p *parser) requireTokenValue(typ TokenType, value string) (t *Token, err error) {
 	defer func() {
 		debug("requireTokenValue(%q, %q) : t=%v, e=%v\n", typ, value, t, err)
 	}()
@@ -170,7 +164,7 @@ func (p *Parser) requireTokenValue(typ TokenType, value string) (t *Token, err e
 	return
 }
 
-func (p *Parser) optionalToken(typ TokenType) (t *Token, err error) {
+func (p *parser) optionalToken(typ TokenType) (t *Token, err error) {
 	defer func() {
 		debug("optionalToken(%q) : t=%v, e=%v\n", typ, t, err)
 	}()
@@ -188,7 +182,7 @@ func (p *Parser) optionalToken(typ TokenType) (t *Token, err error) {
 	return
 }
 
-func (p *Parser) optionalTokenValue(typ TokenType, value string) (t *Token, err error) {
+func (p *parser) optionalTokenValue(typ TokenType, value string) (t *Token, err error) {
 	defer func() {
 		debug("optionalTokenValue(%q, %q) : t=%v, e=%v\n", typ, value, t, err)
 	}()
@@ -206,7 +200,7 @@ func (p *Parser) optionalTokenValue(typ TokenType, value string) (t *Token, err 
 	return
 }
 
-func (p *Parser) optionalTokenAnyValue(typ TokenType, values ...string) (t *Token, err error) {
+func (p *parser) optionalTokenAnyValue(typ TokenType, values ...string) (t *Token, err error) {
 	defer func() {
 		debug("optionalTokenAnyValue(%q, %q) : t=%v, e=%v\n", typ, values, t, err)
 	}()
@@ -224,7 +218,7 @@ func (p *Parser) optionalTokenAnyValue(typ TokenType, values ...string) (t *Toke
 	return
 }
 
-func (p *Parser) optionalTypeParamToken() (*Token, error) {
+func (p *parser) optionalTypeParamToken() (*Token, error) {
 	token, err := p.optionalTokenValue(TokenTypeParam, "<")
 
 	if err != nil {
@@ -246,16 +240,16 @@ func (p *Parser) optionalTypeParamToken() (*Token, error) {
 	return token, err
 }
 
-func (p *Parser) handlePreprocess(token *Token) (*Token, error) {
+func (p *parser) handlePreprocess(root *Node, token *Token) (*Token, error) {
 	switch token.Value {
 	case "import":
-		return p.handleImport()
+		return p.handleImport(root)
 	}
 
 	return token, fmt.Errorf("Invalid macro #%q", token.Value)
 }
 
-func (p *Parser) handleImport() (*Token, error) {
+func (p *parser) handleImport(root *Node) (*Token, error) {
 	// current token is "#import"
 	t, err := p.requireToken(TokenString)
 
@@ -263,15 +257,20 @@ func (p *Parser) handleImport() (*Token, error) {
 		return t, err
 	}
 
-	filename := filepath.Join(p.directory, t.Value)
-	root, err := ParseFile(filename)
+	_, filename, err := p.fset.importFile(p.base, t.Value)
 
 	if err != nil {
 		return t, err
 	}
 
-	for _, child := range root.Children {
-		if err := p.root.add(child); err != nil {
+	subRoot, err := ParseFile(p.fset, filename)
+
+	if err != nil {
+		return t, err
+	}
+
+	for _, child := range subRoot.Children {
+		if err := root.add(child); err != nil {
 			return t, err
 		}
 	}
@@ -279,7 +278,7 @@ func (p *Parser) handleImport() (*Token, error) {
 	return t, nil
 }
 
-func (p *Parser) handleClass() (*Token, error) {
+func (p *parser) handleClass(parent *Node) (*Token, error) {
 	// current token is "class"
 	nameToken, err := p.requireToken(TokenIdent)
 
@@ -287,7 +286,7 @@ func (p *Parser) handleClass() (*Token, error) {
 		return nameToken, err
 	}
 
-	node, err := makeNode(Class, nameToken.Value, p.root)
+	node, err := makeNode(Class, nameToken.Value, parent)
 
 	if err != nil {
 		return nameToken, err
@@ -316,7 +315,7 @@ func (p *Parser) handleClass() (*Token, error) {
 	return p.parseInnerScope(node)
 }
 
-func (p *Parser) handleEnum() (*Token, error) {
+func (p *parser) handleEnum(parent *Node) (*Token, error) {
 	// current token is "enum"
 	nameToken, err := p.requireToken(TokenIdent)
 
@@ -324,7 +323,7 @@ func (p *Parser) handleEnum() (*Token, error) {
 		return nameToken, err
 	}
 
-	node, err := makeNode(Enum, nameToken.Value, p.root)
+	node, err := makeNode(Enum, nameToken.Value, parent)
 
 	if err != nil {
 		return nameToken, err
@@ -353,7 +352,7 @@ func (p *Parser) handleEnum() (*Token, error) {
 	return p.parseInnerScope(node)
 }
 
-func (p *Parser) parseInnerScope(node *Node) (*Token, error) {
+func (p *parser) parseInnerScope(parent *Node) (*Token, error) {
 	scopeBegin, err := p.requireTokenValue(TokenScope, "{")
 
 	if err != nil {
@@ -363,7 +362,7 @@ func (p *Parser) parseInnerScope(node *Node) (*Token, error) {
 	scopeEnd, err := p.optionalTokenValue(TokenScope, "}")
 
 	for err == nil && scopeEnd == nil {
-		if t, tErr := p.parseProperty(node); tErr != nil {
+		if t, tErr := p.parseProperty(parent); tErr != nil {
 			return t, tErr
 		}
 
@@ -377,7 +376,7 @@ func (p *Parser) parseInnerScope(node *Node) (*Token, error) {
 	return p.requireToken(TokenTerminator)
 }
 
-func (p *Parser) parseProperty(parent *Node) (*Token, error) {
+func (p *parser) parseProperty(parent *Node) (*Token, error) {
 	def1, err := p.requireToken(TokenIdent)
 
 	if err != nil {

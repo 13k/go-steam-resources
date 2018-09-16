@@ -10,85 +10,12 @@ import (
 	"unicode"
 )
 
-// TokenType represents token types
-type TokenType rune
-
-// Token types
-// Equivalent to text/scanner token types, except tokens not emitted
-const (
-	_               TokenType = -(iota + 1) // EOF (not emitted)
-	TokenIdent                              // Identifier
-	TokenInt                                // Int
-	TokenFloat                              // Float
-	_                                       // Char (not emitted)
-	TokenString                             // String
-	_                                       // RawString (not emitted)
-	_                                       // Comment (not emitted)
-	TokenPreprocess                         // #import directives
-	TokenTerminator                         // Terminator (";")
-	TokenScope                              // Scope change ("{", "}")
-	TokenTypeParam                          // Type parameter delimiter ("<", ">")
-	TokenOperator                           // Operator ("=", "|")
-)
-
-func (t TokenType) String() string {
-	switch t {
-	case TokenIdent:
-		return "Ident"
-	case TokenInt:
-		return "Int"
-	case TokenFloat:
-		return "Float"
-	case TokenString:
-		return "String"
-	case TokenPreprocess:
-		return "Preprocess"
-	case TokenTerminator:
-		return "Terminator"
-	case TokenScope:
-		return "Scope"
-	case TokenTypeParam:
-		return "TypeParam"
-	case TokenOperator:
-		return "TokenOperator"
-	}
-
-	return string(t)
+type Scanner interface {
+	Scan() (*Token, error)
+	Peek() (*Token, error)
 }
 
-// Token ...
-type Token struct {
-	Type     TokenType
-	Value    string
-	Position scanner.Position
-}
-
-func (t *Token) String() string {
-	return fmt.Sprintf("%s<%q>", t.Type, t.Value)
-}
-
-func (t *Token) IsAny(types ...TokenType) bool {
-	for _, typ := range types {
-		if typ == t.Type {
-			return true
-		}
-	}
-
-	return false
-}
-
-func (t *Token) HasAnyValue(values ...string) bool {
-	for _, v := range values {
-		if v == t.Value {
-			return true
-		}
-	}
-
-	return false
-}
-
-// Scanner ...
-type Scanner struct {
+type scannerImpl struct {
 	scanner.Scanner
 	err  error
 	peek *Token
@@ -103,8 +30,8 @@ func isIdent(ch rune, i int) bool {
 }
 
 // NewScanner ...
-func NewScanner(r io.Reader, filename string) *Scanner {
-	s := &Scanner{}
+func NewScanner(r io.Reader, filename string) Scanner {
+	s := &scannerImpl{}
 	s.Init(r)
 	s.Error = s.onError
 	s.Filename = filename
@@ -119,42 +46,44 @@ func NewScanner(r io.Reader, filename string) *Scanner {
 }
 
 // NewScannerBytes ...
-func NewScannerBytes(buf []byte, filename string) *Scanner {
+func NewScannerBytes(buf []byte, filename string) Scanner {
 	return NewScanner(bytes.NewBuffer(buf), filename)
 }
 
 // NewScannerString ...
-func NewScannerString(str string, filename string) *Scanner {
+func NewScannerString(str string, filename string) Scanner {
 	return NewScanner(strings.NewReader(str), filename)
 }
 
-func (s *Scanner) onError(ts *scanner.Scanner, msg string) {
+func (s *scannerImpl) onError(ts *scanner.Scanner, msg string) {
 	s.err = errors.New(msg)
 }
 
-func (s *Scanner) scan() (rune, error) {
+func (s *scannerImpl) scan() (rune, error) {
 	ch := s.Scanner.Scan()
 	return ch, s.err
 }
 
 // Scan ...
-func (s *Scanner) Scan() (token *Token, err error) {
+func (s *scannerImpl) Scan() (token *Token, err error) {
 	debug("Scan() : ")
 
 	if s.peek != nil {
-		peek := s.peek
+		token = s.peek
 		s.peek = nil
-		debug("[peek]: t=%v e=%v\n", peek, err)
-		return peek, nil
+		debug("[peek]: t=%v e=%v\n", token, err)
+		return
 	}
 
-	var t rune
+	t, err := s.scan()
 
-	t, err = s.scan()
 	token = &Token{
-		Type:     TokenType(t),
 		Value:    s.TokenText(),
 		Position: s.Position,
+	}
+
+	if t < 0 {
+		token.Type = TokenType(t)
 	}
 
 	if err != nil {
@@ -228,7 +157,7 @@ func (s *Scanner) Scan() (token *Token, err error) {
 }
 
 // Peek ...
-func (s *Scanner) Peek() (*Token, error) {
+func (s *scannerImpl) Peek() (*Token, error) {
 	t, err := s.Scan()
 	s.peek = t
 	return t, err

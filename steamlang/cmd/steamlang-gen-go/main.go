@@ -54,7 +54,20 @@ func init() {
 }
 
 func main() {
-	root, err := parser.ParseFile(flag.Arg(0))
+	filename := flag.Arg(0)
+	f, err := os.Open(filename)
+
+	if err != nil {
+		abort(err)
+	}
+
+	defer f.Close()
+
+	fset := parser.FileSet{
+		filename: f,
+	}
+
+	root, err := parser.ParseFile(fset, filename)
 
 	if err != nil {
 		abort(err)
