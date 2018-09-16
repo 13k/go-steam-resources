@@ -6,7 +6,8 @@ This is a Go wrapper around Steam resources
 
 It's primarily intended to use with [go-steam](https://github.com/Philipp15b/go-steam).
 
-This repository is inspired by [node-steam-resources](https://github.com/seishun/node-steam-resources).
+This repository is inspired by
+[node-steam-resources](https://github.com/seishun/node-steam-resources).
 
 Philipp15b's [go-steam](https://github.com/Philipp15b/go-steam) repository already contains (a
 version) of these packages, but this repository was created mainly for three reasons:
@@ -22,18 +23,16 @@ version) of these packages, but this repository was created mainly for three rea
    SteamKit's steamlang generator which is implemented in C#). A generator in go leveraging `go
    generate`, with no external dependencies, would be nice.
 
-*NOTE: SteamLanguage resources are WIP. For now, the only option is to use go-steam's SteamLanguage
-resources.*
-
 # Protobufs
 
-Mapping between SteamDatabase's protobufs files (relative to `SteamDatabase/Protobufs`) to
+Mapping between SteamDatabase's protobufs files (relative to `resources/SteamDatabase/Protobufs`) to
 go-steam-resources packages (relative to `github.com/13k/go-steam-resources`) are set in the file
 `resources/config.yml`.
 
-## Installation & Usage
+**NOTE**: Importing of multiple games protobufs in the same package won't work, because some of them
+define messages with the same name and protobuf will panic.
 
-Simply `go get` the desired package and use the exported protobuf messages accordingly.
+## Installation & Usage
 
 `go get github.com/13k/go-steam-resources/protobuf`
 
@@ -43,15 +42,31 @@ import (
   "github.com/golang/protobuf/proto"
 )
 
-steamId := uint64(1234567890)
-msgHdr := steampb.CMsgProtoBufHeader{}
-msgHdr.Steamid = proto.Uint64(steamId)
-// ...
+func f() {
+  steamId := uint64(1234567890)
+  msgHdr := steampb.CMsgProtoBufHeader{}
+  msgHdr.Steamid = proto.Uint64(steamId)
+  // ...
+}
 ```
 
 # SteamLanguage
 
-WIP.
+## Installation & Usage
+
+`go get github.com/13k/go-steam-resources/steamlang`
+
+```go
+import (
+  "github.com/13k/go-steam-resources/steamlang"
+)
+
+func f() {
+  if message.Result == steamlang.EResult_OK {
+    // ...
+  }
+}
+```
 
 # Development
 
