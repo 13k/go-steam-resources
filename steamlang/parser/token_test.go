@@ -44,9 +44,8 @@ func TestTokenIsAny(t *testing.T) {
 
 func TestTokenHasAnyValue(t *testing.T) {
 	token := &Token{Value: "c"}
-	var values []string
 
-	values = []string{"a", "b", "c", "d", "e"}
+	values := []string{"a", "b", "c", "d", "e"}
 
 	assert.True(t, token.HasAnyValue(values...))
 	assert.True(t, token.HasAnyValue("c"))

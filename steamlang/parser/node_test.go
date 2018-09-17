@@ -7,17 +7,6 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-var (
-	lookupTree = []struct {
-		t NodeType
-		v string
-		p []string
-	}{
-		{Class, "Msg", []string{"cField1", "cField2"}},
-		{Enum, "EMsg", []string{"eField1", "eField2"}},
-	}
-)
-
 func TestNodeLookup(t *testing.T) {
 	root, err := makeRoot()
 	require.NoError(t, err)

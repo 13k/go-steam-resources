@@ -128,12 +128,6 @@ func (p *prop) Type() string {
 			} else {
 				p.typ = translateSymbol(typ)
 			}
-		// case p.IsSteamIDMarshal():
-		//	if typ == "ulong" {
-		//		p.typ = "steamid.SteamId"
-		//	} else {
-		//		p.typ = translateSymbol(typ)
-		//	}
 		case p.IsArray():
 			if typ == "byte" {
 				p.typ = fmt.Sprintf("[%d]byte", p.ArraySize())

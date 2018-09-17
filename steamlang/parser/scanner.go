@@ -10,6 +10,7 @@ import (
 	"unicode"
 )
 
+// Scanner is the interface for scanners.
 type Scanner interface {
 	Scan() (*Token, error)
 	Peek() (*Token, error)
@@ -29,7 +30,8 @@ func isIdent(ch rune, i int) bool {
 		(ch == '.' && i > 0)
 }
 
-// NewScanner ...
+// NewScanner creates a Scanner for the given io.Reader. It uses filename for position and error
+// messages.
 func NewScanner(r io.Reader, filename string) Scanner {
 	s := &scannerImpl{}
 	s.Init(r)
@@ -45,12 +47,12 @@ func NewScanner(r io.Reader, filename string) Scanner {
 	return s
 }
 
-// NewScannerBytes ...
+// NewScannerBytes creates a Scanner for the given slice of bytes.
 func NewScannerBytes(buf []byte, filename string) Scanner {
 	return NewScanner(bytes.NewBuffer(buf), filename)
 }
 
-// NewScannerString ...
+// NewScannerString creates a Scanner for the given string.
 func NewScannerString(str string, filename string) Scanner {
 	return NewScanner(strings.NewReader(str), filename)
 }
@@ -64,7 +66,8 @@ func (s *scannerImpl) scan() (rune, error) {
 	return ch, s.err
 }
 
-// Scan ...
+// Scan reads the next Token and returns it. It returns an error if it could not read a token,
+// including io.EOF when there is nothing more to read.
 func (s *scannerImpl) Scan() (token *Token, err error) {
 	debug("Scan() : ")
 
@@ -156,7 +159,8 @@ func (s *scannerImpl) Scan() (token *Token, err error) {
 	return
 }
 
-// Peek ...
+// Peek reads the next token and returns it, but will not move the Scanner forward. Multiple calls
+// to Peek will return the same Token. Errors returned are the same in Scan.
 func (s *scannerImpl) Peek() (*Token, error) {
 	t, err := s.Scan()
 	s.peek = t

@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-// Node types
+// Node types.
 const (
 	Root NodeType = iota
 	Class
@@ -28,7 +28,7 @@ var globals = []*Node{
 	{Type: Literal, Value: "SteamKit2.Internal.CMsgProtoBufHeader"},
 }
 
-// NodeType represents node types
+// NodeType represents node types.
 type NodeType int
 
 func (t NodeType) String() string {
@@ -50,18 +50,38 @@ func (t NodeType) String() string {
 	return ""
 }
 
-// Node ...
+// Node represents an AST node.
+//
+// It belongs to a Parent (can be nil), has multiple Children (can be empty) and has a Type and a
+// Value.
+//
+// The meaning of the fields Ref, RefParam, Default, Qualifier and Annotation* change
+// depending on the value of the Type field, according to the following table.
+//
+// The values in the table are meta-variables in the EBNF syntax. Values in parenthesis are the
+// equivalent fields in the original SteamKit's AST nodes.
+//
+//	|-------------------|--------------------|-------------------|----------------------------------------|
+//	| Type              | Class              | Enum              | Property                               |
+// 	| Ref               | class-emsg (Ident) | enum-type (Type)  | property-type (Type)                   |
+// 	| RefParm           | nil                | nil               | property-type-param (FlagsOpt)         |
+// 	| Default           | nil                | nil               | property-values (Default)              |
+// 	| Qualifier         | ""                 | ""                | property-qualifier (Flags)             |
+// 	| Annotation        | class-annotation   | enum-annotation   | property-annotation-value (Obsolete)   |
+// 	| AnnotationComment | ""                 | ""                | property-annotation-comment (Obsolete) |
+//	|-------------------|--------------------|-------------------|----------------------------------------|
+//
 type Node struct {
 	Parent            *Node
 	Children          []*Node
-	Type              NodeType // Class              | Enum              | Property
-	Value             string   // (Name)             | (Name)            | (Name)
-	Ref               *Node    // type-param (Ident) | type-param (Type) | type (Type)
-	RefParam          *Node    // nil                | nil               | type-param (FlagsOpt)
-	Default           []*Node  // nil                | nil               | default-value (Default)
-	Qualifier         string   // ""                 | ""                | type-qualifier (Flags)
-	Annotation        string   // "removed"          | "flags"           | "obsolete"|"removed" (Obsolete)
-	AnnotationComment string   // ""                 | ""                | reason<String> (Obsolete)
+	Type              NodeType
+	Value             string
+	Ref               *Node
+	RefParam          *Node
+	Default           []*Node
+	Qualifier         string
+	Annotation        string
+	AnnotationComment string
 
 	symbols SymbolTable
 }
@@ -98,32 +118,32 @@ func makeRoot() (*Node, error) {
 	return node, nil
 }
 
-// IsRoot returns true if the node is a root node
+// IsRoot returns true if the node is a Root node
 func (node *Node) IsRoot() bool {
 	return node.Type == Root
 }
 
-// IsClass returns true if the node is a root node
+// IsClass returns true if the node is a Class node
 func (node *Node) IsClass() bool {
 	return node.Type == Class
 }
 
-// IsEnum returns true if the node is a root node
+// IsEnum returns true if the node is an Enum node
 func (node *Node) IsEnum() bool {
 	return node.Type == Enum
 }
 
-// IsProperty returns true if the node is a root node
+// IsProperty returns true if the node is a Property node
 func (node *Node) IsProperty() bool {
 	return node.Type == Property
 }
 
-// IsType returns true if the node is a root node
+// IsType returns true if the node is a Type node
 func (node *Node) IsType() bool {
 	return node.Type == Type
 }
 
-// IsLiteral returns true if the node is a root node
+// IsLiteral returns true if the node is a Literal node
 func (node *Node) IsLiteral() bool {
 	return node.Type == Literal
 }
@@ -134,7 +154,10 @@ func (node *Node) add(child *Node) error {
 	return node.symbols.add(child)
 }
 
-// Lookup ...
+// Lookup returns a node referenced by the given symbol, starting from the context of the current
+// node and up until the root node.
+//
+// It returns nil if no node is found.
 func (node *Node) Lookup(sym string) *Node {
 	if n := node.symbols.lookupString(sym); n != nil {
 		return n
@@ -170,7 +193,7 @@ func (node *Node) addDefault(token *Token) error {
 	return nil
 }
 
-// String ...
+// String returns a formatted string of the node's type and value
 func (node *Node) String() string {
 	var b strings.Builder
 	b.WriteString(node.Type.String())
@@ -180,7 +203,7 @@ func (node *Node) String() string {
 	return b.String()
 }
 
-// QualifiedString ...
+// QualifiedString returns a formatted string of all ascending nodes until the root, joined by "::"
 func (node *Node) QualifiedString() string {
 	var path []string
 
@@ -195,7 +218,7 @@ func (node *Node) QualifiedString() string {
 	return strings.Join(path, "::")
 }
 
-// AstString ...
+// AstString returns a formatted AST string
 func (node *Node) AstString() string {
 	return node.astString(0)
 }

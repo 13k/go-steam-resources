@@ -20,12 +20,16 @@ const (
 )
 
 // GenGo implements a Go code generator.
-// Package can be changed anytime, but client must call `Init` again after such change.
 type GenGo struct {
+	*bytes.Buffer
+
 	// Package name for the generated code.
-	// Packages are considered equal between two runs of the generator if this string is the same
+	//
+	// The field can be changed anytime prior to a call to Generate.
+	//
+	// Packages are considered equal between two runs of the generator if this field is the same.
 	Package string
-	// Base import path of the generated protobuf packages
+	// Base import path of the generated protobuf packages.
 	ProtobufPackage string
 
 	output io.Writer
@@ -35,8 +39,6 @@ type GenGo struct {
 	// Includes are snippets of static code that are used by the generated code.
 	// They are added by the generator itself when it generates code that uses code in these snippets
 	includes genIncludes
-
-	*bytes.Buffer
 }
 
 // Generate runs the code generation for the given AST root node and writes it to the given Writer.
@@ -94,7 +96,6 @@ func (g *GenGo) init(w io.Writer) {
 }
 
 func (g *GenGo) validateAndFormat() error {
-	// original := g.Bytes()
 	fset := token.NewFileSet()
 	f, err := goparser.ParseFile(fset, "", g.Bytes(), goparser.ParseComments)
 
@@ -381,7 +382,7 @@ func (g *GenGo) writeClassSerializer(class *parser.Node, props propSlice) error 
 	g.include("emsgmask")
 	g.include("protomask")
 
-	// func (m *Class) Serialize(w io.Writer) (err error) {
+	// func (m *{{ClassName}}) Serialize(w io.Writer) (err error) {
 	g.s("func (m ").sptr(class.Value).sn(") Serialize(w io.Writer) (err error) {")
 
 	for i, prop := range props {
@@ -394,23 +395,23 @@ func (g *GenGo) writeClassSerializer(class *parser.Node, props propSlice) error 
 				return fmt.Errorf("Expected %s to have a proto length field", prop.QualifiedString())
 			}
 
-			// var dataN []byte
-			// if dataN, err := proto.Marshal(m.Property); err != nil { return }
-			// m.ProtoLengthField = ProtoLengthFieldType(len(dataN))
-			// if _, err = w.Write(dataN); err != nil { return }
+			// var {{dataN}} []byte
+			// if {{dataN}}, err := proto.Marshal(m.{{PropertyName}}); err != nil { return }
+			// m.{{ProtoLengthField}} = {{ProtoLengthFieldType}}(len({{dataN}}))
+			// if _, err = w.Write({{dataN}}); err != nil { return }
 			g.t().s("var ").s(dataN).sn(" []byte")
 			g.t().s("if ").s(dataN).s(", err = proto.Marshal(").sfield("m", prop.Name()).sn("); err != nil { return }")
 			g.t().sfield("m", lenField.Name()).s(" = ").s(lenField.Type()).s("(").slen(dataN).sn(")")
 			g.t().s("if _, err = w.Write(").s(dataN).sn("); err != nil { return }")
 
 		case "protomask":
-			// dataN := MaskProto(uint32(m.Property))
-			// if err = binary.Write(w, binary.LittleEndian, data); err != nil { return }
+			// {{dataN}} := MaskProto(uint32(m.{{PropertyName}}))
+			// if err = binary.Write(w, binary.LittleEndian, {{dataN}}); err != nil { return }
 			g.t().s(dataN).s(" := MaskProto(uint32(").sfield("m", prop.Name()).sn("))")
 			g.t().s("if err = binary.Write(w, binary.LittleEndian, ").s(dataN).sn("); err != nil { return }")
 
 		default:
-			// if err = binary.Write(w, binary.LittleEndian, m.Property); err != nil { return }
+			// if err = binary.Write(w, binary.LittleEndian, m.{{PropertyName}}); err != nil { return }
 			g.t().s("if err = binary.Write(w, binary.LittleEndian, ").sfield("m", prop.Name()).sn("); err != nil { return }")
 		}
 	}
@@ -429,7 +430,7 @@ func (g *GenGo) writeClassDeserializer(class *parser.Node, props propSlice) erro
 	g.include("emsgmask")
 	g.include("protomask")
 
-	// func (m *Class) Deserialize(r io.Reader) (err error) {
+	// func (m *{{ClassName}}) Deserialize(r io.Reader) (err error) {
 	g.s("func (m ").sptr(class.Value).sn(") Deserialize(r io.Reader) (err error) {")
 
 	for i, prop := range props {
@@ -442,9 +443,9 @@ func (g *GenGo) writeClassDeserializer(class *parser.Node, props propSlice) erro
 				return fmt.Errorf("Expected %s to have a proto length field", prop.QualifiedString())
 			}
 
-			// dataN := make([]byte, m.ProtoLengthField, m.ProtoLengthField)
-			// if _, err = io.ReadFull(r, dataN); err != nil { return }
-			// if err = proto.Unmarshal(dataN, m.Property); err != nil { return }
+			// {{dataN}} := make([]byte, m.{{ProtoLengthField}}, m.{{ProtoLengthField}})
+			// if _, err = io.ReadFull(r, {{dataN}}); err != nil { return }
+			// if err = proto.Unmarshal({{dataN}}, m.{{PropertyName}}); err != nil { return }
 			g.t().s(dataN).s(" := make([]byte, ").sfield("m", lenField.Name()).s(", ").sfield("m", lenField.Name()).sn(")")
 			g.t().s("if _, err = io.ReadFull(r, ").s(dataN).sn("); err != nil { return }")
 			g.t().s("if err = proto.Unmarshal(").s(dataN).s(", ").sfield("m", prop.Name()).sn("); err != nil { return }")
@@ -455,26 +456,15 @@ func (g *GenGo) writeClassDeserializer(class *parser.Node, props propSlice) erro
 				cast = fmt.Sprintf("%s(%s)", prop.Type(), cast)
 			}
 
-			// var dataN uint32
-			// if err = binary.Read(r, binary.LittleEndian, &dataN); err != nil { return }
-			// m.Property = PropertyType(MakeEMsg(dataN))
+			// var {{dataN}} uint32
+			// if err = binary.Read(r, binary.LittleEndian, &{{dataN}}); err != nil { return }
+			// m.{{PropertyName}} = {{PropertyType}}(MakeEMsg({{dataN}}))
 			g.t().s("var ").s(dataN).sn(" uint32")
 			g.t().s("if err = binary.Read(r, binary.LittleEndian, ").saddr(dataN).sn("); err != nil { return }")
 			g.t().sfield("m", prop.Name()).s(" = ").sn(cast)
 
 		default:
-			/*
-				typ := prop.DereferenceType()
-				if typ == "" {
-					return fmt.Errorf("Failed to dereference type of %s", prop.QualifiedShortString())
-				}
-				methodTyp := strcase.ToCamel(typ)
-
-				// if m.Property, err = rwu.Read{{Type}}(r); err != nil { return }
-				g.t().s("if ").sfield("m", prop.Name()).s(", err = rwu.Read").s(methodTyp).sn("(r); err != nil { return }")
-			*/
-
-			// if err = binary.Read(r, binary.LittleEndian, &m.Property); err != nil { return }
+			// if err = binary.Read(r, binary.LittleEndian, &m.{{PropertyName}}); err != nil { return }
 			g.t().s("if err = binary.Read(r, binary.LittleEndian, &").sfield("m", prop.Name()).sn("); err != nil { return }")
 		}
 	}

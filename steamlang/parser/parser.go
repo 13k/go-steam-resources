@@ -7,6 +7,8 @@ import (
 	"path/filepath"
 )
 
+// FileSet is a map of filenames to io.Reader. It represents a set of files that are available to be
+// parsed.
 type FileSet map[string]io.Reader
 
 func (s FileSet) importFile(base, filename string) (io.Reader, string, error) {
@@ -28,6 +30,11 @@ func (s FileSet) importFile(base, filename string) (io.Reader, string, error) {
 	return f, filename, nil
 }
 
+// ParseFile parses the file named filename within the FileSet fset. It returns the root Node of the
+// file's AST.
+//
+// Any "#import" directives in the file's source can trigger loading of the file in disk and modify
+// fset.
 func ParseFile(fset FileSet, filename string) (*Node, error) {
 	p, err := newParser(fset, filename)
 

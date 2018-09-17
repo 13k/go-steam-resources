@@ -8,8 +8,7 @@ import (
 // TokenType represents token types
 type TokenType rune
 
-// Token types
-// Equivalent to text/scanner token types, except tokens not emitted
+// Token types. Equivalent to text/scanner token types, except for the tokens that are not emitted.
 const (
 	_               TokenType = -(iota + 1) // EOF (not emitted)
 	TokenIdent                              // Identifier
@@ -51,7 +50,9 @@ func (t TokenType) String() string {
 	return string(t)
 }
 
-// Token ...
+// Token represents a code token.
+//
+// It contains the token type, value (the string in the source code) and a position.
 type Token struct {
 	Type     TokenType
 	Value    string
