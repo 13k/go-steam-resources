@@ -1,1 +1,3 @@
-/build
+/.build
+/tmp
+/tools/bin
