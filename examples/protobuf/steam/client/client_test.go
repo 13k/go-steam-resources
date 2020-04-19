@@ -9,5 +9,9 @@ import (
 )
 
 func TestProtobufSteamClient(t *testing.T) {
-	assert.Equal(t, "k_EProtoExecutionSiteSteamClient", client.EProtoExecutionSite_k_EProtoExecutionSiteSteamClient.String())
+	assert.Equal(
+		t,
+		"k_EProtoExecutionSiteSteamClient",
+		client.EProtoExecutionSite_k_EProtoExecutionSiteSteamClient.String(),
+	)
 }
