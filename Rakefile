@@ -6,20 +6,19 @@ verbose(verbose.is_a?(TrueClass) || ENV['VERBOSE'].to_i == 1) unless verbose.is_
 require 'pathname'
 require 'yaml'
 
+require_relative 'rakelib/util'
+require_relative 'rakelib/protobuf'
+require_relative 'rakelib/transform_protobuf_task'
+require_relative 'rakelib/generate_protobuf_task'
+require_relative 'rakelib/generate_steamlang_task'
+
 ROOT_PATH = Pathname.new(__dir__)
-RESOURCES_PATH = ROOT_PATH.join('resources')
-
-require_relative RESOURCES_PATH.join('ruby/logging')
-require_relative RESOURCES_PATH.join('ruby/util')
-require_relative RESOURCES_PATH.join('ruby/tasks/transform_protobuf_task')
-require_relative RESOURCES_PATH.join('ruby/tasks/generate_protobuf_task')
-require_relative RESOURCES_PATH.join('ruby/tasks/generate_steamlang_task')
-
 GO_MODULE_FILE = ROOT_PATH.join('go.mod')
+RESOURCES_PATH = ROOT_PATH.join('resources')
 CONFIG_FILE = RESOURCES_PATH.join('config.yml')
 
-go_module = parse_go_module(GO_MODULE_FILE)
-config = load_config(CONFIG_FILE)
+go_module = Util.go_module(GO_MODULE_FILE)
+config = Util.load_config(CONFIG_FILE)
 build_path = ROOT_PATH.join(config.fetch(:build_path))
 
 tasklist = {
@@ -30,54 +29,49 @@ tasklist = {
 ## Protobuf tasks
 
 pbconfig = config.fetch(:protobuf)
-protobuf_pkg_base_import_path = File.join(go_module, pbconfig.fetch(:base_package_name))
-protobuf_input_path = ROOT_PATH.join(pbconfig[:input_path])
-protobuf_output_path = ROOT_PATH.join(pbconfig[:output_path])
-protobuf_pkg_output_path = protobuf_output_path.join(pbconfig.fetch(:base_package_name))
-protobuf_patched_output_path = build_path.join('protobufs')
-protobuf_generated_output_path = build_path.join('go')
-protobuf_patches_path = ROOT_PATH.join(pbconfig.fetch(:patches_path))
+proto_go_package_base = File.join(go_module, pbconfig.fetch(:go_package_base))
+proto_repo_path = ROOT_PATH.join(pbconfig.fetch(:input_path))
+proto_output_path = ROOT_PATH.join(pbconfig.fetch(:output_path), pbconfig.fetch(:go_package_base))
+proto_patches_path = RESOURCES_PATH.join('patches', 'protobuf')
+proto_transform_output_path = build_path.join('protobuf')
+proto_compile_output_path = build_path.join('go')
 
-pbconfig[:packages].each_with_object(tasklist[:protobuf]) do |package, tasks|
-  pkg_import_path = File.join(protobuf_pkg_base_import_path, package[:name])
-  pkg_patches_path = protobuf_patches_path.join(package[:name])
-  pkg_patched_path = protobuf_patched_output_path.join(package[:name])
-  pkg_output_path = protobuf_pkg_output_path.join(package[:name])
+proto_repo = ProtobufRepo.new(proto_repo_path)
 
-  excludes = package
-    .fetch(:exclude_files, [])
-    .map { |pattern| protobuf_input_path.join(pattern).to_s }
+pbconfig[:packages].each do |config|
+  config = config.merge(
+    go_package_base: proto_go_package_base,
+    patches_path: proto_patches_path,
+    transform_path: proto_transform_output_path,
+    output_path: proto_output_path,
+  )
 
-  package[:files].flat_map do |pattern|
-    protobuf_input_path
-      .glob(pattern)
-      .reject { |file| excludes.any? { |excl_pattern| file.fnmatch?(excl_pattern) } }
-      .map do |input_file|
-        transformed_file = pkg_patched_path.join(input_file.basename)
-        output_file = pkg_output_path.join(input_file.basename.sub_ext('.pb.go'))
+  pkg = proto_repo.add_package(config)
 
-        transform = TransformProtobufTask.define_task(transformed_file => input_file) do |task|
-          task.root_path = ROOT_PATH
-          task.patches_path = pkg_patches_path
-          task.go_package = pkg_import_path
-        end
+  pkg.files.each do |proto_file|
+    transform_file = pkg.transform_path.join(proto_file.basename)
+    output_file = pkg.output_path.join(proto_file.basename.sub_ext('.pb.go'))
 
-        generate = GenerateProtobufTask.define_task(output_file => transform) do |task|
-          task.root_path = ROOT_PATH
-          task.import_path = pkg_import_path
-          task.output_path = protobuf_generated_output_path
-        end
+    transform_task = transform_protobuf(transform_file, proto_file) do |task|
+      task.root_path = ROOT_PATH
+    end
 
-        tasks[:transform] << transform
-        tasks[:generate] << generate
-      end
+    generate_task = generate_protobuf(output_file, transform_task) do |task|
+      task.root_path = ROOT_PATH
+      task.include_path = proto_transform_output_path
+      task.output_path = proto_compile_output_path
+      task.go_opt = { paths: "source_relative" }
+    end
+
+    tasklist[:protobuf][:transform] << transform_task
+    tasklist[:protobuf][:generate] << generate_task
   end
 end
 
 ## SteamLang tasks
 
 slconfig = config.fetch(:steamlang)
-steamlang_gen_go_file = ROOT_PATH.join(slconfig.fetch(:gen_go_file))
+steamlang_gen_package = slconfig.fetch(:gen_package)
 steamlang_input_path = ROOT_PATH.join(slconfig.fetch(:input_path))
 steamlang_output_path = ROOT_PATH.join(slconfig.fetch(:output_path))
 steamlang_pkg_output_path = steamlang_output_path.join(slconfig.fetch(:package_name))
@@ -86,9 +80,9 @@ slconfig[:files].each_with_object(tasklist[:steamlang]) do |file, tasks|
   input_file = steamlang_input_path.join(file)
   output_file = steamlang_pkg_output_path.join(input_file.basename.sub_ext('.go'))
 
-  tasks << GenerateSteamLangTask.define_task(output_file => input_file) do |task|
+  tasks << generate_steamlang(output_file, input_file) do |task|
     task.root_path = ROOT_PATH
-    task.gen_go_file = steamlang_gen_go_file
+    task.gen_package = steamlang_gen_go_file
     task.go_package = slconfig.fetch(:package_name)
     task.protobuf_package = protobuf_pkg_base_import_path
   end

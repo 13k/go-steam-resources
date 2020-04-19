@@ -1,51 +1,135 @@
 ---
-build_path: build
+build_path: .build
 
 protobuf:
-  base_package_name: "protobuf"
   input_path: "resources/SteamDatabase/Protobufs"
-  patches_path: "resources/patches/protobuf"
   output_path: "."
+  go_package_base: "protobuf"
   packages:
     - name: "steam"
       files:
         - "steam/*.proto"
-        - "dota2/steamnetworkingsockets_*.proto"
-      exclude_files:
+      exclude:
         - "steam/*.steamclient.proto"
         - "steam/steamdatagram_*.proto"
         - "steam/steamnetworkingsockets_*.proto"
     - name: "steam/client"
       files:
         - "steam/*.steamclient.proto"
-    - name: "steam/steamworks"
+    - name: "steam/network"
       files:
-        - "dota2/*.steamworkssdk.proto"
-    - name: "dota2"
+        - "steam/steamdatagram_*.proto"
+        - "steam/steamnetworkingsockets_*.proto"
+    - name: "artifact"
       files:
-        - "dota2/*.proto"
-      exclude_files:
-        - "dota2/steamdatagram_*.proto"
-        - "dota2/steammessages_base.proto"
-        - "dota2/steamnetworkingsockets_*.proto"
-        - "dota2/*.steamworkssdk.proto"
+        - "artifact/*.proto"
+      exclude:
+        - "artifact/steammessages_*.proto"
+        - "artifact/steamdatagram_*.proto"
+        - "artifact/steamnetworkingsockets_*.proto"
+        - "artifact/*.steamworkssdk.proto"
+    - name: "artifact/steam"
+      files:
+        - "artifact/steammessages_*.proto"
+      exclude:
+        - "artifact/*.steamworkssdk.proto"
+    - name: "artifact/steam/network"
+      files:
+        - "artifact/steamdatagram_*.proto"
+        - "artifact/steamnetworkingsockets_*.proto"
+    - name: "artifact/steamworks"
+      files:
+        - "artifact/*.steamworkssdk.proto"
     - name: "csgo"
       files:
         - "csgo/*.proto"
-      exclude_files:
+      exclude:
+        - "csgo/steammessages_*.proto"
         - "csgo/steamdatagram_*.proto"
-        - "csgo/steammessages_base.proto"
         - "csgo/steamnetworkingsockets_*.proto"
+        - "csgo/*.steamworkssdk.proto"
+    - name: "csgo/steam"
+      files:
+        - "csgo/steammessages_*.proto"
+      exclude:
+        - "csgo/*.steamworkssdk.proto"
+    - name: "csgo/steam/network"
+      files:
+        - "csgo/steamdatagram_*.proto"
+        - "csgo/steamnetworkingsockets_*.proto"
+      exclude:
+        - "csgo/steamdatagram_messages.proto"
+    - name: "csgo/steamworks"
+      files:
+        - "csgo/*.steamworkssdk.proto"
+    - name: "dota2"
+      files:
+        - "dota2/*.proto"
+      exclude:
+        - "dota2/steammessages_*.proto"
+        - "dota2/steamdatagram_*.proto"
+        - "dota2/steamnetworkingsockets_*.proto"
+        - "dota2/*.steamworkssdk.proto"
+    - name: "dota2/steam"
+      files:
+        - "dota2/steammessages_*.proto"
+      exclude:
+        - "dota2/*.steamworkssdk.proto"
+    - name: "dota2/steam/network"
+      files:
+        - "dota2/steamnetworkingsockets_*.proto"
+        - "dota2/steamdatagram_*.proto"
+    - name: "dota2/steamworks"
+      files:
+        - "dota2/*.steamworkssdk.proto"
     - name: "tf2"
       files:
         - "tf2/*.proto"
-      exclude_files:
+      exclude:
+        - "tf2/tf_proto_def_messages.proto"
+        - "tf2/steammessages_*.proto"
         - "tf2/steamdatagram_*.proto"
         - "tf2/steamnetworkingsockets_*.proto"
+        - "tf2/*.steamworkssdk.proto"
+    - name: "tf2/steam"
+      files:
+        - "tf2/steammessages_*.proto"
+      exclude:
+        - "tf2/*.steamworkssdk.proto"
+    - name: "tf2/steam/network"
+      files:
+        - "tf2/steamnetworkingsockets_*.proto"
+        - "tf2/steamdatagram_*.proto"
+      exclude:
+        - "tf2/steamdatagram_messages.proto"
+        - "tf2/steamdatagram_auth_messages.proto"
+    - name: "tf2/steamworks"
+      files:
+        - "tf2/*.steamworkssdk.proto"
+    - name: "underlords"
+      files:
+        - "underlords/*.proto"
+      exclude:
+        - "underlords/steammessages_*.proto"
+        - "underlords/steamdatagram_*.proto"
+        - "underlords/steamnetworkingsockets_*.proto"
+        - "underlords/*.steamworkssdk.proto"
+    - name: "underlords/steam"
+      files:
+        - "underlords/steammessages_*.proto"
+      exclude:
+        - "underlords/*.steamworkssdk.proto"
+    - name: "underlords/steam/network"
+      files:
+        - "underlords/steamdatagram_*.proto"
+        - "underlords/steamnetworkingsockets_*.proto"
+    - name: "underlords/steamworks"
+      files:
+        - "underlords/*.steamworkssdk.proto"
 steamlang:
   package_name: "steamlang"
+  gen_package: "./steamlang/cmd/steamlang-gen-go"
   input_path: "resources/SteamKit/Resources/SteamLanguage"
   output_path: "."
-  gen_go_file: "steamlang/cmd/steamlang-gen-go/main.go"
   files:
     - steammsg.steamd
