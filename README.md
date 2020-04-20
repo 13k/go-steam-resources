@@ -4,13 +4,14 @@ This is a Go wrapper around Steam resources
 ([Protobufs](https://github.com/SteamDatabase/Protobufs) and
 [SteamLanguage](https://github.com/SteamRE/SteamKit/tree/master/Resources/SteamLanguage)).
 
-It's primarily intended to use with [go-steam](https://github.com/Philipp15b/go-steam).
+It's primarily intended to use with [go-steam](https://github.com/13k/go-steam).
 
 This repository is inspired by
 [node-steam-resources](https://github.com/seishun/node-steam-resources).
 
-Philipp15b's [go-steam](https://github.com/Philipp15b/go-steam) repository already contains (a
-version) of these packages, but this repository was created mainly for three reasons:
+[go-steam](https://github.com/Philipp15b/go-steam) (or the more recent
+[fork by faceit](https://github.com/faceit/go-steam)) already contain (a version) of
+these packages, but this repository was created mainly for three reasons:
 
 1. Decoupling auto-generated protobuf packages sounds like a good idea. It can be used on any sort
    of project that needs it, not only with `go-steam`. It also enables different repository
@@ -20,8 +21,7 @@ version) of these packages, but this repository was created mainly for three rea
    reason #1 seems enough for me to extract the repository, I took the opportunity to rework the
    organization too.
 3. SteamLanguage resources in `go-steam` requires the `mono` platform (since it simply runs
-   SteamKit's steamlang generator which is implemented in C#). A generator in go leveraging `go
-   generate`, with no external dependencies, would be nice.
+   SteamKit's steamlang generator which is implemented in C#). A generator in go leveraging `go generate`, with no external dependencies, would be nice.
 
 # Protobufs
 
@@ -39,7 +39,7 @@ define messages with the same name and protobuf will panic.
 ```go
 import (
   steampb "github.com/13k/go-steam-resources/protobuf/steam"
-  "github.com/golang/protobuf/proto"
+  "google.golang.org/protobuf/proto"
 )
 
 func f() {
