@@ -90,6 +90,8 @@ func (p *parser) parse() (*Node, error) {
 			token, err = p.handlePreprocess(p.root, token)
 		case TokenIdent:
 			switch token.Value {
+			case "public":
+				// ignore
 			case "class":
 				token, err = p.handleClass(p.root)
 			case "enum":
@@ -293,7 +295,7 @@ func (p *parser) handleClass(parent *Node) (*Token, error) {
 		return nameToken, err
 	}
 
-	node, err := makeNode(Class, nameToken.Value, parent)
+	node, err := makeNode(Class, nameToken.Value, nil)
 
 	if err != nil {
 		return nameToken, err
@@ -305,21 +307,33 @@ func (p *parser) handleClass(parent *Node) (*Token, error) {
 		return paramToken, err
 	}
 
-	if paramToken != nil {
-		node.Ref, err = node.lookup(paramToken)
+	annotToken, err := p.optionalTokenAnyValue(TokenIdent, "removed")
 
-		if err != nil {
-			return paramToken, err
-		}
+	if err != nil {
+		return annotToken, err
 	}
 
-	if annotToken, err := p.optionalTokenAnyValue(TokenIdent, "removed"); err != nil {
-		return annotToken, err
-	} else if annotToken != nil {
+	if annotToken != nil {
 		node.Annotation = annotToken.Value
 	}
 
-	return p.parseInnerScope(node)
+	removed := node.Annotation == "removed"
+
+	if !removed {
+		if err = parent.add(node); err != nil {
+			return nameToken, err
+		}
+
+		if paramToken != nil {
+			node.Ref, err = node.lookup(paramToken)
+
+			if err != nil {
+				return paramToken, err
+			}
+		}
+	}
+
+	return p.parseInnerScope(node, !removed)
 }
 
 func (p *parser) handleEnum(parent *Node) (*Token, error) {
@@ -330,7 +344,7 @@ func (p *parser) handleEnum(parent *Node) (*Token, error) {
 		return nameToken, err
 	}
 
-	node, err := makeNode(Enum, nameToken.Value, parent)
+	node, err := makeNode(Enum, nameToken.Value, nil)
 
 	if err != nil {
 		return nameToken, err
@@ -342,24 +356,36 @@ func (p *parser) handleEnum(parent *Node) (*Token, error) {
 		return paramToken, err
 	}
 
-	if paramToken != nil {
-		node.Ref, err = node.lookup(paramToken)
+	annotToken, err := p.optionalTokenAnyValue(TokenIdent, "flags", "removed")
 
-		if err != nil {
-			return paramToken, err
-		}
+	if err != nil {
+		return annotToken, err
 	}
 
-	if annotToken, err := p.optionalTokenAnyValue(TokenIdent, "flags"); err != nil {
-		return annotToken, err
-	} else if annotToken != nil {
+	if annotToken != nil {
 		node.Annotation = annotToken.Value
 	}
 
-	return p.parseInnerScope(node)
+	removed := node.Annotation == "removed"
+
+	if !removed {
+		if err = parent.add(node); err != nil {
+			return nameToken, err
+		}
+
+		if paramToken != nil {
+			node.Ref, err = node.lookup(paramToken)
+
+			if err != nil {
+				return paramToken, err
+			}
+		}
+	}
+
+	return p.parseInnerScope(node, !removed)
 }
 
-func (p *parser) parseInnerScope(parent *Node) (*Token, error) {
+func (p *parser) parseInnerScope(parent *Node, lookup bool) (*Token, error) {
 	scopeBegin, err := p.requireTokenValue(TokenScope, "{")
 
 	if err != nil {
@@ -369,7 +395,7 @@ func (p *parser) parseInnerScope(parent *Node) (*Token, error) {
 	scopeEnd, err := p.optionalTokenValue(TokenScope, "}")
 
 	for err == nil && scopeEnd == nil {
-		if t, tErr := p.parseProperty(parent); tErr != nil {
+		if t, tErr := p.parseProperty(parent, lookup); tErr != nil {
 			return t, tErr
 		}
 
@@ -383,7 +409,7 @@ func (p *parser) parseInnerScope(parent *Node) (*Token, error) {
 	return p.requireToken(TokenTerminator)
 }
 
-func (p *parser) parseProperty(parent *Node) (*Token, error) {
+func (p *parser) parseProperty(parent *Node, lookup bool) (*Token, error) {
 	def1, err := p.requireToken(TokenIdent)
 
 	if err != nil {
@@ -421,26 +447,10 @@ func (p *parser) parseProperty(parent *Node) (*Token, error) {
 		name = def1
 	}
 
-	node, err := makeNode(Property, name.Value, parent)
+	node, err := makeNode(Property, name.Value, nil)
 
 	if err != nil {
 		return name, err
-	}
-
-	if typ != nil {
-		node.Ref, err = node.lookup(typ)
-
-		if err != nil {
-			return typ, err
-		}
-	}
-
-	if param != nil {
-		node.RefParam, err = node.lookup(param)
-
-		if err != nil {
-			return param, err
-		}
 	}
 
 	if quali != nil {
@@ -453,6 +463,8 @@ func (p *parser) parseProperty(parent *Node) (*Token, error) {
 		return assign, err
 	}
 
+	var defValues []*Token
+
 	if assign != nil {
 		for {
 			defValue, dErr := p.scanner.Scan()
@@ -461,9 +473,7 @@ func (p *parser) parseProperty(parent *Node) (*Token, error) {
 				return defValue, dErr
 			}
 
-			if addErr := node.addDefault(defValue); addErr != nil {
-				return defValue, addErr
-			}
+			defValues = append(defValues, defValue)
 
 			union, uErr := p.optionalTokenValue(TokenOperator, "|")
 
@@ -499,6 +509,36 @@ func (p *parser) parseProperty(parent *Node) (*Token, error) {
 
 		if annot != nil {
 			node.AnnotationComment = annot.Value
+		}
+	}
+
+	removed := node.Annotation == "removed"
+
+	if lookup && !removed {
+		if err := parent.add(node); err != nil {
+			return name, err
+		}
+
+		if typ != nil {
+			node.Ref, err = node.lookup(typ)
+
+			if err != nil {
+				return typ, err
+			}
+		}
+
+		if param != nil {
+			node.RefParam, err = node.lookup(param)
+
+			if err != nil {
+				return param, err
+			}
+		}
+
+		for _, defValue := range defValues {
+			if addErr := node.addDefault(defValue); addErr != nil {
+				return defValue, addErr
+			}
 		}
 	}
 

@@ -248,18 +248,16 @@ func (p *prop) StructFieldType() string {
 // explicit initialization).
 func (p *prop) Constructor() string {
 	if p.ctor == "" {
-		if p.IsConst() || p.IsArray() || p.Default == nil {
-			return p.ctor
-		}
-
-		if p.IsProto() {
-			// pointer to proto struct
-			p.ctor = fmt.Sprintf("new(%s)", p.Type())
-		} else if p.IsSlice() || p.IsMap() {
-			// slice or map
+		switch {
+		case p.IsConst(), p.IsArray():
+			return ""
+		case p.IsProto(): // pointer to proto struct
+			p.ctor = fmt.Sprintf("&%s{}", p.Type())
+		case p.IsSlice(), p.IsMap(): // slice or map
 			p.ctor = fmt.Sprintf("make(%s)", p.Type())
-		} else {
-			// anything with a default value
+		case p.Default == nil:
+			return ""
+		default: // anything with a default value
 			p.ctor = p.DefaultValuesSymbols()
 		}
 	}
@@ -302,18 +300,18 @@ func (p *prop) ProtobufPackage() string {
 		i = 0
 	}
 
-	alias := p.Type()[0:i]
+	pkg := p.Type()[0:i]
 
-	switch alias {
-	case "steam", "dota2", "csgo", "tf2":
-		return alias
+	switch pkg {
+	case "steam", "artifact", "csgo", "dota2", "tf2", "underlords":
+		return pkg
 	case "steamclient":
 		return "steam/client"
 	case "steamworks":
-		return "steam/steamworks"
+		return "dota2/steamworks"
+	default:
+		return ""
 	}
-
-	return ""
 }
 
 // EvalEnumValue returns the evaluated value of this Property's value (Default).

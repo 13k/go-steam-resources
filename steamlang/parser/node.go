@@ -63,6 +63,7 @@ func (t NodeType) String() string {
 //
 //	|-------------------|--------------------|-------------------|----------------------------------------|
 //	| Type              | Class              | Enum              | Property                               |
+//	|-------------------|--------------------|-------------------|----------------------------------------|
 // 	| Ref               | class-emsg (Ident) | enum-type (Type)  | property-type (Type)                   |
 // 	| RefParm           | nil                | nil               | property-type-param (FlagsOpt)         |
 // 	| Default           | nil                | nil               | property-values (Default)              |
@@ -190,6 +191,7 @@ func (node *Node) addDefault(token *Token) error {
 	}
 
 	node.Default = append(node.Default, defNode)
+
 	return nil
 }
 
