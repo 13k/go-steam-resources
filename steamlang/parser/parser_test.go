@@ -15,6 +15,8 @@ var (
 			Flag1 = 1;
 			Flag2 = 2;
 			Flag3 = 4;
+			NoField = -1; removed "For pressing ceremonial reasons"
+			Flag4 = 6;
 		};
 	`
 
@@ -24,7 +26,8 @@ var (
 		// This is not a real SteamLanguage class
 		class Data<Enum::Field> {
 			uint a = 1;
-			int b = -2; removed "For pressing ceremonial reasons"
+			int z; removed "For pressing ceremonial reasons"
+			ulong b = -2; obsolete "Not used"
 			Enum c = Enum::Flag1 | Enum::Flag2;
 			proto<a> SteamKit2.GC.Internal.CMsgProtoBufHeader d;
 		};
@@ -47,7 +50,7 @@ func TestParseFile(t *testing.T) {
 
 	enum := root.Children[0]
 	assert.Exactly(t, root, enum.Parent)
-	require.Len(t, enum.Children, 4)
+	require.Len(t, enum.Children, 5)
 	assert.Equal(t, Enum, enum.Type)
 	assert.Equal(t, "Enum", enum.Value)
 	require.NotNil(t, enum.Ref)
@@ -131,6 +134,24 @@ func TestParseFile(t *testing.T) {
 	assert.Equal(t, Literal, propDefault.Type)
 	assert.Equal(t, "4", propDefault.Value)
 
+	// Enum::Flag4
+
+	prop = enum.Children[4]
+	assert.Exactly(t, enum, prop.Parent)
+	assert.Len(t, prop.Children, 0)
+	assert.Equal(t, Property, prop.Type)
+	assert.Equal(t, "Flag4", prop.Value)
+	assert.Nil(t, prop.Ref)
+	assert.Nil(t, prop.RefParam)
+	require.Len(t, prop.Default, 1)
+	assert.Equal(t, "", prop.Qualifier)
+	assert.Equal(t, "", prop.Annotation)
+	assert.Equal(t, "", prop.AnnotationComment)
+
+	propDefault = prop.Default[0]
+	assert.Equal(t, Literal, propDefault.Type)
+	assert.Equal(t, "6", propDefault.Value)
+
 	// Class
 
 	class := root.Children[1]
@@ -177,12 +198,12 @@ func TestParseFile(t *testing.T) {
 	assert.Equal(t, "b", prop.Value)
 	require.NotNil(t, prop.Ref)
 	assert.Equal(t, Type, prop.Ref.Type)
-	assert.Equal(t, "int", prop.Ref.Value)
+	assert.Equal(t, "ulong", prop.Ref.Value)
 	assert.Nil(t, prop.RefParam)
 	require.Len(t, prop.Default, 1)
 	assert.Equal(t, "", prop.Qualifier)
-	assert.Equal(t, "removed", prop.Annotation)
-	assert.Equal(t, "For pressing ceremonial reasons", prop.AnnotationComment)
+	assert.Equal(t, "obsolete", prop.Annotation)
+	assert.Equal(t, "Not used", prop.AnnotationComment)
 
 	propDefault = prop.Default[0]
 	assert.Equal(t, Literal, propDefault.Type)

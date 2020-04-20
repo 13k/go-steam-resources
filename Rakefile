@@ -71,7 +71,7 @@ end
 ## SteamLang tasks
 
 slconfig = config.fetch(:steamlang)
-steamlang_gen_package = slconfig.fetch(:gen_package)
+steamlang_cmd_package = slconfig.fetch(:cmd_package)
 steamlang_input_path = ROOT_PATH.join(slconfig.fetch(:input_path))
 steamlang_output_path = ROOT_PATH.join(slconfig.fetch(:output_path))
 steamlang_pkg_output_path = steamlang_output_path.join(slconfig.fetch(:package_name))
@@ -82,9 +82,9 @@ slconfig[:files].each_with_object(tasklist[:steamlang]) do |file, tasks|
 
   tasks << generate_steamlang(output_file, input_file) do |task|
     task.root_path = ROOT_PATH
-    task.gen_package = steamlang_gen_go_file
+    task.cmd_package = steamlang_cmd_package
     task.go_package = slconfig.fetch(:package_name)
-    task.protobuf_package = protobuf_pkg_base_import_path
+    task.pb_package = proto_go_package_base
   end
 end
 

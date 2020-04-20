@@ -128,7 +128,7 @@ protobuf:
         - "underlords/*.steamworkssdk.proto"
 steamlang:
   package_name: "steamlang"
-  gen_package: "./steamlang/cmd/steamlang-gen-go"
+  cmd_package: "./steamlang/cmd/steamlang-gen-go"
   input_path: "resources/SteamKit/Resources/SteamLanguage"
   output_path: "."
   files:

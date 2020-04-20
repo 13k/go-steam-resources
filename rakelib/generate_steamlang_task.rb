@@ -6,7 +6,7 @@ require_relative 'generate_file_task'
 class GenerateSteamLangTask < GenerateFileTask
   include Logging
 
-  attr_accessor :gen_package, :go_package, :protobuf_package
+  attr_accessor :cmd_package, :go_package, :pb_package
 
   def run
     require_command!('go')
@@ -25,7 +25,7 @@ class GenerateSteamLangTask < GenerateFileTask
   def gen_options
     @gen_options ||= [
       '-pkg', @go_package,
-      '-protopkg', @protobuf_package,
+      '-protopkg', @pb_package,
       '-o', output_file.to_s,
     ]
   end
@@ -33,7 +33,7 @@ class GenerateSteamLangTask < GenerateFileTask
   def generate_file
     mkdir_p(output_dir)
 
-    sh('go', 'run', @gen_package.to_s, *gen_options, input_file.to_s)
+    sh('go', 'run', @cmd_package.to_s, *gen_options, input_file.to_s)
   end
 end
 
