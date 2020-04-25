@@ -423,16 +423,26 @@ func (g *GenGo) writeClassSerializer(class *parser.Node, props propSlice) error 
 			// var {{dataN}} []byte
 			// if {{dataN}}, err := proto.Marshal(m.{{PropertyName}}); err != nil { return }
 			// m.{{ProtoLengthField}} = {{ProtoLengthFieldType}}(len({{dataN}}))
-			// if _, err = w.Write({{dataN}}); err != nil { return }
 			g.t().s("var ").s(dataN).sn(" []byte")
 			g.t().s("if ").s(dataN).s(", err = proto.Marshal(").sfield("m", prop.Name()).sn("); err != nil { return }")
 			g.t().sfield("m", lenField.Name()).s(" = ").s(lenField.Type()).s("(").slen(dataN).sn(")")
-			g.t().s("if _, err = w.Write(").s(dataN).sn("); err != nil { return }")
 
 		case "protomask":
 			// {{dataN}} := MaskProto(uint32(m.{{PropertyName}}))
-			// if err = binary.Write(w, binary.LittleEndian, {{dataN}}); err != nil { return }
 			g.t().s(dataN).s(" := MaskProto(uint32(").sfield("m", prop.Name()).sn("))")
+		}
+	}
+
+	for i, prop := range props {
+		dataN := fmt.Sprintf("data%d", i)
+
+		switch prop.SerializationKind() {
+		case "proto":
+			// if _, err = w.Write({{dataN}}); err != nil { return }
+			g.t().s("if _, err = w.Write(").s(dataN).sn("); err != nil { return }")
+
+		case "protomask":
+			// if err = binary.Write(w, binary.LittleEndian, {{dataN}}); err != nil { return }
 			g.t().s("if err = binary.Write(w, binary.LittleEndian, ").s(dataN).sn("); err != nil { return }")
 
 		default:
