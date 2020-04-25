@@ -8135,17 +8135,17 @@ func NewMsgHdrProtoBuf() *MsgHdrProtoBuf {
 
 func (m *MsgHdrProtoBuf) Serialize(w io.Writer) (err error) {
 	data0 := MaskProto(uint32(m.Msg))
+	var data2 []byte
+	if data2, err = proto.Marshal(m.Proto); err != nil {
+		return
+	}
+	m.HeaderLength = int32(len(data2))
 	if err = binary.Write(w, binary.LittleEndian, data0); err != nil {
 		return
 	}
 	if err = binary.Write(w, binary.LittleEndian, m.HeaderLength); err != nil {
 		return
 	}
-	var data2 []byte
-	if data2, err = proto.Marshal(m.Proto); err != nil {
-		return
-	}
-	m.HeaderLength = int32(len(data2))
 	if _, err = w.Write(data2); err != nil {
 		return
 	}
@@ -8186,17 +8186,17 @@ func NewMsgGCHdrProtoBuf() *MsgGCHdrProtoBuf {
 
 func (m *MsgGCHdrProtoBuf) Serialize(w io.Writer) (err error) {
 	data0 := MaskProto(uint32(m.Msg))
+	var data2 []byte
+	if data2, err = proto.Marshal(m.Proto); err != nil {
+		return
+	}
+	m.HeaderLength = int32(len(data2))
 	if err = binary.Write(w, binary.LittleEndian, data0); err != nil {
 		return
 	}
 	if err = binary.Write(w, binary.LittleEndian, m.HeaderLength); err != nil {
 		return
 	}
-	var data2 []byte
-	if data2, err = proto.Marshal(m.Proto); err != nil {
-		return
-	}
-	m.HeaderLength = int32(len(data2))
 	if _, err = w.Write(data2); err != nil {
 		return
 	}
