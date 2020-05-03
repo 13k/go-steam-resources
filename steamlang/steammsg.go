@@ -4,7 +4,7 @@ package steamlang
 import (
 	"encoding/binary"
 	"fmt"
-	"github.com/13k/go-steam-resources/steampb/steam"
+	"github.com/13k/go-steam-resources/v2/steampb/steam"
 	"google.golang.org/protobuf/proto"
 	"io"
 	"sort"
