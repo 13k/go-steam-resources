@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/13k/go-steam-resources/steampb/artifact/steamworks"
+	"github.com/13k/go-steam-resources/v2/steampb/artifact/steamworks"
 )
 
 func TestProtobufArtifactSteamworks(t *testing.T) {

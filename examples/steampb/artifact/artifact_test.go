@@ -5,9 +5,9 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/13k/go-steam-resources/steampb/artifact"
-	"github.com/13k/go-steam-resources/steampb/steam"
-	"github.com/13k/go-steam-resources/steampb/steam/client"
+	"github.com/13k/go-steam-resources/v2/steampb/artifact"
+	"github.com/13k/go-steam-resources/v2/steampb/steam"
+	"github.com/13k/go-steam-resources/v2/steampb/steam/client"
 )
 
 func TestProtobufArtifact(t *testing.T) {

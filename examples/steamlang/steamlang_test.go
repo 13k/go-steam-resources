@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/13k/go-steam-resources/steamlang"
+	"github.com/13k/go-steam-resources/v2/steamlang"
 )
 
 func TestSteamlang(t *testing.T) {

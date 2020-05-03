@@ -1,4 +1,4 @@
-module github.com/13k/go-steam-resources
+module github.com/13k/go-steam-resources/v2
 
 go 1.14
 

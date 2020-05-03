@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/13k/go-steam-resources/steampb/underlords/steam"
+	"github.com/13k/go-steam-resources/v2/steampb/underlords/steam"
 )
 
 func TestProtobufUnderlordsSteam(t *testing.T) {

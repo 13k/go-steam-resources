@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/13k/go-steam-resources/steampb/steam/network"
+	"github.com/13k/go-steam-resources/v2/steampb/steam/network"
 )
 
 func TestProtobufSteamNetwork(t *testing.T) {

@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/13k/go-steam-resources/steampb/dota2/steamworks"
+	"github.com/13k/go-steam-resources/v2/steampb/dota2/steamworks"
 )
 
 func TestProtobufDota2Steamworks(t *testing.T) {

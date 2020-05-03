@@ -13,7 +13,7 @@ import (
 	"path"
 	"strconv"
 
-	"github.com/13k/go-steam-resources/steamlang/parser"
+	"github.com/13k/go-steam-resources/v2/steamlang/parser"
 )
 
 const (
