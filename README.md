@@ -34,11 +34,11 @@ define messages with the same name and protobuf will panic.
 
 ## Installation & Usage
 
-`go get github.com/13k/go-steam-resources/protobuf`
+`go get github.com/13k/go-steam-resources/v2/steampb`
 
 ```go
 import (
-  steampb "github.com/13k/go-steam-resources/protobuf/steam"
+  steampb "github.com/13k/go-steam-resources/v2/steampb/steam"
   "google.golang.org/protobuf/proto"
 )
 
@@ -54,11 +54,11 @@ func f() {
 
 ## Installation & Usage
 
-`go get github.com/13k/go-steam-resources/steamlang`
+`go get github.com/13k/go-steam-resources/v2/steamlang`
 
 ```go
 import (
-  "github.com/13k/go-steam-resources/steamlang"
+  "github.com/13k/go-steam-resources/v2/steamlang"
 )
 
 func f() {
