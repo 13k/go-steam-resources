@@ -1,19 +1,18 @@
 # frozen_string_literal: true
 
-require 'thread'
 require 'rake'
 
 LOG_M = Mutex.new
 COLORS = {
-  reset:    0,
-  black:   30,
-  red:     31,
-  green:   32,
-  yellow:  33,
-  blue:    34,
+  reset: 0,
+  black: 30,
+  red: 31,
+  green: 32,
+  yellow: 33,
+  blue: 34,
   magenta: 35,
-  cyan:    36,
-  white:   37,
+  cyan: 36,
+  white: 37,
 }.freeze
 
 # Hack to synchronize rake output messages.
@@ -21,7 +20,8 @@ COLORS = {
 # before a previous line finished. It works for single-line status messages.
 module Rake
   class << self
-    alias_method :rake_output_message_orig, :rake_output_message
+    alias rake_output_message_orig rake_output_message
+
     def rake_output_message(*args, &block)
       LOG_M.synchronize do
         rake_output_message_orig(*args, &block)
@@ -45,7 +45,7 @@ module Logging
 
   def say(msg)
     LOG_M.synchronize do
-      $stderr.puts(msg)
+      $stderr.puts(msg) # rubocop:disable Style/StderrPuts
       $stderr.flush
     end
   end

@@ -38,15 +38,15 @@ proto_compile_output_path = build_path.join('go')
 
 proto_repo = ProtobufRepo.new(proto_repo_path)
 
-pbconfig[:packages].each do |config|
-  config = config.merge(
+pbconfig[:packages].each do |pkg_config|
+  pkg_config = pkg_config.merge(
     go_package_base: proto_go_package_base,
     patches_path: proto_patches_path,
     transform_path: proto_transform_output_path,
     output_path: proto_output_path,
   )
 
-  pkg = proto_repo.add_package(config)
+  pkg = proto_repo.add_package(pkg_config)
 
   pkg.files.each do |proto_file|
     transform_file = pkg.transform_path.join(proto_file.basename)
@@ -60,7 +60,7 @@ pbconfig[:packages].each do |config|
       task.root_path = ROOT_PATH
       task.include_path = proto_transform_output_path
       task.output_path = proto_compile_output_path
-      task.go_opt = { paths: "source_relative" }
+      task.go_opt = { paths: 'source_relative' }
     end
 
     tasklist[:protobuf][:transform] << transform_task
@@ -92,13 +92,13 @@ end
 
 task default: :generate
 
-desc "Clean build files"
+desc 'Clean build files'
 task :clean do
   rm_rf build_path
 end
 
 namespace :generate do
-  desc "Generate protobuf files"
+  desc 'Generate protobuf files'
   task protobuf: ['generate:protobuf:transform', 'generate:protobuf:generate']
 
   namespace :protobuf do
@@ -106,9 +106,9 @@ namespace :generate do
     multitask generate: tasklist[:protobuf][:generate]
   end
 
-  desc "Generate steamlang files"
+  desc 'Generate steamlang files'
   multitask steamlang: tasklist[:steamlang]
 end
 
-desc "Generate everything"
+desc 'Generate everything'
 task generate: ['generate:protobuf', 'generate:steamlang']

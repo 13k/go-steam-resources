@@ -18,12 +18,12 @@ module Util
   end
 
   def self.which(cmd)
-    system("which", cmd, out: :close, err: :close)
+    system('which', cmd, out: :close, err: :close)
   end
 
   def self.which!(cmd)
-    unless which(cmd)
-      raise CommandNotFoundError, format("command %<cmd>s not found", cmd: cmd)
-    end
+    return if which(cmd)
+
+    raise CommandNotFoundError, format('command %<cmd>s not found', cmd: cmd)
   end
 end

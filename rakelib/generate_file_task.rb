@@ -9,7 +9,7 @@ require_relative 'util'
 class GenerateFileTask < Rake::FileTask
   include Rake::FileUtilsExt
 
-  def self.define_task(output_file, *inputs, &block)
+  def self.define_task(output_file, *inputs)
     task = super(output_file => inputs).tap do |t|
       t.output_file = output_file
       t.inputs = inputs
@@ -38,41 +38,29 @@ class GenerateFileTask < Rake::FileTask
   end
 
   def call
-    return if executed?
-
     if @root_path.nil?
       raise ArgumentError, format(
-        "%<task_class>s requires `root_path` to be set",
+        '%<task_class>s requires `root_path` to be set',
         task_class: self.class.name,
       )
     end
 
     unless @root_path.is_a?(Pathname)
       raise ArgumentError, format(
-        "%<task_class>s requires `root_path` to be a Pathname object, got %<root_path_class>s",
+        '%<task_class>s requires `root_path` to be a Pathname object, got %<root_path_class>s',
         task_class: self.class.name,
         root_path_class: @root_path.class.name,
       )
     end
 
     run
-  ensure
-    executed!
   end
 
   def run
-    raise NotImplementedError, "Subclasses must override this method"
+    raise NotImplementedError, 'Subclasses must override this method'
   end
 
   protected
-
-  def executed?
-    !!@executed
-  end
-
-  def executed!
-    @executed = true
-  end
 
   def output_file_from_root
     @output_file_from_root ||= @output_file.relative_path_from(@root_path)
@@ -109,6 +97,7 @@ class GenerateFileTask < Rake::FileTask
 
   def clean_temp_files
     return unless @temp_files
+
     @temp_files.each(&:unlink)
   end
 
@@ -119,7 +108,7 @@ class GenerateFileTask < Rake::FileTask
   def require_pathname!(arg)
     unless arg.is_a?(Pathname)
       raise ArgumentError, format(
-        "%<task>s requires output and inputs to be Pathname objects, got %<actual>s",
+        '%<task>s requires output and inputs to be Pathname objects, got %<actual>s',
         task: self.class.name,
         actual: arg.class.name,
       )
@@ -133,18 +122,4 @@ class GenerateFileTask < Rake::FileTask
 
     require_pathname!(arg)
   end
-
-  # private
-  #
-  # def out_of_date?(stamp)
-  #   all_prerequisite_tasks.any? do |prereq|
-  #     prereq_task = application[prereq, @scope]
-  #
-  #     if prereq_task.is_a?(Rake::FileTask)
-  #       prereq_task.timestamp > stamp || @application.options.build_all
-  #     else
-  #       prereq_task.timestamp > stamp
-  #     end
-  #   end
-  # end
 end

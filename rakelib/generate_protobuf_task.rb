@@ -40,19 +40,19 @@ class GenerateProtobufTask < GenerateFileTask
   def protoc_options
     @protoc_options ||= [
       *proto_path_options,
-      *(go_out_option.to_a),
-      *(go_opt_option.to_a),
+      *go_out_option.to_a,
+      *go_opt_option.to_a,
     ]
   end
 
   def proto_path_options
-    raise Rake::TaskArgumentError, "include_path cannot be empty" if @include_path.nil?
+    raise Rake::TaskArgumentError, 'include_path cannot be empty' if @include_path.nil?
 
     ['-I', @include_path.to_s]
   end
 
   def go_out_option
-    raise Rake::TaskArgumentError, "output_path cannot be empty" if @output_path.nil?
+    raise Rake::TaskArgumentError, 'output_path cannot be empty' if @output_path.nil?
 
     [format('--go_out=%<go_out>s', go_out: @output_path)]
   end
@@ -69,9 +69,9 @@ class GenerateProtobufTask < GenerateFileTask
 
   def generated_file
     @generated_file ||= begin
-      relpath = input_file.relative_path_from(@include_path)
-      @output_path.join(relpath.sub_ext('.pb.go'))
-    end
+        relpath = input_file.relative_path_from(@include_path)
+        @output_path.join(relpath.sub_ext('.pb.go'))
+      end
   end
 
   def compile_file

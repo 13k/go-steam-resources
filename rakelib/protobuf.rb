@@ -34,6 +34,7 @@ class ProtobufPackage
   def name
     @name ||= @config.fetch(:name)
   end
+
   alias path name
 
   def pb_package
