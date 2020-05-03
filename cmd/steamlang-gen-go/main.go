@@ -12,8 +12,7 @@ import (
 )
 
 const (
-	defaultGoPackage       = "steamlang"
-	defaultProtobufPackage = "github.com/13k/go-steam-resources/steampb"
+	defaultGoPackage = "steamlang"
 )
 
 var (
@@ -51,7 +50,7 @@ func init() {
 	flag.StringVar(
 		&optProtobufPackage,
 		"protopkg",
-		defaultProtobufPackage,
+		"",
 		"Import path of the generated protobuf package",
 	)
 
@@ -68,6 +67,11 @@ func init() {
 func main() {
 	if flag.NArg() < 1 {
 		flag.Usage()
+		os.Exit(1)
+	}
+
+	if optProtobufPackage == "" {
+		warn("Option protopkg is required.")
 		os.Exit(1)
 	}
 
