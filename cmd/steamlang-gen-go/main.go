@@ -11,14 +11,16 @@ import (
 	"github.com/13k/go-steam-resources/steamlang/parser"
 )
 
-const (
-	defaultGoPackage = "steamlang"
-)
-
 var (
-	optGoPackage       string
-	optProtobufPackage string
-	optOutput          string
+	flags = &struct {
+		GoPackage    string
+		ProtoPackage string
+		Output       string
+		Quiet        bool
+	}{
+		GoPackage: "steamlang",
+		Output:    "-",
+	}
 )
 
 func info(msg string, args ...interface{}) {
@@ -41,24 +43,31 @@ func init() {
 	}
 
 	flag.StringVar(
-		&optGoPackage,
+		&flags.GoPackage,
 		"pkg",
-		defaultGoPackage,
+		flags.GoPackage,
 		"Name of the Go package to generate",
 	)
 
 	flag.StringVar(
-		&optProtobufPackage,
+		&flags.ProtoPackage,
 		"protopkg",
-		"",
+		flags.ProtoPackage,
 		"Import path of the generated protobuf package",
 	)
 
 	flag.StringVar(
-		&optOutput,
+		&flags.Output,
 		"o",
-		"-",
+		flags.Output,
 		"Output file. '-' means stdout",
+	)
+
+	flag.BoolVar(
+		&flags.Quiet,
+		"q",
+		flags.Quiet,
+		"Be quiet",
 	)
 
 	flag.Parse()
@@ -70,8 +79,8 @@ func main() {
 		os.Exit(1)
 	}
 
-	if optProtobufPackage == "" {
-		warn("Option protopkg is required.")
+	if flags.ProtoPackage == "" {
+		warn("Option protopkg is required.\n")
 		os.Exit(1)
 	}
 
@@ -97,15 +106,15 @@ func main() {
 	var output io.Writer
 	var buf bytes.Buffer
 
-	if optOutput == "-" {
+	if flags.Output == "-" {
 		output = os.Stdout
 	} else {
 		output = &buf
 	}
 
 	g := &generator.GenGo{
-		Package:         optGoPackage,
-		ProtobufPackage: optProtobufPackage,
+		Package:         flags.GoPackage,
+		ProtobufPackage: flags.ProtoPackage,
 	}
 
 	err = g.Generate(output, root)
@@ -114,8 +123,8 @@ func main() {
 		abort(err)
 	}
 
-	if optOutput != "-" {
-		f, fErr := os.Create(optOutput)
+	if flags.Output != "-" {
+		f, fErr := os.Create(flags.Output)
 
 		if fErr != nil {
 			abort(fErr)
@@ -127,6 +136,8 @@ func main() {
 			abort(err)
 		}
 
-		info("Generated code saved to %q\n", optOutput)
+		if !flags.Quiet {
+			info("Generated code saved to %q\n", flags.Output)
+		}
 	}
 }
