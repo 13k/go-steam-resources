@@ -1,10 +1,10 @@
 ---
-build_path: .build
+build_path: _build
 
 protobuf:
   input_path: "resources/SteamDatabase/Protobufs"
   output_path: "."
-  go_package_base: "protobuf"
+  go_package_base: "steampb"
   packages:
     - name: "steam"
       files:
