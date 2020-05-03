@@ -13,7 +13,7 @@ import (
 
 const (
 	defaultGoPackage       = "steamlang"
-	defaultProtobufPackage = "github.com/13k/go-steam-resources/protobuf"
+	defaultProtobufPackage = "github.com/13k/go-steam-resources/steampb"
 )
 
 var (
