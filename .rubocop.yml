@@ -1,0 +1,30 @@
+# vim sw=2 sts=2 ts=2 ft=yaml
+---
+Layout:
+  Enabled: false
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
+Metrics/MethodLength:
+  CountComments: false
+  Max: 20
+Style/CollectionMethods:
+  Enabled: true
+Style/Documentation:
+  Enabled: false
+Style/ExponentialNotation:
+  Enabled: true
+  EnforcedStyle: scientific
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
