@@ -27,6 +27,7 @@ class GenerateSteamLangTask < GenerateFileTask
       '-pkg', @go_package,
       '-protopkg', @pb_package,
       '-o', output_file.to_s,
+      '-q',
     ]
   end
 
