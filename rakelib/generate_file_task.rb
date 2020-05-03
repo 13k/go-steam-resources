@@ -9,8 +9,8 @@ require_relative 'util'
 class GenerateFileTask < Rake::FileTask
   include Rake::FileUtilsExt
 
-  def self.define_task(output_file, *inputs)
-    task = super(output_file => inputs).tap do |t|
+  def self.define_task(output_file, *inputs, &block)
+    task = super(output_file => inputs, &block).tap do |t|
       t.output_file = output_file
       t.inputs = inputs
     end
